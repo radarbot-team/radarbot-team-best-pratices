@@ -1,12 +1,6 @@
-iOS best practices
+# iOS best practices
 
-This document has to be written in english and will be published on the [BEEVA best practices repository](https://github.com/beeva/beeva-best-practices). Next to each point there is a brief description about the topic and a list of points to be explained.
-
-**This document is a guide, can be improved and extended as desired with more sections or more information in which are described here.**
-
-[[TOC]]
-
-# Basis
+## Basis
 
 1. Getting Started: official documentation and guides.
 
@@ -14,7 +8,7 @@ This document has to be written in english and will be published on the [BEEVA b
 
 3. Human Interfaces Guidelines and design topics.
 
-# Project Configuration
+## Project Configuration
 
 1. Universal applications
 
@@ -32,7 +26,7 @@ This document has to be written in english and will be published on the [BEEVA b
 
 8. Structure of folders and groups
 
-# Application Architecture
+## Application Architecture
 
 Common application architectures. Pros and cons of each one.
 
@@ -40,7 +34,7 @@ Common application architectures. Pros and cons of each one.
 
 2. Alternatives: MVVM, MVP, VIPER
 
-# Design Patterns
+## Design Patterns
 
 Common patterns on iOS, how to implement them and recommendations when using them.
 
@@ -62,7 +56,7 @@ Common patterns on iOS, how to implement them and recommendations when using the
 
 9. Dependency injection
 
-# User Interface and Visuals
+## User Interface and Visuals
 
 How to declare an user interface.
 
@@ -72,13 +66,13 @@ How to declare an user interface.
 
 3. Using Interface Builder
 
-## Animations
+### Animations
 
 Animating views with:
 
 1. Core Animation
 
-## Image Assets
+### Image Assets
 
 1. Image format
 
@@ -90,19 +84,19 @@ Animating views with:
 
 5. Launch image
 
-# Coding Style
+## Coding Style
 
 Best practices and style when writing code in the official languages.
 
-## Objective-C 
+### Objective-C 
 
 Some examples [here](https://github.com/github/objective-c-style-guide) and [here](https://github.com/raywenderlich/objective-c-style-guide).
 
-## Swift
+### Swift
 
 Some examples [here](https://github.com/github/swift-style-guide) and [here](https://github.com/raywenderlich/swift-style-guide).
 
-# i18n & l10n
+## i18n & l10n
 
 Process of internationalization and localization of an iOS app. 
 
@@ -120,7 +114,7 @@ Process of internationalization and localization of an iOS app.
 
     5. NSNumberFormatter
 
-# Persistence & Storage
+## Persistence & Storage
 
 Common solutions to store and persist data.
 
@@ -138,13 +132,13 @@ Common solutions to store and persist data.
 
 7. Third party libraries (Realm).
 
-## Secure Storage
+### Secure Storage
 
 Sensitive information and its storage and treatment.
 
 1. Keychain
 
-# Networking
+## Networking
 
 1. SSL & TLS
 
@@ -154,7 +148,7 @@ Sensitive information and its storage and treatment.
 
 3. Third party libraries (AFNetworking, Alamofire, SwiftJSON, AEXML, …)
 
-# Concurrency
+## Concurrency
 
 Concurrency on iOS. Pros and cons of each technology.
 
@@ -164,7 +158,7 @@ Concurrency on iOS. Pros and cons of each technology.
 
 3. NSOperation and NSOperationQueue
 
-# Logging
+## Logging
 
 Writing to Xcode console. Logging solutions.
 
@@ -174,7 +168,7 @@ Writing to Xcode console. Logging solutions.
 
 3. Third party libraries (CocoaLumberjack)
 
-# Debugging
+## Debugging
 
 1. Tips and tricks when debugging a program
 
@@ -188,15 +182,15 @@ Writing to Xcode console. Logging solutions.
 
 2. Third party tools (Reveal, Spark Inspector, …)
 
-# Testing
+## Testing
 
-## Unit testing
+### Unit testing
 
 1. XCTest
 
 2. Third party libraries (Nimble, ...)
 
-## UI Testing
+### UI Testing
 
 1. Xcode UI tests
 
@@ -204,7 +198,7 @@ Writing to Xcode console. Logging solutions.
 
 3. Third party libraries (KIF, Calabash, …)
 
-# Frameworks
+## Frameworks
 
 Programming a framework.
 
@@ -212,7 +206,7 @@ Programming a framework.
 
 2. Cross platform frameworks for iOS, watchOS and tvOS
 
-# Libraries & Dependencies Management
+## Libraries & Dependencies Management
 
 Solutions of third party libraries dependency management.
 
@@ -224,7 +218,7 @@ Solutions of third party libraries dependency management.
 
 4. Git submodules
 
-# Analytics & Crash Logs
+## Analytics & Crash Logs
 
 Solutions to gather metrics of usage and crashes.
 
@@ -234,7 +228,7 @@ Solutions to gather metrics of usage and crashes.
 
 3. Google Analytics
 
-# Diagnostics & Profiling
+## Diagnostics & Profiling
 
 1. Xcode static analyzer
 
@@ -242,7 +236,7 @@ Solutions to gather metrics of usage and crashes.
 
 3. Third party solutions (swiftlint, Faux Pax, ObjectiveClean, SwiftClean, …)
 
-# Continuous Integration
+## Continuous Integration
 
 Solutions of CI that best matches the lifecycle of an iOS application.
 
@@ -254,7 +248,7 @@ Solutions of CI that best matches the lifecycle of an iOS application.
 
 4. Bamboo, Jenkins, Travis CI, BuddyBuild, ...
 
-# Deployment & Publishing
+## Deployment & Publishing
 
 1. Code signing
 
@@ -264,7 +258,7 @@ Solutions of CI that best matches the lifecycle of an iOS application.
 
 4. App Store Review Guidelines
 
-# Version Control
+## Version Control
 
 1. Git and the .gitignore file.
 
