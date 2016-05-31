@@ -6,21 +6,21 @@
 - [Application Architecture](#application-architecture)
 - [Design Patterns](#design-patterns)
 - [User Interface and Visuals](#user-interface-and-visuals)
-    - [Animations](#animations)
-    - [Image Assets](#image-assets)
+	- [Animations](#animations)
+	- [Image Assets](#image-assets)
 - [Coding Style](#coding-style)
-    - [Objective-C](#objective-c)
-    - [Swift](#swift)
+	- [Objective-C](#objective-c)
+	- [Swift](#swift)
 - [i18n & l10n](#i18n--l10n)
 - [Persistence & Storage](#persistence--storage)
-    - [Secure Storage](#secure-storage)
+	- [Secure Storage](#secure-storage)
 - [Networking](#networking)
 - [Concurrency](#concurrency)
 - [Logging](#logging)
 - [Debugging](#debugging)
 - [Testing](#testing)
-    - [Unit testing](#unit-testing)
-    - [UI Testing](#ui-testing)
+	- [Unit testing](#unit-testing)
+	- [UI Testing](#ui-testing)
 - [Frameworks](#frameworks)
 - [Libraries & Dependencies Management](#libraries--dependencies-management)
 - [Analytics & Crash Logs](#analytics--crash-logs)
@@ -123,13 +123,13 @@ Best practices and style when writing code in the official languages.
 
 [Objective-C best practices](objective-c/README.md)
 
-Some examples [here](https//github.com/github/objective-c-style-guide) and [here](https//github.com/raywenderlich/objective-c-style-guide).
+Some examples [here](https://github.com/github/objective-c-style-guide) and [here](https://github.com/raywenderlich/objective-c-style-guide).
 
 ### Swift
 
 [Swift best practices](swift/README.md)
 
-Some examples [here](https//github.com/github/swift-style-guide) and [here](https//github.com/raywenderlich/swift-style-guide).
+Some examples [here](https://github.com/github/swift-style-guide) and [here](https://github.com/raywenderlich/swift-style-guide).
 
 ## i18n & l10n
 
