@@ -175,13 +175,15 @@ Sensitive information and its storage and treatment.
 
 ## Networking
 
-1. SSL & TLS
+1. Handling URLs (NSURLComponents)
+
+2. SSL & TLS
 
     1. SSL pinning
 
-2. Downloading and parsing data
+3. Downloading and parsing data
 
-3. Third party libraries (AFNetworking, Alamofire, SwiftJSON, AEXML, …)
+4. Third party libraries (AFNetworking, Alamofire, SwiftJSON, AEXML, …)
 
 ## Concurrency
 
