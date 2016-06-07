@@ -38,7 +38,7 @@
 
 Common application architectures. Pros and cons of each one.
 
- - Model View Presenter. [Ejemplos de Google](https://github.com/googlesamples/android-architecture)
+ - Model View Presenter. [Google samples](https://github.com/googlesamples/android-architecture)
  - Model View ViewModel.
  - Others.
 
