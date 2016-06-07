@@ -3,6 +3,5 @@
 
 This is how we work with Kotlin at BEEVA.
 
-<img  style= "float:left"; src="../statics/horizontal-beeva-logo.png" />  
-<img  style="margin-left:80px"; src="../statics/logo-kotlin.png" /> 
+![logo](statics/beeva_kotlin.png)
 

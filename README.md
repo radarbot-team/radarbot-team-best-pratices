@@ -3,9 +3,7 @@
 
  This is how we work with Android at BEEVA.
 
-<img  style="float:left"; src="statics/horizontal-beeva-logo.png" />  
-<img  src="statics/logo-android.jpg" /> 
-
+![logo](statics/beeva_android.png)
 
 - [Basis](#basis)
 - [Project Configuration](#project-configuration)
@@ -17,11 +15,11 @@
 - [Performance](#performance)
 - [Security & Privacy](#security--privacy)
 - [Background jobs](#background-jobs)
-- [Interaction and Engagement](#interaction-engagement)
+- [Interaction and Engagement](#interaction-and-engagement)
 - [Persistence & Storage](#persistence--storage)
 - [Analytics & Crash Logs](#analytics--crash-logs)
-- [Continuous Integration](#continuos-integration)
-- [Deployment & Publishing](#deploymnet--publising)
+- [Continuous Integration](#continuous-integration)
+- [Deployment & Publishing](#deployment--publishing)
 - [Version Control](#version-control)
 
 <!-- /MarkdownTOC -->
