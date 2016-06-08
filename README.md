@@ -1,4 +1,9 @@
 # iOS best practices
+
+This is how we work with iOS at BEEVA.
+
+![logo](statics/beeva_xcode.png)
+
 <!-- MarkdownTOC depth=0 autolink=true bracket=round -->
 
 - [Basis](#basis)
@@ -6,21 +11,21 @@
 - [Application Architecture](#application-architecture)
 - [Design Patterns](#design-patterns)
 - [User Interface and Visuals](#user-interface-and-visuals)
-	- [Animations](#animations)
-	- [Image Assets](#image-assets)
+    - [Animations](#animations)
+    - [Image Assets](#image-assets)
 - [Coding Style](#coding-style)
-	- [Objective-C](#objective-c)
-	- [Swift](#swift)
+    - [Objective-C](#objective-c)
+    - [Swift](#swift)
 - [i18n & l10n](#i18n--l10n)
 - [Persistence & Storage](#persistence--storage)
-	- [Secure Storage](#secure-storage)
+    - [Secure Storage](#secure-storage)
 - [Networking](#networking)
 - [Concurrency](#concurrency)
 - [Logging](#logging)
 - [Debugging](#debugging)
 - [Testing](#testing)
-	- [Unit testing](#unit-testing)
-	- [UI Testing](#ui-testing)
+    - [Unit testing](#unit-testing)
+    - [UI Testing](#ui-testing)
 - [Frameworks](#frameworks)
 - [Libraries & Dependencies Management](#libraries--dependencies-management)
 - [Analytics & Crash Logs](#analytics--crash-logs)
