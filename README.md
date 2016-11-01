@@ -74,7 +74,7 @@ Common application architectures. Pros and cons of each one.
 
 Common patterns on iOS, how to implement them and recommendations when using them.
 
-1. Initialization, chain of initializers
+1. Object Initialization
 
 2. Delegation
 
