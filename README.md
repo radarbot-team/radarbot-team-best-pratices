@@ -36,7 +36,7 @@ This is how we work with iOS at BEEVA.
 
 <!-- /MarkdownTOC -->
 
-## Basis
+## [Basis](basis/Basis.md)
 
 1. Getting Started: official documentation and guides.
 
@@ -44,7 +44,7 @@ This is how we work with iOS at BEEVA.
 
 3. Human Interfaces Guidelines and design topics.
 
-## Project Configuration
+## [Project Configuration](project-configuration/ProjectConfiguration.md)
 
 1. Universal applications
 
@@ -62,7 +62,7 @@ This is how we work with iOS at BEEVA.
 
 8. Structure of folders and groups
 
-## Application Architecture
+## [Application Architecture](application-architecture/ApplicationArchitecture.md)
 
 Common application architectures. Pros and cons of each one.
 
@@ -70,7 +70,7 @@ Common application architectures. Pros and cons of each one.
 
 2. Alternatives: MVVM, MVP, VIPER
 
-## Design Patterns
+## [Design Patterns](design-patterns/DesignPatterns.md)
 
 Common patterns on iOS, how to implement them and recommendations when using them.
 
@@ -92,7 +92,7 @@ Common patterns on iOS, how to implement them and recommendations when using the
 
 9. Dependency injection
 
-## User Interface and Visuals
+## [User Interface and Visuals](user-interface/UserInterface.md)
 
 How to declare an user interface.
 
@@ -140,13 +140,13 @@ Some examples [here](https://github.com/github/swift-style-guide) and [here](htt
 
 Process of internationalization and localization of an iOS app. 
 
-1. Localization
+1. [Localization](localization/Localization.md)
 
     1. Localizable.strings files
 
     2. Existing tools (i.e. Twine) used to improve the process of localization.
 
-2. Internationalization
+2. [Internationalization](internationalization/Internationalization.md)
 
     3. NSLocale
 
@@ -154,7 +154,7 @@ Process of internationalization and localization of an iOS app.
 
     5. NSNumberFormatter
 
-## Persistence & Storage
+## [Persistence & Storage](persistence/Persistence.md)
 
 Common solutions to store and persist data.
 
@@ -178,7 +178,7 @@ Sensitive information and its storage and treatment.
 
 1. Keychain
 
-## Networking
+## [Networking](networking/Networking.md)
 
 1. Handling URLs (NSURLComponents)
 
@@ -190,7 +190,7 @@ Sensitive information and its storage and treatment.
 
 4. Third party libraries (AFNetworking, Alamofire, SwiftJSON, AEXML, …)
 
-## Concurrency
+## [Concurrency](concurrency/Concurrency.md)
 
 Concurrency on iOS. Pros and cons of each technology.
 
@@ -200,7 +200,7 @@ Concurrency on iOS. Pros and cons of each technology.
 
 3. NSOperation and NSOperationQueue
 
-## Logging
+## [Logging](logging/Logging.md)
 
 Writing to Xcode console. Logging solutions.
 
@@ -210,7 +210,7 @@ Writing to Xcode console. Logging solutions.
 
 3. Third party libraries (CocoaLumberjack)
 
-## Debugging
+## [Debugging](debugging/Debugging.md)
 
 1. Tips and tricks when debugging a program
 
@@ -221,18 +221,20 @@ Writing to Xcode console. Logging solutions.
     3. UI (Xcode view debugging)
 
     4. iOS Network link conditioner
+    
+    5. Visual Memory Debugger (available on Xcode 8)
 
 2. Third party tools (Reveal, Spark Inspector, …)
 
 ## Testing
 
-### Unit testing
+### [Unit Testing](unit-testing/UnitTesting.md)
 
 1. XCTest
 
 2. Third party libraries (Nimble, ...)
 
-### UI Testing
+### [UI Testing](ui-testing/UITesting.md)
 
 1. Xcode UI tests
 
@@ -240,7 +242,7 @@ Writing to Xcode console. Logging solutions.
 
 3. Third party libraries (KIF, Calabash, …)
 
-## Frameworks
+## [Frameworks](frameworks/Frameworks.md)
 
 Programming a framework.
 
@@ -248,7 +250,7 @@ Programming a framework.
 
 2. Cross platform frameworks for iOS, watchOS and tvOS
 
-## Libraries & Dependencies Management
+## [Libraries & Dependencies Management](libraries/Libraries.md)
 
 Solutions of third party libraries dependency management.
 
@@ -260,7 +262,7 @@ Solutions of third party libraries dependency management.
 
 4. Git submodules
 
-## Analytics & Crash Logs
+## [Analytics & Crash Logs](analytics/Analytics.md)
 
 Solutions to gather metrics of usage and crashes.
 
@@ -270,7 +272,7 @@ Solutions to gather metrics of usage and crashes.
 
 3. Google Analytics
 
-## Diagnostics & Profiling
+## [Diagnostics & Profiling](diagnostics/Diagnostics.md)
 
 1. Xcode static analyzer
 
@@ -278,7 +280,7 @@ Solutions to gather metrics of usage and crashes.
 
 3. Third party solutions (swiftlint, Faux Pax, ObjectiveClean, SwiftClean, …)
 
-## Continuous Integration
+## [Continuous Integration](continuous-integration/ContinuousIntegration.md)
 
 Solutions of CI that best matches the lifecycle of an iOS application.
 
@@ -290,7 +292,7 @@ Solutions of CI that best matches the lifecycle of an iOS application.
 
 4. Bamboo, Jenkins, Travis CI, BuddyBuild, ...
 
-## Deployment & Publishing
+## [Deployment & Publishing](deployment/Deployment.md)
 
 1. Code signing
 
@@ -300,7 +302,7 @@ Solutions of CI that best matches the lifecycle of an iOS application.
 
 4. App Store Review Guidelines
 
-## Version Control
+## [Version Control](version-control/VersionControl.md)
 
 1. Git and the .gitignore file.
 
