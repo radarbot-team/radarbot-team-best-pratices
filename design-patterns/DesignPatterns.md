@@ -69,7 +69,7 @@ Example:
 		self.init(name: "The name")
 	} 
 ```
-In Swift, the initializer chain is like the figure below:
+In Swift, the initializer chain looks like the figure below:
 
 ![Swift Initialization chain](statics/Swift.InitializationChain.png)
 
