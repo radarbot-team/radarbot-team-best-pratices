@@ -76,6 +76,57 @@ In Swift, the initializer chain looks like the figure below:
 
 ## Delegation
 
+**Delegation** is a pattern in which one object in a program acts on behalf of, or in coordination with, another object. The delegating object keeps a reference to the other object `the delegate` and at the appropiate time sends a message to it. The message informs the delegate of an event that the delegating object is about to handle or has just handled. The delegate may respond to the message by updating the appearance or state of itself or other objects in the application, and in some cases it can return a value that affects how an impending event is handled. Delegation makes it possible for one object to after the behaviour of another object without the need to inherit from it. The delegate is almost always one of your custom objects, an by definition it incorporates application-specific logic that the generic and delegating object cannot possibly know itself.
+
+### How does it work?
+
+The delegating class has a property, usually named `delegate`, and declares, without implementing, one or more methods that constitute a *formal protocol* or an *informal protocol*.
+
+>* A **formal protocol** declares a list of methods that client classes are expected to implement. Formal protocols have their own declaration, adoption, and type-checking syntax. You can designate methods whose implementation is required or optional. 
+
+>* An **informal protocol** is a category on NSObject, which implicitly makes almost all objects adopters of the protocol. Implementation of the methods in an informal protocol is optional. Before invoking a method, the calling object checks to see whether the target object implements it. A clear example of informal protocol, is UIapplicationDelegate. Its methods are implemented by AppDelegate class of the application.
+
+In the informal protocol approach, the delegate implements only those methods in wich it has an interest in coordinating itself with the delegating object or affecting that object's default behaviour. If the delegating class declares a formal protocol, the delegate may choose to implement those methods marked optional, but it must implement the required ones.
+
+The mechanism of delegation is illustrated by the next figure:
+
+![Delegation mechanism](statics/MechanismDelegation.png)
+
+### The form of delegation messages
+
+Delegating methods have a conventional form. They begin with the name of the class object doing the delegating. Usually this object name is followeb by an auxiliary verb indicative of the tempral status of the reported event. This verb, in other words, indicates wheter the event is about to occur (*Should* or *Will*) or whether it has just occurred (*Did* or *Has*). This temporal distinction helps to categorize those messages that expect a return value and those that do not. 
+
+Delegation methods with return values
+
+```
+	NSApplication
+	- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename; 
+	
+	UIApplicationDelegate
+	- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
+
+	UITableViewDelegate
+	- (UITableRowIndexSet *)tableView:(NSTableView *)tableView willSelectRows:(UITableRowIndexSet *)selection;
+
+	NSWindow
+	- (NSRect)windowWillUseStandardFrame:(NSWindow *)window defaultFrame:(NSRect)newFrame;
+```
+
+The delegate that implements these methods can block the impending event (by returning *NO* in the first two methods), or alter a suggested value (the index set and the frame rectangle in the last two methods).
+
+Other delegation methods are invoked by messages that do not expect a return value and so are typed to return *void*. These messages are purely informational, and the method names often contain *Did*, *Will*, or some other indication of a transpired or impending event.
+
+```
+	NSWindow 
+	- (void)windowDidMove:(NSNotification *)notification; 
+
+	UIApplication	
+	- (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame;
+
+	NSApplication
+	- (void)applicationWillBecomeActive:(NSNotification *)notification;
+```
+
 ## Target-Action
 
 ## Observation (KVO, NSNotificationCenter)
