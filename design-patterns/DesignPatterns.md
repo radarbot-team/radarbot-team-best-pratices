@@ -129,6 +129,58 @@ Other delegation methods are invoked by messages that do not expect a return val
 
 ## Target-Action
 
+A typical application's user interface consists of a number of graphical objects, and perhaps the most common of these objects are controls. A control is a graphical analog of a real-world or logical device (button, switch, textfield...). As with real-world control, such as radio tuner, you use it to convey your intent to some system of which it is a part-that is, an application.
+
+The role of a control on a user interface is simple: it interprets the intent of the user and instructs some other objects to carry out that request. When a user acts on the control by, say, clicking it or pressing the *Return key*, the hardware device generates a raw event. The control accepts the event and translates it into an instruction that is specific to the application. However, events by themselves do not give much information about the user's intent, they marely tell you that the user clicked a mouse button or pressed a key. So some mechanism must be called upon to provide the translation between event and instruction. This mechanism is called **target-action**.
+
+Cocoa uses the target-action mechanism for communication between a control and another object. This mechanism allows the control and to encapsulate the information necessary to send an application-specific instruction to the appropiate object. The receiving object is called the `target`. The `action` is the message that the control sends to the target. The object that is interested in the user event `-the target-`is the one that imparts significance to it, and this significance is usually reflected in the name it gives to the action.
+
+![Target-Action mechanism](statics/TargetAction.png)
+
+### The target
+
+A target is a receiver of an action message. A control holds the target of its action message as an outlet. The target usually is an instance of one of yout custom classes, although it can be any Cocoa object whose class implements the appropiate action method.
+
+Control objects do not retain their targets. However, clients of controls sending action messages are responsible for ensuring that their targets are available to receive action messages. To do this, they may have to retain their targets in memory-managed environments. 
+
+### The action
+
+An action is the message a control sends to the target or, from the perspective of the target, the method that the target implements to respond to the action message. A control stores an action as an instance variable of type `SEL -Objective-C-` or `Selector -Swift-`, -data types used to specify the signature of a message-. An action message must have a simple, distinct signature. The method it invokes returns nothing and usually has a parameter containing the object sending the message. This parameter, by convention, is named *sender*.
+
+Example of action methods with one, two or three parameters:
+
+```
+	Objective-C
+	
+	- (void)doSomething;
+	- (void)doSomething:(id)sender;
+	- (void)doSomething:(id)sender forEvent(UIEvent *)event;
+
+	Swift
+	
+	func doSomething()
+	func doSomething(sender: UIButton)
+	func doSomething(sender: UIButton forEvent event: UIEvent)
+```
+
+Action methods declared by some Cocoa classes can also have the equivalent signature:
+
+```
+	Objective-C
+	
+	- (IBAction)doSomething:(id)sender;
+	- (IBAction)doSomething:(id)sender forEvent(UIEvent *)event;
+
+	Swift
+	
+	@IBAction func doSomething(sender: UIButton)
+	@IBAction func doSomething(sender: UIButton forEvent event: UIEvent)
+```
+
+In this case, `IBAction` does not designate a data type for a return value, no value is returned. *IBAction* is a type qualifier that Interface Builder notices during application development to synchronize actions added programmatically with its internal list of action methods defined for a project.
+
+The sender parameter usually identifies the control sending the action message. The target can query the sender for more information if it needs to. If the actual sending substitutes another object as sender, you should treat that object in the same way. 
+
 ## Observation (KVO, NSNotificationCenter)
 
 ## Factory (Class clusters)
