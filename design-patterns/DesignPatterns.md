@@ -325,7 +325,147 @@ Since notification dispatch happens on the posting thread, it may be necessary t
 
 ## Command (NSInvocation)
 
-## Extensions (Objective-C categories, Swift extensions)
+## Extensions
+
+Sometimes, you may find that you wish to extend an existing class by adding behavior that is useful only in certain situations. As an example, you might find that your application often needs to display a string of characters in a visual interface. Rather than creating some string-drawing object to use every time you need to display a string, it would make more sense if it was possible to give the NSString class itself the ability to draw its own characters on screen.
+
+In situations like this, it does not always make sense to add the utility behavior to the original, primary class interface. Drawing abilities are unlikely to be needed the majority of times any string object is used in an application, for example, and in the case of NSString, you cannot modify the original interface or implementation because it is a framework class.
+
+However, Objective-C allows you to add your own methods to existing classes through **categories and class extensions**, and **extensions** in Swift.
+
+### Objective-C categories
+
+In order to add a method to an existing class, the easiest way is to use a **category**. 
+
+A category can be declared for any class, even if you do not have the original implementation source code (such as for standard Cocoa or Cocoa Touch classes). Any methods that you declare in a category will be available to all instances of the original class, as well as any sublcasses of the original class. At runtime, there is no difference between a method added by a category and one that is implemented by the original class.
+
+The syntax to declare a **category** used the `@interface` keyword, just like a standard Objective-C class description, but does not indicate any inheritance from a subclass. Instead, it specified the name of the category in parentheses, like this:
+
+```
+@interface ClassName (CategoryName)
+
+@end
+```
+
+A category is usually declared in a separate header file and implemented in a separate source code file, so you should have a `.h` and a `.m` files.
+
+```
+NSString+Utils.h
+------------------------
+
+@interface NSString (Utils)
+
+- (NSString *)nonEmptyString;
+
+@end
+
+NSString+Utils.m
+
+#import NSString+Utils.h
+
+@implementation NSString
+
+- (NSString *)nonEmptyString {
+	
+	return ([self length] == 0) ? "" : self;
+
+}
+
+@end
+```
+
+Categories can be used to declare either instane methods or class methods but are not usually suitable for declaring additional properties. It is valid syntax to include a property declaration in a category interface, but it is not possible to declare an additional instance variable in a category. This means the compiler will not synthesize any instance variable, nor will it synthesize any property accessor methods. You can write your own accessor methods in the category implementation, but you will not be able to keep track of a value for that property unless it is already stored by the original class.
+
+Any methods added by a category are available to all instances of the class and its subclasses, you will need to import the category header file in any source code file where you wish to use the additional methods, otherwise you will run into compiler warnings and errors.
+
+```
+#import NSString+Utils.h
+
+@implementation SomeObject
+
+- (void)someMethod {
+
+	NSString *nonEmptyName = [_name nonEmptyString];
+	
+	NSLog(@"The name is %@", nonEmptyName)
+} 
+```
+
+### Objective-C class extensions
+
+A class extension bears some similarity to a category, but it can only be added to a class for which you have the source code a compile time. The methods are declared by a class extension are implemented in the `@implementation` block for the original class so you cannot, for example, declare a class extension on a framework class, suchs as a Cocoa or Cocoa Touch class like *NSString*.
+
+The syntax to declare a class extension is similar to hte syntax for a category, and looks like this:
+
+```
+.m file
+-------
+
+@interface ClassName()
+
+@end
+```
+
+Because no name is given in the parentheses, class extensions are often referred to as *anonymous categories*.
+
+Unlike regular categories, a class extension can add its own properties and instance variables to a class. If you declare a property in a class extension, like this:
+
+```
+@interface ClassName()
+
+@property (nonatomic, readwrite, copy) NSString *privateProperty;
+
+@end
+```
+the compiler will automatically synthesize the relevant accessor methods, as well as an instance variable, inside the primary class implementation.
+
+If you add any methods, these must be implemented in the primary implementation for the class.
+
+**Class extensions** are often used to extend the public interface with additional private methods or/and properties for use within the implementation of the class itself. It is common, for example, to define a property `readonly` in the interface, but `readwrite` in a class extension declared above the implementation, in order that the internal methods of the class can change the property value directly.
+
+### Swift extensions
+
+`Extensions` add new functionality to an existing class, structure, enumeration, or protocol type. This includes the ability to extend types for which you do not have access to the original source code (known as *retroactive modeling*). Extensions are similar to categories in Objective-C, and do not have names.
+
+Extensions in Swift can:
+
+* Add computed instance properties and computed type properties
+* Define instance methods and type methods
+* Provide new initializers
+* Define subscripts
+* Define and use nested types
+* Make an existing type conform to a protocol
+
+You can even [**extend a protocol**](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID521) to provide implementations of its requirements or add additional functionality that conforming types can take advantage of. 
+
+One important thing, *Extensions* can add new functionality to a type, but they **cannot override existing funcitonality**.
+
+To declare an extension of a given type, you msut use the `extension` keyword
+
+```
+extension TypeName {
+	// new functionality to add to TypeName goes here
+}
+```
+An extension can extend an existing type to make it adopt one or more protocols. Where this is the case, the protocol names are written in exactly the same way as for a class or structure:
+
+```
+extension TypeName: SomeProtocol, AnotherProtocol {
+	//implementation of protocol requirements goes here
+}
+```
+
+In addition, you can declare `private` extensions to make methods and/or computed properties only accesible to the type owner.
+
+```
+private extension TypeName {
+	// private implementation of TypeName goes here
+}
+```
+
+> **Note**: If you define an extension to add new functionality to an existing type, the new functionality will be available on all exisiting instances of that type, even if they were created before the extensions was defined.
+
+For more information of Swift Extensions, visit [Apple Documentation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html).
 
 ## Dependency injection
 
