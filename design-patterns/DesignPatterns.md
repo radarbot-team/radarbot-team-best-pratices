@@ -86,7 +86,7 @@ The delegating class has a property, usually named `delegate`, and declares, wit
 
 >* An **informal protocol** is a category on NSObject, which implicitly makes almost all objects adopters of the protocol. Implementation of the methods in an informal protocol is optional. Before invoking a method, the calling object checks to see whether the target object implements it. A clear example of informal protocol, is UIapplicationDelegate. Its methods are implemented by AppDelegate class of the application.
 
-> To find more infomation about *Protocol*, [click here](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html)
+> To find more infomation about *Protocol*, [click here](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html).
 
 In the informal protocol approach, the delegate implements only those methods in wich it has an interest in coordinating itself with the delegating object or affecting that object's default behaviour. If the delegating class declares a formal protocol, the delegate may choose to implement those methods marked optional, but it must implement the required ones.
 
@@ -323,7 +323,56 @@ Since notification dispatch happens on the posting thread, it may be necessary t
 
 ## Prototype (copy, copyWithZone)
 
-## Command (NSInvocation)
+## Command
+
+The concept behind this pattern is to transform a request into an object in order to facilitate some actions, such as undo/redo, inserto into a queue, or tracking of the request.
+
+The command pattern creats distance between the client that requests an operation and the object that can perform it. The request is encapsulated into an object. This object contains a reference to the reciver who will effectively execute the operation.
+
+The real operation is managed by the receiver and the command is like an order; it only contains a reference to the invoker, the object that will perform the action and an execute function will call the real operation on the worker. 
+
+This pattern allows the following features:
+
+* Sending requests to different receivers
+* Queuing, logging, and rejecting requests
+* Undoable actions
+* Encapsulate a request in an object
+* Allows the parametrization of clients with different requests
+
+![Command UML](statics/Command.png)
+
+The classes participating in this pattern are as follows:
+
+* `Command`: This declares the interface for executing an operation
+* `ConcreteCommand`: This implements the *Command* interface with the execute method by invoking the corresponding operations on *Receiver*. It defines a link between the *Receiver* class and the action.
+* `Client`: This creates a *ConcreteCommand* object and sets its receiver.
+* `Invoker`: This asks the command to carry out the request.
+* `Receiver`: This knows how to perform the operations.
+
+### How does it works?
+
+The following sequence diagram defines the collaboration between all objects participating in the command pattern:
+
+![Command sequence diagram](statics/CommandSequenceDiagram.png)
+
+* The client asks for a command to be executed and specifies its receivers.
+* The client then sends the command to the invoker that stores it (or places it in a queue system if some actions needs to be performed before execution of the command) in order to execute it later.
+* The invoker is then called to launch the command by infoking the execute function on the appropiate command object.
+* The concrete command asks the reciver to execute the appropiate operation.
+
+### Objective-C NSInvocation
+
+Command pattern is well-built in Objective-C with the class **NSInvocation**. 
+
+An `NSInvocation`is an Objective-C message rendered static, that is, it is an action turned into an object. *NSInvocation* objects are used to store and forward messages between applications, primarily by [NSTimer](https://developer.apple.com/reference/foundation/timer) objects and the distributed objects system.
+
+An NSInvocation object contains all the elements of an Objective-C message: a target, a selector, arguments, and the return value. Each of these elements can be set directly, and the return value is set automatically when the NSInvocation object is dispatched.
+
+It can be repeatedly dispatched to different targets; its arguments can be modified between dispatch for vaying results; even its selector can be changed to another with the same method signature (arguments and return types). This flexibility makes NSInvocation useful for repeating messages with many arguments and variations; rather than retyping a slightly different expression for each message, you modify the NSInvocation object as needed each time before dispatching it to a new target.
+
+In order with the *Command pattner* workflow, the `client` will create a **NSInvocation** instance with all the information that it need: target (it will be the `receiver` ), selector, and arguments, and then execute the invocation.
+
+> More information about NSIncation in this [article](http://cocoamental.com/2011/06/28/nsinvocation-para-torpes/).
 
 ## Extensions
 
