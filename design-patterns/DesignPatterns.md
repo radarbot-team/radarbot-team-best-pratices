@@ -321,7 +321,55 @@ Since notification dispatch happens on the posting thread, it may be necessary t
 
 ## Factory (Class clusters)
 
-## Prototype (copy, copyWithZone)
+## Prototype
+
+The **Prototype pattern** is used to create a new object by duplicating existing objects called *prototypes*, and they have a cloning capability.
+
+This pattern is used in the folowwing use cases:
+
+* When you need to create an instance without knowing the hierarchy of a class.
+* When you need to create class isntances that are dynamically loaded.
+* When you need to have a simple object system and not include parallel hierarchy of a factory class.
+
+![Prototype UML](statics/PrototypeUML.png)
+
+* `Client`: This class contains a list of objects called prototypes that are instances of the *AbstractPrototype* abstract calss. The *Client* class needs to clone these prototypes without having to know their internal structure and subclass hierarchy.
+* `AbstractPrototype`: This is an abstract class that can duplicate itself. This class contains a clonning method called `clone()`.
+* `ConcretePrototype1`and `ConcretePrototype2`: These are concrete classes that inherit form the *AbstractPrototype* class. They define a prototype and have both cloning method called `clone()`.
+
+**Foundation** has a protocol named `NSCopying` which declares a method for providing functional copies of an object. The exact meaning of *copy* can vary from class to class, but a copy must be a functionally independent object with values identical to the original at the time the copy was made. A copy produced with **NSCopying** is implicitly retained by the sender, who is responsible for releasing it.
+
+NScopying declares one method, `copyWithZone:`, but copying is commonly invoked with the convenience method `copy`. The *copy* method is defined for all objects inheriting form NSObject and simply invokes *copyWithZone:* with the default zone.
+
+Your options for implementing this protocol are as follows:
+
+* Implement NSCopying using `alloc`and `init...` in classes that do not inherit `copyWithZone:`.
+* Implement NScopying by retaining the original instead of creating a new copy when the class and its contests are inmutable.
+
+If a subclass inherits NSCopying form its suplerclass and declares additional instance variables, the subclass has to override `copyWithZone:`to properly handle its own instance variables, invoking the superclass's implementation first.
+
+#### Example
+
+```
+class Person: NSObject, NSCopying {
+    var name: String
+    var age: Int
+    
+    init(withName name: String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+    
+    init(_ person: Person) {
+        name = person.name
+        age = person.age
+    }
+    
+    func copy(with zone: NSZone? = nil) -> Any {
+        return Person(self)
+    }
+}
+```
 
 ## Command
 
