@@ -86,6 +86,8 @@ The delegating class has a property, usually named `delegate`, and declares, wit
 
 >* An **informal protocol** is a category on NSObject, which implicitly makes almost all objects adopters of the protocol. Implementation of the methods in an informal protocol is optional. Before invoking a method, the calling object checks to see whether the target object implements it. A clear example of informal protocol, is UIapplicationDelegate. Its methods are implemented by AppDelegate class of the application.
 
+> To find more infomation about *Protocol*, [click here](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html)
+
 In the informal protocol approach, the delegate implements only those methods in wich it has an interest in coordinating itself with the delegating object or affecting that object's default behaviour. If the delegating class declares a formal protocol, the delegate may choose to implement those methods marked optional, but it must implement the required ones.
 
 The mechanism of delegation is illustrated by the next figure:
@@ -181,7 +183,80 @@ In this case, `IBAction` does not designate a data type for a return value, no v
 
 The sender parameter usually identifies the control sending the action message. The target can query the sender for more information if it needs to. If the actual sending substitutes another object as sender, you should treat that object in the same way. 
 
-## Observation (KVO, NSNotificationCenter)
+## Observation 
+
+### Key-Value Observing (KVO)
+
+Key-value Observing, `<NSKeyValueObserving>, or KVO`, is an informal protocol that defines a common mechanism that allows objects to be notified of changes to specified properties of other objects. As an informal protocol, classes do not conform to it, it's just implicitly assumed for all subclasses of `NSObject`.
+
+KVO's primary benefit is that you do not have to implement your own scheme to send notifications every time a property changes. Its well-defined infrastructure has framework-level support that make it easy to adopt. In addition, the infrastructure is already full-featured, which makes it easy to support multiple observers for a single property, as well as dependent values.
+
+To use KVO, first you must ensure that the observed object is *KVO Compliant*. If your objects inherit from *NSObject* and you create properties in the usual way, your objects and their preoperties will automatically be KVO Compliant. It is also possible to implement compliance manually. [**KVO Compliance**](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/Articles/KVOCompliance.html#//apple_ref/doc/uid/20002178-BAJEAIEE) describes the difference between automatic and manual key-value observing, and how to implement both.
+
+![KVO pattern UML](statics/ObservationKVO.png)
+
+#### Registering as an Observer
+
+An observing object first registers itself with the observed object by sending an `addObserver:forKeyPath:options:context` message, passing itself as the observer and the key path of the property to be obsrved. The observer additionally specifies an options parameter and a context pointer to manage aspects of the notifications.
+
+```
+- (void)addObserver:(NSObject *)observer 
+         forKeyPath:(NSString *)keyPath 
+            options:(NSKeyValueObservingOptions)options 
+            context:(void *)context;
+```
+> * `observer`: The object to register for KVO notifications. The observer must implement the key-value observing method *observeValueForKeyPath:ofObject:change:context:*
+> * `keyPath`: The key path, relative to the receiver, of the property to observe. This value must not be *nil*.
+> * `options`: A combination of the [NSKeyValueObservingOptions](https://developer.apple.com/reference/foundation/nskeyvalueobservingoptions?language=objc) values that specifies what is included in observation notifications. 
+> * `context`: Arbitrary data that is passed to `observer` in *observeValueForKeyPath:ofObject:change:context:*
+
+#### Receiving notification of a change
+
+When the value of an observed property of an object changes, the observer receives an *observeValueForKeyPath:ofObject:change:context:* message. All observers must implement this method.
+
+The observing object provides the key path that triggered the notification, itself as the relevant object, a dictionary containing details about the change, and the context pointer that was provided when the observer was registered for this key path.
+
+A typical implementation of this method looks something like this:
+
+```
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+ 
+    if ([keyPath isEqualToString:@"name"]) {
+        //...
+ 
+    } else {
+        // Any unrecognized context must belong to super
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                               context:context];
+    }
+}
+```
+In any case, the observer should always call the superclass's implementation of *observeValueForKeyPath:ofObject:change:context:* when it does not recognize the context or the key path, because this means a suplerclass has registered for notifications as well.
+
+> **Note**: If a notification propagates to the top of the class hierarchy, *NSObject* throws a *NSInternalInconsistencyException* because this is a programming error: a subclass failed to consume a notification for which is registered.
+
+#### Removing an Object as an Observer
+
+You remove a key-value observer by sending the observed object a *removeObserver:forKeyPath:context:* message, specifiying the observing object, the key path, and the context. 
+
+After receiving a *removeObserver:forKeyPath:context:* message, the observing object will no longer receive any *observeValueForKeyPath:ofObject:change:context:* messages for the specified key path and object.
+
+If you make a call to *removeObserver:forKeyPath:context:* when the object **is not registered* as an observer (whether because it was already unregistered or not registered in the first place), an exception is thrown. The kicker is that *there is no built-in way to even check if an object is registered*. So, the best option is to invoke *removeObserver:forKeyPath:context:* inside `@try @catch` block.
+
+```
+@try {
+	[object removeObserver:self
+			  	  forKeyPath:"name"];
+}
+@catch (NSException * __unused exception) {}
+```
+
+### NSNotificationCenter
 
 ## Factory (Class clusters)
 
@@ -192,3 +267,4 @@ The sender parameter usually identifies the control sending the action message. 
 ## Extensions (Objective-C categories, Swift extensions)
 
 ## Dependency injection
+
