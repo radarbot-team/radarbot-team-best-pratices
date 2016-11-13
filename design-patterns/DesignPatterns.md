@@ -258,6 +258,67 @@ If you make a call to *removeObserver:forKeyPath:context:* when the object **is 
 
 ### NSNotificationCenter
 
+An `NSNotificationCenter`object (or simply, **notification center**) provides a mechanism for bradcasting information within a program. An NSNotificationCenter object is essentially a notification dispatch table.
+
+NSNotificationCenter provides a centralized hub through which any part of an application may notifiy and be notified of changes from any other part of the application. Observers register with a notification center to respond to particular events with a specified action. Each time an event occurs, the notification goes through its dispatch table, and messages any registered observers for that event.
+
+Each NSNotification object has a *name*, with additional context optionally provided by an associated *object* and *userInfo* dictionary.
+
+#### Adding observers
+
+The traditional way to add an observer is calling `addObserver:selector:name:object:` of NSNotificationCenter, in which an object, usually `self`, adds itself to have the specified selector performed when a matching notification is posted.
+
+The modern, block-bassed API for adding notification observers is `addObserverForName:object:queue:usingBlock`. Instead of registering an existing object as an observer of a notification, this method creates its own anonymous object to be the observer, which performs a block on the specified queue (or the calling thead, if *nil*) when a matching notification is posted. Unlike its similary named *@selector*-based counterpart, this method actually returns the constructed observer object, which is necessary for unregistering the observer.
+
+The `name` and `object` parameters of both methods are used to decide whether the criteria of a posted notification match the observer. If *name* is set, only notifications with that name will trigger, but if *nil* is set, then *all names* will match. The same is true of *object*. So, if both, *name* and *object* are set, only notifications with that name and the specified object will trigger. However, if both are nil, then all notifications posted will trigger.
+
+```
+Objective-C
+-----------
+
+NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+_localeChangeObserver = [center addObserverForName:NSCurrentLocaleDidChangeNotification object:nil
+    queue:mainQueue usingBlock:^(NSNotification *note) {
+ 
+        NSLog(@"The user's locale changed to: %@", [[NSLocale currentLocale] localeIdentifier]);
+    }];
+
+Swift
+-----
+
+let center = NSNotificationCenter.defaultCenter()
+let mainQueue = NSOperationQueue.mainQueue()
+self.localeChangeObserver = center.addObserverForName(NSCurrentLocaleDidChangeNotification, 
+	object: nil, queue: mainQueue) { (note) in
+    
+    print("The user's locale changed to: \(NSLocale.currentLocale().localeIdentifier)")
+}
+```
+
+#### Removing observers
+
+It is important for objects to remove observers before they are deallocated, in order to prevent further messages from being sent.
+
+There are two methods for removing observers:`removeObserver:` and `removeObserver:name:object:`. Again, just as with adding observers, *name* and *object* are used to define scope. *removeObserver:*, or *removeObserver:name:object:* with `nil`for both parameters, will remove the observer form the notification center dispatch table entirely, while specifying parameters for *removeObserver:name:object:* will only remove the observer for registrations with that name and/or object.
+
+#### Posting notifications
+
+In addition to subscribing to system-provided notifications, applications may want to publish and subscribe to their own.
+
+Notificatiosn are created with `+notificationWithName:object:userInfo:`.
+
+Notification names are generally definedas strings constants. Like any string constant, it should be declared `extern` in public interface, and defined privately in the corresponding implementation. It does not matter to much what a notification name's value is defined to be, the name of the variable itself is commonplace, but a reverse-DNS identifier is also a classy choice. So long as notification names are unique (or explicity aliased), everything will work as expected.
+
+Notifications are posted with `postNotificationName:object:userInfo:` or its convenience method `postNotificationName:object:, which passes *nil* for *userInfo*.
+
+Since notification dispatch happens on the posting thread, it may be necessary to `dispatch_async`to `dispatch_get_main_queue()` so that a notification is handled on the main thread. This is not usually necessary, but it is important to keep in mind.
+
+### KVO != NSNotificationCenter
+
+**Key-Value Observing** adds observers for keypaths, while **NSNotificationCenter** adds observers for notifications.
+
+
 ## Factory (Class clusters)
 
 ## Prototype (copy, copyWithZone)
