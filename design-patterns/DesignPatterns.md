@@ -66,14 +66,15 @@ There is a private word to use when an initializer is a convenience one, and thi
 Example:
 
 ```	swift
-	init(name: String) {
-		...
-	}
+init(name: String) {
+	...
+}
 	
-	convenience init() {
-		self.init(name: "The name")
-	} 
+convenience init() {
+	self.init(name: "The name")
+} 
 ```
+
 In Swift, the initializer chain looks like the figure below:
 
 ![Swift Initialization chain](statics/Swift.InitializationChain.png)
@@ -168,7 +169,7 @@ Example of action methods with one, two or three parameters:
 ```swift
 func doSomething()
 func doSomething(sender: UIButton)
-func doSomething(sender: UIButton forEvent event: UIEvent)
+func doSomething(sender: UIButton, forEvent event: UIEvent)
 ```
 
 Action methods declared by some Cocoa classes can also have the equivalent signature:
@@ -184,7 +185,7 @@ Action methods declared by some Cocoa classes can also have the equivalent signa
 
 ```swift	
 @IBAction func doSomething(sender: UIButton)
-@IBAction func doSomething(sender: UIButton forEvent event: UIEvent)
+@IBAction func doSomething(sender: UIButton, forEvent event: UIEvent)
 ```
 
 In this case, `IBAction` does not designate a data type for a return value, no value is returned. *IBAction* is a type qualifier that Interface Builder notices during application development to synchronize actions added programmatically with its internal list of action methods defined for a project.
@@ -358,7 +359,7 @@ If a subclass inherits NSCopying form its suplerclass and declares additional in
 
 #### Example
 
-```objectivec
+```swift
 class Person: NSObject, NSCopying {
     var name: String
     var age: Int
@@ -455,8 +456,7 @@ The syntax to declare a **category** used the `@interface` keyword, just like a 
 A category is usually declared in a separate header file and implemented in a separate source code file, so you should have a `.h` and a `.m` files.
 
 ```objectivec
-NSString+Utils.h
-----------------
+//NSString+Utils.h
 
 @interface NSString (Utils)
 
@@ -464,8 +464,7 @@ NSString+Utils.h
 
 @end
 
-NSString+Utils.m
-----------------
+//NSString+Utils.m
 
 #import NSString+Utils.h
 
@@ -504,8 +503,7 @@ A class extension bears some similarity to a category, but it can only be added 
 The syntax to declare a class extension is similar to hte syntax for a category, and looks like this:
 
 ```objectivec
-.m file
--------
+//.m file
 
 @interface ClassName()
 
