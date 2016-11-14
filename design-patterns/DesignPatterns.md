@@ -10,14 +10,18 @@ Here are a few examples of initializers:
 
 **Objective-C** 
 
-	- (instanceType)initWithFrame:(NSRect)frameRect;
-	- (instancetype)initWithTimeInterval:(NSTimeInterval)secsToBeAdded sinceDate:(NSDate *)date;
+```objectivec
+- (instanceType)initWithFrame:(NSRect)frameRect;
+- (instancetype)initWithTimeInterval:(NSTimeInterval)secsToBeAdded sinceDate:(NSDate *)date;
+```
 
 **Swift**
 
-	init(frame: CGRect)
-	init(timeInterval secsToBeAdded: TimeInterval, since date: Date)
-	
+```swift
+init(frame: CGRect)
+init(timeInterval secsToBeAdded: TimeInterval, since date: Date)
+```	
+
 ### Designated and Convenience initializers
 
 The designated initializer plays an important role for a class. It ensures that inherited instance variables are initialized by invoking the designated initializer of the superclass. It is typically the init...` method that has the most parameters and that does most of the initialization work, and it is the initializer that secondary initializers of the class invoke with messages to self.
@@ -38,9 +42,10 @@ If you use the `NS_DESIGNATED_INITIALIZER` macro in your class, you need to mark
 
 Example:
 
-	- (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
-	- (instancetype)init;
-
+```objectivec
+- (instancetype)initWithName:(NSString *)name NS_DESIGNATED_INITIALIZER;
+- (instancetype)init;
+```
 
 The figure below shows the overall initializer chain for all three classes:
 
@@ -60,7 +65,7 @@ There is a private word to use when an initializer is a convenience one, and thi
 
 Example:
 
-```	
+```	swift
 	init(name: String) {
 		...
 	}
@@ -100,33 +105,33 @@ Delegating methods have a conventional form. They begin with the name of the cla
 
 Delegation methods with return values
 
-```
-	NSApplication
-	- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename; 
+```objectivec
+//NSApplication
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename; 
 	
-	UIApplicationDelegate
-	- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
+//UIApplicationDelegate
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url;
 
-	UITableViewDelegate
-	- (UITableRowIndexSet *)tableView:(NSTableView *)tableView willSelectRows:(UITableRowIndexSet *)selection;
+//UITableViewDelegate
+- (UITableRowIndexSet *)tableView:(NSTableView *)tableView willSelectRows:(UITableRowIndexSet *)selection;
 
-	NSWindow
-	- (NSRect)windowWillUseStandardFrame:(NSWindow *)window defaultFrame:(NSRect)newFrame;
+//NSWindow
+- (NSRect)windowWillUseStandardFrame:(NSWindow *)window defaultFrame:(NSRect)newFrame;
 ```
 
 The delegate that implements these methods can block the impending event (by returning *NO* in the first two methods), or alter a suggested value (the index set and the frame rectangle in the last two methods).
 
 Other delegation methods are invoked by messages that do not expect a return value and so are typed to return *void*. These messages are purely informational, and the method names often contain *Did*, *Will*, or some other indication of a transpired or impending event.
 
-```
-	NSWindow 
-	- (void)windowDidMove:(NSNotification *)notification; 
+```objectivec
+//NSWindow 
+- (void)windowDidMove:(NSNotification *)notification; 
 
-	UIApplication	
-	- (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame;
+//UIApplication	
+- (void)application:(UIApplication *)application willChangeStatusBarFrame:(CGRect)newStatusBarFrame;
 
-	NSApplication
-	- (void)applicationWillBecomeActive:(NSNotification *)notification;
+//NSApplication
+- (void)applicationWillBecomeActive:(NSNotification *)notification;
 ```
 
 ## Target-Action
@@ -151,32 +156,35 @@ An action is the message a control sends to the target or, from the perspective 
 
 Example of action methods with one, two or three parameters:
 
-```
-	Objective-C
-	
-	- (void)doSomething;
-	- (void)doSomething:(id)sender;
-	- (void)doSomething:(id)sender forEvent(UIEvent *)event;
+**Objective-C**
 
-	Swift
-	
-	func doSomething()
-	func doSomething(sender: UIButton)
-	func doSomething(sender: UIButton forEvent event: UIEvent)
+```objectivec	
+- (void)doSomething;
+- (void)doSomething:(id)sender;
+- (void)doSomething:(id)sender forEvent(UIEvent *)event;
+```
+**Swift**
+
+```swift
+func doSomething()
+func doSomething(sender: UIButton)
+func doSomething(sender: UIButton forEvent event: UIEvent)
 ```
 
 Action methods declared by some Cocoa classes can also have the equivalent signature:
 
-```
-	Objective-C
-	
-	- (IBAction)doSomething:(id)sender;
-	- (IBAction)doSomething:(id)sender forEvent(UIEvent *)event;
+**Objective-C**
 
-	Swift
-	
-	@IBAction func doSomething(sender: UIButton)
-	@IBAction func doSomething(sender: UIButton forEvent event: UIEvent)
+```objectivec	
+- (IBAction)doSomething:(id)sender;
+- (IBAction)doSomething:(id)sender forEvent(UIEvent *)event;
+```
+
+**Swift**
+
+```swift	
+@IBAction func doSomething(sender: UIButton)
+@IBAction func doSomething(sender: UIButton forEvent event: UIEvent)
 ```
 
 In this case, `IBAction` does not designate a data type for a return value, no value is returned. *IBAction* is a type qualifier that Interface Builder notices during application development to synchronize actions added programmatically with its internal list of action methods defined for a project.
@@ -199,7 +207,7 @@ To use KVO, first you must ensure that the observed object is *KVO Compliant*. I
 
 An observing object first registers itself with the observed object by sending an `addObserver:forKeyPath:options:context` message, passing itself as the observer and the key path of the property to be obsrved. The observer additionally specifies an options parameter and a context pointer to manage aspects of the notifications.
 
-```
+```objectivec
 - (void)addObserver:(NSObject *)observer 
          forKeyPath:(NSString *)keyPath 
             options:(NSKeyValueObservingOptions)options 
@@ -218,7 +226,7 @@ The observing object provides the key path that triggered the notification, itse
 
 A typical implementation of this method looks something like this:
 
-```
+```objectivec
 - (void)observeValueForKeyPath:(NSString *)keyPath
                       ofObject:(id)object
                         change:(NSDictionary *)change
@@ -248,7 +256,7 @@ After receiving a *removeObserver:forKeyPath:context:* message, the observing ob
 
 If you make a call to *removeObserver:forKeyPath:context:* when the object **is not registered* as an observer (whether because it was already unregistered or not registered in the first place), an exception is thrown. The kicker is that *there is no built-in way to even check if an object is registered*. So, the best option is to invoke *removeObserver:forKeyPath:context:* inside `@try @catch` block.
 
-```
+```objectivec
 @try {
 	[object removeObserver:self
 			  	  forKeyPath:"name"];
@@ -272,10 +280,9 @@ The modern, block-bassed API for adding notification observers is `addObserverFo
 
 The `name` and `object` parameters of both methods are used to decide whether the criteria of a posted notification match the observer. If *name* is set, only notifications with that name will trigger, but if *nil* is set, then *all names* will match. The same is true of *object*. So, if both, *name* and *object* are set, only notifications with that name and the specified object will trigger. However, if both are nil, then all notifications posted will trigger.
 
-```
-Objective-C
------------
+**Objective-C**
 
+```objectivec
 NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
 NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
 _localeChangeObserver = [center addObserverForName:NSCurrentLocaleDidChangeNotification object:nil
@@ -283,10 +290,10 @@ _localeChangeObserver = [center addObserverForName:NSCurrentLocaleDidChangeNotif
  
         NSLog(@"The user's locale changed to: %@", [[NSLocale currentLocale] localeIdentifier]);
     }];
+```
+**Swift**
 
-Swift
------
-
+```Swift
 let center = NSNotificationCenter.defaultCenter()
 let mainQueue = NSOperationQueue.mainQueue()
 self.localeChangeObserver = center.addObserverForName(NSCurrentLocaleDidChangeNotification, 
@@ -321,6 +328,7 @@ Since notification dispatch happens on the posting thread, it may be necessary t
 
 ## Factory (Class clusters)
 
+
 ## Prototype
 
 The **Prototype pattern** is used to create a new object by duplicating existing objects called *prototypes*, and they have a cloning capability.
@@ -350,7 +358,7 @@ If a subclass inherits NSCopying form its suplerclass and declares additional in
 
 #### Example
 
-```
+```objectivec
 class Person: NSObject, NSCopying {
     var name: String
     var age: Int
@@ -420,7 +428,7 @@ It can be repeatedly dispatched to different targets; its arguments can be modif
 
 In order with the *Command pattner* workflow, the `client` will create a **NSInvocation** instance with all the information that it need: target (it will be the `receiver` ), selector, and arguments, and then execute the invocation.
 
-> More information about NSIncation in this [article](http://cocoamental.com/2011/06/28/nsinvocation-para-torpes/).
+> More information about NSInvocation in this [article](http://cocoamental.com/2011/06/28/nsinvocation-para-torpes/).
 
 ## Extensions
 
@@ -438,7 +446,7 @@ A category can be declared for any class, even if you do not have the original i
 
 The syntax to declare a **category** used the `@interface` keyword, just like a standard Objective-C class description, but does not indicate any inheritance from a subclass. Instead, it specified the name of the category in parentheses, like this:
 
-```
+```objective-c
 @interface ClassName (CategoryName)
 
 @end
@@ -446,9 +454,9 @@ The syntax to declare a **category** used the `@interface` keyword, just like a 
 
 A category is usually declared in a separate header file and implemented in a separate source code file, so you should have a `.h` and a `.m` files.
 
-```
+```objectivec
 NSString+Utils.h
-------------------------
+----------------
 
 @interface NSString (Utils)
 
@@ -457,6 +465,7 @@ NSString+Utils.h
 @end
 
 NSString+Utils.m
+----------------
 
 #import NSString+Utils.h
 
@@ -475,7 +484,7 @@ Categories can be used to declare either instane methods or class methods but ar
 
 Any methods added by a category are available to all instances of the class and its subclasses, you will need to import the category header file in any source code file where you wish to use the additional methods, otherwise you will run into compiler warnings and errors.
 
-```
+```objectivec
 #import NSString+Utils.h
 
 @implementation SomeObject
@@ -494,7 +503,7 @@ A class extension bears some similarity to a category, but it can only be added 
 
 The syntax to declare a class extension is similar to hte syntax for a category, and looks like this:
 
-```
+```objectivec
 .m file
 -------
 
@@ -507,7 +516,7 @@ Because no name is given in the parentheses, class extensions are often referred
 
 Unlike regular categories, a class extension can add its own properties and instance variables to a class. If you declare a property in a class extension, like this:
 
-```
+```objectivec
 @interface ClassName()
 
 @property (nonatomic, readwrite, copy) NSString *privateProperty;
@@ -539,14 +548,14 @@ One important thing, *Extensions* can add new functionality to a type, but they 
 
 To declare an extension of a given type, you msut use the `extension` keyword
 
-```
+```swift
 extension TypeName {
 	// new functionality to add to TypeName goes here
 }
 ```
 An extension can extend an existing type to make it adopt one or more protocols. Where this is the case, the protocol names are written in exactly the same way as for a class or structure:
 
-```
+```swift
 extension TypeName: SomeProtocol, AnotherProtocol {
 	//implementation of protocol requirements goes here
 }
@@ -554,7 +563,7 @@ extension TypeName: SomeProtocol, AnotherProtocol {
 
 In addition, you can declare `private` extensions to make methods and/or computed properties only accesible to the type owner.
 
-```
+```swift
 private extension TypeName {
 	// private implementation of TypeName goes here
 }
@@ -565,4 +574,3 @@ private extension TypeName {
 For more information of Swift Extensions, visit [Apple Documentation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html).
 
 ## Dependency injection
-
