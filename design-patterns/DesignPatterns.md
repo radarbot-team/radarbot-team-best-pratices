@@ -572,3 +572,91 @@ private extension TypeName {
 For more information of Swift Extensions, visit [Apple Documentation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html).
 
 ## Dependency injection
+
+A powerful mechanism for separating construction from use is **Dependency Injection**, *DI*, the application of *Inversion of Control (IoC)* to dependecy management. Inversion of Control moves secondary responsibilities from an object to another objects that are dedicated to the purpose, thereby supporting the [*Single Responsibility Principle*](http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod). In the context of dependecy management, an object should not take responsibility for instantiating dependencies itself. Instead, it should pass this responsibility to another authoritative mechanism, thereby inverting the control. Because setup is a global concern, this authoritative mechanism will usually be either the main routine or a special-purpose container.
+
+The invoking object does not control what kind of object is actually returned (as long it implements the appropiate interface), but the invoking object still actively resolves the dependency.
+
+True *Dependency Injection* goes on step further. The class take no direct steps to resolve its dependencies; it is completely passive. Instead, it provides setter method of constructor arguments (or both) that are used to *inject* the dependencies. During the construction process, the DI container instantiates the required objects (usually on demand) and uses the constructor arguments or setter methods provided to wire together the dependencies. Which dependent objects are actually used is specified through a configuation file or programmatically in a special-purpose construction module.
+
+### Constructor injection
+
+> **Note**: iOS does not have constructors, it has initializers, but **constructor** is a standard DI term, and it is easier to look up accross the languages.
+ 
+In constructor injection, a dependency is passed into the constructor (the designated initializer) and captured for later use:
+
+```objectivec
+@interface Example ()
+
+@property (nonatomic, strong, readonly) NSUserDefaults *userDefaults;
+
+@end
+
+@implementation Example
+
+- (instancetype)initWithUserDefaults:(NSUserDefaults *userDefaults) {
+    
+    self = [super init];
+    
+    if (self) {
+        _userDefaults = userDefaults;
+    }
+    
+    return self;
+}
+
+@end
+```
+
+The dependency can be captured in an instance variable or in a property. Now every place in this class that would refer to the singleton `[NSUserDefaults standardUserDefaults]` should instead refer to `self.userDefaults` or `_userDefaults`:
+
+```objectivec
+- (NSNumber *)nextReminderId {
+    
+    NSNumber *currentReminderId = [self.userDefaults objectForKey:@"currentReminderId"];
+    
+    if (currentReminderId) {
+        currentReminderId = @([currentReminderId intValue] + 1);
+    } else {
+        currentReminderId = @0;
+    }
+    
+    [_userDefaults setObject:currentReminderId forKey:@"currentReminderId"];
+    
+    return currentReminderId;
+}
+```
+
+### Property injection
+
+In property injection, the code for `nextReminderId` looks the same, referring to `self.userDefaults`. But instead of passing the dependency to the initializer, we make it a settable property:
+
+```objectivec
+@interface Example
+
+@property (nonatomic, readwrite, strong) NSUserDefaults *userDefaults;
+
+- (NSNumber *)nextReminderId;
+
+@end
+```
+
+What should happen if the property is not set? In that case, let’s use lazy initialization to establish a reasonable default in the getter:
+
+```objectivec
+- (NSUserDefaults *)userDefaults {
+   
+    if (!_userDefaults) {
+        _userDefaults = [NSUserDefaults standardUserDefaults];
+    }
+   
+    return _userDefaults;
+}
+```
+
+Now, if any calling code sets the userDefaults property before it is used, `self.userDefaults` will use the given value. But if the property is not set, then `self.userDefaults` will use `[NSUserDefaults standardUserDefaults]`.
+
+> More information about Dependency Injection:
+> 
+> * [Dependency Injection](https://www.objc.io/issues/15-testing/dependency-injection/)
+> * [Dependency Injection, iOS and You](https://www.bignerdranch.com/blog/dependency-injection-ios/)
