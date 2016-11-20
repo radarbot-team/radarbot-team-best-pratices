@@ -11,7 +11,7 @@ Here are a few examples of initializers:
 **Objective-C** 
 
 ```objectivec
-- (instanceType)initWithFrame:(NSRect)frameRect;
+- (instancetype)initWithFrame:(NSRect)frameRect;
 - (instancetype)initWithTimeInterval:(NSTimeInterval)secsToBeAdded sinceDate:(NSDate *)date;
 ```
 
