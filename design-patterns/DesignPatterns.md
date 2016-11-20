@@ -329,6 +329,73 @@ Since notification dispatch happens on the posting thread, it may be necessary t
 
 ## Factory (Class clusters)
 
+**Class clusters** are a design pattern that the Foundation framework makes extensive use of. Class clusters group a number of private concrete subclasses under a public abstract superclass. The grouping of classes in this way simplifies the publicly visible architecture of an object-oriented framework without reducing its functional richness. Class clusters are based on the [Abstract Factory](https://sourcemaking.com/design_patterns/abstract_factory) design pattern.
+
+It is an architecture that groups a number of private, concrete subclasses under a public, abstract superclass. The grouping of classes in this way provides a simplified interface to the user, who sees only the publicly visible architecture. The abstract class is calling up the private subclass most suited for performing a particular task. For example, several of the common Cocoa classes are implemented as class custers, including `NSArray`, `NSString`, and `NSNumber`. There are many ways in which they can represent their internal data storage. For any particular instance, the abstract class chooses the most efficient class to use based on the data that instance is being initialized with.
+
+You create and interact with instances of the cluster just as you would any other class. Behind the scenes, though, when you create an instance of the public class, the class returns an object of the appropiate sublcass based on the creation method that you invoke. But, you do not, and cannot, choose the actual class of the instance.
+
+### Design
+
+The **Abstract Factory pattern** is designed to build objects grouped in families without having to know the concrete class needed to create the object.
+
+This pattern is generally used in the following domains:
+
+* A system that uses products needs to stay independent of how these products are grouped and instantiated.
+* A system can have several product families that can evolve.
+
+The following diagram represents the generic structure. You will see how products and families are decoupled.
+
+![Class cluster uml](statics/ClassClusterUML.png)
+
+* `Abstract Factory`: This abstract class defines the signature of the different methods that create out products.
+* `Concrect Factory 1` and `Concrect Factory 2`: These are our concrete classes that implement our methods for each product's families. By knowing the family and product, the factory is able to create an instance of the product for that family.
+* `IProductA` and `IProductB`: These are our interfaces that define our products that are independent of their family. A family is introduced in their concrete subclasses.
+* `ProductA` and `ProductB`: These are the concrete classes that implement _IProductA_ and _IProductB_, respectively.
+
+### Example
+
+Consider the problem of constructing a class hierarchy that defines objects to store numbers of different types: `char, int, float, double`. Because numbers of different types have many features in common (they can be converted from one type to another and can be represented as strings, for example), they could be represented by a single class. However, their storage requirements differ, so it is inefficient to represent them all by the same class. Taking this fact into consideration, to solve the problem, the class architecture could be designed like:
+ 
+![Simple hierarchy](statics/NumberClassesHierarchy.png)
+ 
+**Number** is the abstract superclass that declares in tis methods the common operations for its subclasses. However, it does not declare an instance variable to store a number. The subclasses declare such instance variables and share in the programatic interface declared by **Number**.
+
+So far, this design is relatively simple. However, if the commonly used notifications of these basic C types are taken into account, the class hierarchy diagrams looks more like;
+ 
+![Complete hierarchy](statics/CompleteNumberHierarchy.png)
+
+Applying the **class cluster design pattern** to this problem generates the next class hierarchy:
+ 
+![Class cluster number hierarchy](statics/NumberClassClusterHierarchy.png)  
+
+Users of this hierarchy see only one public class, `Number`.
+ 
+The abstract superclass in a class cluster must declare methods for creating instances of its private sublcasses. It is the superclass's responsibility to dispense an object of the proper sublcass based on the creation method that you invoke. You *do not* and *cannnot* choose the class of the instance.
+
+```objectivec
+NSNumber *char = [NSNumber numberWithChar: 'a'];
+NSNumber *int = [NSNumber numberWithInt: 1];
+NSNumber *float = [NSNumber numberWithFloat: 1.0];
+NSNumber *double = [NSNumber numberWithDouble: 1.0];
+...
+```
+
+### Benefits
+
+The benefit of a class cluster is primarily efficiency. The internal representation of the data that an instance manages can be tailored to the way it is created or being used. Moreover, the code you write will continue to work even if the underlying implementation changes.
+
+### Considerations
+
+Its architecture involves a trade-off between simplicity and extensibility: Having a few public classes stand in for a multitude of private ones makes it easier to learn and use the classes in a framework but somewhat harder to create subclasses within any of the clusters.
+
+A new class that you create within a class cluster must:
+
+* Be a subclass of the cluster's abstract superclass.
+* Declare its own storage.
+* Override the superclass's primitive methods.
+
+If it is rarely necessary to create a subclass the the cluster architecture is clearly beneficial. You might also be able to avoid subclassing by using composition; by embedding a private cluster object in an object of your own design, you create a composite object. This composite object can rely on the cluster object for its basic functionallity, only intercepting messages that it wants to handle in some particular way. Using this approach reduces the amount of code you must write and lets you take advantage of the tested code provided by the Foundation Framework.
 
 ## Prototype
 
