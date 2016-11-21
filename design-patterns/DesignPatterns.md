@@ -306,7 +306,7 @@ self.localeChangeObserver = center.addObserverForName(NSCurrentLocaleDidChangeNo
 
 #### Removing observers
 
-It is important for objects to remove observers before they are deallocated, in order to prevent further messages from being sent.
+Using iOS 8 or earlier, it is important for objects to remove observers before they are deallocated, in order to prevent further messages from being sent. For **iOS 9 or later**, NSNotificationCenter **will no longer send notifications to registered observers that may be deallocated**.
 
 There are two methods for removing observers:`removeObserver:` and `removeObserver:name:object:`. Again, just as with adding observers, *name* and *object* are used to define scope. *removeObserver:*, or *removeObserver:name:object:* with `nil`for both parameters, will remove the observer form the notification center dispatch table entirely, while specifying parameters for *removeObserver:name:object:* will only remove the observer for registrations with that name and/or object.
 
@@ -727,3 +727,31 @@ Now, if any calling code sets the userDefaults property before it is used, `self
 > 
 > * [Dependency Injection](https://www.objc.io/issues/15-testing/dependency-injection/)
 > * [Dependency Injection, iOS and You](https://www.bignerdranch.com/blog/dependency-injection-ios/)
+
+## Bibliography
+
+**Apple documentation**
+
+* [_Object Initialization_](https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Initialization/Initialization.html)
+* [_NSInvocation_](https://developer.apple.com/reference/foundation/nsinvocation?language=objc)
+* [_Target Action_](https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/Target-Action/Target-Action.html#//apple_ref/doc/uid/TP40010810-CH12-SW1)
+* [_Delegation_](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html)
+* [_Introduction to Key-Value Observing Programming Guide_](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html#//apple_ref/doc/uid/10000177-BCICJDHA)
+* [_Customizing Existing Classes_](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/CustomizingExistingClasses/CustomizingExistingClasses.html)
+* [_NSNotificationCenter_](https://developer.apple.com/reference/foundation/nsnotificationcenter)
+* [_Swift Extensions_](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151)
+* [_Protocol_](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html)
+* [_Class Cluster_](https://developer.apple.com/library/content/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html#//apple_ref/doc/uid/TP40010810-CH4-SW1)
+* [_NSCopying_](https://developer.apple.com/reference/foundation/nscopying)
+
+**Articles**
+
+* Jon Reid (August 2014). [_Dependency Injection_](https://www.objc.io/issues/15-testing/dependency-injection/)
+* Mattt Thompson (October 2013). [_Key-Value Observing_](http://nshipster.com/key-value-observing/)
+* Mattt Thompson (Decembre 2013). [_NSNotification & NSNotificationCenter_](http://nshipster.com/nsnotification-and-nsnotificationcenter/)
+
+**Books**
+
+* Julien Lange (October 2015). _Swift 2 Design Patterns_. Packt Publishing Ltd
+* Eric Freeman & Elisabeth Robson (October 2004). _Head First Design Patterns_. O'Reilly
+* Robert C. Martin (August 2008). _Clean Code_. Prentice Hall
