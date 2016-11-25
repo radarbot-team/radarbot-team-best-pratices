@@ -813,6 +813,7 @@ Now, if any calling code sets the userDefaults property before it is used, `self
 * Jon Reid (August 2014). [_Dependency Injection_](https://www.objc.io/issues/15-testing/dependency-injection/)
 * Mattt Thompson (October 2013). [_Key-Value Observing_](http://nshipster.com/key-value-observing/)
 * Mattt Thompson (Decembre 2013). [_NSNotification & NSNotificationCenter_](http://nshipster.com/nsnotification-and-nsnotificationcenter/)
+* Colin Eberhardt (February 2015). [_Exploring KVO alternatives with Swift_](http://blog.scottlogic.com/2015/02/11/swift-kvo-alternatives.html)
 
 **Books**
 
