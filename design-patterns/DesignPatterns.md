@@ -265,6 +265,70 @@ If you make a call to *removeObserver:forKeyPath:context:* when the object **is 
 @catch (NSException * __unused exception) {}
 ```
 
+KVO in **Swift** is available only for classes inherited from `NSObject` and observable properties must be `dynamic`. You cannot use Key-Value Observing with structs, enums or generics.
+
+The `dynamic` keyword ensures that property access is dynamically dispatched via the Objective-C runtime, which is where the KVO logic is implemented.
+
+```swift
+class Person: NSObject {
+	dynamic var name: String = ""
+	dynamic var surname: String = ""
+	dynamic var age: Int = 0
+} 
+```
+Example:
+
+```swift
+class Person: NSObject {
+    dynamic var name: String = ""
+    dynamic var surname: String = ""
+    dynamic var age: Int = 0
+}
+
+class PersonObservable: NSObject {
+    
+    let person: Person
+    
+    init(_ person: Person) {
+        self.person = person
+        super.init()
+        
+        self.person.addObserver(self,
+                                forKeyPath: "name",
+                                options: .new,
+                                context: nil)
+    }
+    
+    deinit {
+        person.removeObserver(self, forKeyPath: "name")
+    }
+}
+
+extension PersonObservable {
+    
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        
+        guard let object = object as? Person, let keyPath = keyPath, keyPath == "name" && object == person else {
+            return
+        }
+        
+        if let newValue = change?[NSKeyValueChangeKey.newKey] as? String {
+            print("KeyPath \"\(keyPath)\" changes. New value: \(newValue)")
+        }
+    }
+}
+
+extension PersonObservable {
+    
+    func updateName(name: String) {
+        person.name = name
+    }
+}
+```
+
 ### NSNotificationCenter
 
 An `NSNotificationCenter`object (or simply, **notification center**) provides a mechanism for bradcasting information within a program. An NSNotificationCenter object is essentially a notification dispatch table.
