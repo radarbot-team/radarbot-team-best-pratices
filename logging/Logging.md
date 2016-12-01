@@ -408,7 +408,7 @@ DDLogError(@"Error");
 
 **Articles**
 
-+  Bart Jacobs (March 2015). [_Swift print, println, NSLog_](http://www.knowstack.com/swift-print-println-nslog/)
++  Debasis Das (March 2015). [_Swift print, println, NSLog_](http://www.knowstack.com/swift-print-println-nslog/)
 
 + Bart Jacobs (March 2013). [_CocoaLumberjack: Logging on Steroids_](http://blog.scottlogic.com/2015/02/11/swift-kvo-alternatives.html)
 
