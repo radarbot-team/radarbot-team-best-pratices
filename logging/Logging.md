@@ -32,7 +32,7 @@ NSLog(@"Tim is %i years old", 43); // Writes in console: Tim is 43 years old
 
 For more information about `String` format specifiers: https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html
 
-##### Logging a object
+##### Logging an object
 
 In many cases, it would be useful to print in console a complete object. If we try to print it directly, we will show the name of the class and its memory address in console.
 
@@ -174,7 +174,7 @@ print("Tim is \(age) years old"); // Writes in console: Tim is 43 years old
 
 ```
 
-##### Logging a object
+##### Logging an object
 
 In many cases, it would be useful to write in console a complete object. If we try to print it directly, we will show the name of the class in console.
 
