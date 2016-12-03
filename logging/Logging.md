@@ -41,12 +41,12 @@ Example:
 ```Objective-C
 
 // Header file
-@interface Person : NSObject
+@interface Person: NSObject
 
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *surname;
 
-- (id) initWithName:(NSString *)aName andSurname:(NSString *) aSurname;
+- (id)initWithName:(NSString *)aName andSurname:(NSString *)aSurname;
 
 @end
 
@@ -56,7 +56,7 @@ Example:
 
 @implementation Person
 
-- (id) initWithName:(NSString *)aName andSurname:(NSString *) aSurname
+- (id)initWithName:(NSString *)aName andSurname:(NSString *)aSurname
 {
     if (self = [super init]) {
 
@@ -83,12 +83,12 @@ If we want to show a better log, we can override the property `description` with
 ```Objective-C
 
 // Header file
-@interface Person : NSObject
+@interface Person: NSObject
 
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *surname;
 
-- (id) initWithName:(NSString *)aName andSurname:(NSString *) aSurname;
+- (id)initWithName:(NSString *)aName andSurname:(NSString *)aSurname;
 
 @end
 
@@ -98,7 +98,7 @@ If we want to show a better log, we can override the property `description` with
 
 @implementation Person
 
-- (id) initWithName:(NSString *)aName andSurname:(NSString *) aSurname
+- (id)initWithName:(NSString *)aName andSurname:(NSString *)aSurname
 {
     if (self = [super init]) {
 
@@ -184,10 +184,10 @@ Example:
 
 class Person {
 
-    var name : String
-    var surname : String
+    var name: String
+    var surname: String
 
-    init(name : String, surname : String) {
+    init(name: String, surname: String) {
         self.name = name
         self.surname = surname
     }
@@ -206,10 +206,10 @@ Example:
 
 class Person {
 
-    var name : String
-    var surname : String
+    var name: String
+    var surname: String
 
-    init(name : String, surname : String) {
+    init(name: String, surname: String) {
         self.name = name
         self.surname = surname
     }
@@ -235,10 +235,10 @@ Example:
 
 class Person {
 
-    var name : String
-    var surname : String
+    var name: String
+    var surname: String
 
-    init(name : String, surname : String) {
+    init(name: String, surname: String) {
         self.name = name
         self.surname = surname
     }
@@ -246,7 +246,7 @@ class Person {
 }
 
 extension Person: CustomDebugStringConvertible {
-    var debugDescription : String {
+    var debugDescription: String {
         return "Debugging --> Name: \(name) - Surname: \(surname)"
     }
 }
