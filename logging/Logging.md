@@ -10,6 +10,14 @@ Use `NSLog` for debugging is very easy, it is just like a create a `NSString`. I
 void NSLog(NSString *format, ...);
 ```
 
+The main characteristics of `NSLog` are:
+
++ `NSLog` is slow.
++ It is synchronous.
++ It outputs log to ASL and Xcode console.
++ It has not log levels what makes more difficult to tell the difference between errors, warnings, and other information.
++ It only works when the device is attached to the computer, then it is not a solution for remote access.
+
 Examples of using:
 
 ```Objective-C
@@ -70,7 +78,7 @@ NSLog(@"%@", person); // Writes in console: <Person: 0x137641b00>
 
 ```
 
-If we want to show a better log, we can override the property **description** with a proper string.
+If we want to show a better log, we can override the property `description` with a proper string.
 
 ```Objective-C
 
@@ -121,7 +129,7 @@ NSLog(@"%@", person); // Writes in console: Name: Tim, Surname: Cook
 
 #### Using DLog instead of NSLog
 
-A good practice is not to show logs in your release version, in some cases can be useful but most of them should not be printed. Defining a macro **`DLog`** in the `.pch` file and using instead of `NSLog`, it will allow you to print logs only in debug mode but it will never print them on release mode.
+A good practice is not to show logs in your release version, in some cases can be useful but most of them should not be printed. Defining a macro `DLog` in the `.pch` file and using instead of `NSLog`, it will allow you to print logs only in debug mode but it will never print them on release mode.
 
 Macro:
 
@@ -138,7 +146,7 @@ Macro:
 
 ### Swift’s print
 
-We can use `NSLog` in Swift also, but it is a better practice to use **`print`**. Basically, print will add a newline at the end of its content as `NSLog`.
+We can use `NSLog` in Swift also, but it is a better practice to use `print`. Basically, print will add a newline at the end of its content as `NSLog`.
 
 ##### NSLog vs print
 
@@ -250,7 +258,7 @@ print(person) // Writes in console: Debugging --> Name: Tim - Surname: Cook
 
 ### Third party libraries (CocoaLumberjack)
 
-Although `print` and `NSLog` are very useful options and it is very easy to use them, they are quite simply. Moreover, these options only write in console but they do not save a log in a file then we are not able to send to us if we need it. If we need a log system more complex or/and if we need to save a log in a file to be able to send them to our server or by email, **`CocoaLumberjack`** is the best option open source. `CocoaLumberjack is a fast & simple, yet powerful & flexible logging framework for Mac and iOS.`
+Although `print` and `NSLog` are very useful options and it is very easy to use them, they are quite simply. Moreover, these options only write in console but they do not save a log in a file then we are not able to send to us if we need it. If we need a log system more complex or/and if we need to save a log in a file to be able to send them to our server or by email, `CocoaLumberjack` is the best option open source. `CocoaLumberjack is a fast & simple, yet powerful & flexible logging framework for Mac and iOS.`
 
 #### Benefits
 
