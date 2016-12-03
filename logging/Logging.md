@@ -1,10 +1,10 @@
 # Logging
 
-Logging is very useful in all languages to allow debug applications and to help to solve bugs. In iOS development, we can use **NSLog** for logging apps written on Objective-C and **print** also in Swift. Basically, these solutions write a line of text in console. If we wanted to send logs of our iOS app, we would have to save them in a file first, for this purpose we can use a third party library as **CocoaLumberjack**.
+Logging is very useful in all languages to allow debug applications and to help to solve bugs. In iOS development, we can use `NSLog` for logging apps written on Objective-C and `print` also in Swift. Basically, these solutions write a line of text in console. If we wanted to send logs of our iOS app, we would have to save them in a file first, for this purpose we can use a third party library as `CocoaLumberjack`.
 
 ### NSLog
 
-Use NSLog for debugging is very easy, it is just like a create a NSString. It has the following declaration:
+Use `NSLog` for debugging is very easy, it is just like a create a `NSString`. It has the following declaration:
 
 ```Objective-C
 void NSLog(NSString *format, ...);
@@ -22,7 +22,7 @@ NSLog(@"Tim is %i years old", 43); // Writes in console: Tim is 43 years old
 
 ```
 
-For more information about String format specifiers: https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html
+For more information about `String` format specifiers: https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html
 
 ##### Logging a object
 
@@ -121,7 +121,7 @@ NSLog(@"%@", person); // Writes in console: Name: Tim, Surname: Cook
 
 #### Using DLog instead of NSLog
 
-A good practice is not to show logs in your release version, in some cases can be useful but most of them should not be printed. Defining a macro **DLog** in the .pch file and using instead of NSLog, it will allow you to print logs only in debug mode but it will never print them on release mode.
+A good practice is not to show logs in your release version, in some cases can be useful but most of them should not be printed. Defining a macro **`DLog`** in the `.pch` file and using instead of `NSLog`, it will allow you to print logs only in debug mode but it will never print them on release mode.
 
 Macro:
 
@@ -138,18 +138,18 @@ Macro:
 
 ### Swift’s print
 
-We can use NSLog in Swift also, but it is a better practice to use **print**. Basically, print will add a newline at the end of its content as NSLog.
+We can use `NSLog` in Swift also, but it is a better practice to use **`print`**. Basically, print will add a newline at the end of its content as `NSLog`.
 
 ##### NSLog vs print
 
 
-+ NSLog is slower.
++ `NSLog` is slower.
 
-+ NSLog adds a timestamp and identifier to the output, whereas print will not.
++ `NSLog` adds a timestamp and identifier to the output, whereas print will not.
 
-+ NSLog synchronizes the log statements so that if you’re issuing logs from different threads concurrently, they won’t overlap with each other; print can result in jumbled output if performed simultaneously from separate threads without doing some synchronization (e.g. dispatching it to some serial queue, such as the main queue).
++ `NSLog` synchronizes the log statements so that if you’re issuing logs from different threads concurrently, they won’t overlap with each other; print can result in jumbled output if performed simultaneously from separate threads without doing some synchronization (e.g. dispatching it to some serial queue, such as the main queue).
 
-+ When performed on physical device, NSLog statements appear in the device’s console whereas print only appears in the debugger console.
++ When performed on physical device, `NSLog` statements appear in the device’s console whereas print only appears in the debugger console.
 
 Examples of using:
 
@@ -190,7 +190,7 @@ print(person) // Writes in console: Person
 
 ```
 
-If the class implement the protocol **CustomStringConvertible** for other purposes, we will this string in console.
+If the class implement the protocol `CustomStringConvertible` for other purposes, we will this string in console.
 
 Example:
 
@@ -219,7 +219,7 @@ print(person) // Writes in console: Name: Tim - Surname: Cook
 
 ```
 
-But if we do not want to implement this protocol but you want to have a better description of the object in console, you can implement **CustomDebugStringConvertible** protocol.
+But if we do not want to implement this protocol but you want to have a better description of the object in console, you can implement `CustomDebugStringConvertible` protocol.
 
 Example:
 
@@ -250,7 +250,7 @@ print(person) // Writes in console: Debugging --> Name: Tim - Surname: Cook
 
 ### Third party libraries (CocoaLumberjack)
 
-Although print and NSLog are very useful options and it is very easy to use them, they are quite simply. Moreover, these options only write in console but they do not save a log in a file then we are not able to send to us if we need it. If we need a log system more complex or/and if we need to save a log in a file to be able to send them to our server or by email, **CocoaLumberjack** is the best option open source. `CocoaLumberjack is a fast & simple, yet powerful & flexible logging framework for Mac and iOS.`
+Although `print` and `NSLog` are very useful options and it is very easy to use them, they are quite simply. Moreover, these options only write in console but they do not save a log in a file then we are not able to send to us if we need it. If we need a log system more complex or/and if we need to save a log in a file to be able to send them to our server or by email, **`CocoaLumberjack`** is the best option open source. `CocoaLumberjack is a fast & simple, yet powerful & flexible logging framework for Mac and iOS.`
 
 #### Benefits
 
@@ -320,7 +320,7 @@ github "CocoaLumberjack/CocoaLumberjack"
 
 ##### Adding System Loggers
 
-Add the following code in Swift or Objective-C in the method `application:didFinishLaunchingWithOptions:` of **AppDelegate**.
+Add the following code in Swift or Objective-C in the method `application:didFinishLaunchingWithOptions:` of `AppDelegate`.
 
 + Swift
 
@@ -340,7 +340,7 @@ DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
 
 ##### Adding File Logger
 
-Add the following code in Swift or Objective-C in the method `application:didFinishLaunchingWithOptions:` of **AppDelegate**.
+Add the following code in Swift or Objective-C in the method `application:didFinishLaunchingWithOptions:` of `AppDelegate`.
 
 + Swift
 
@@ -382,7 +382,7 @@ It would be a good practice to have a different log level depending on the versi
 
 ##### Writing logs
 
-Finally we have to use CocoaLumberjack log "functions" to write log lines instead of NSLog and print. We can use the following levels:
+Finally we have to use `CocoaLumberjack` log "functions" to write log lines instead of NSLog and print. We can use the following levels:
 
 + Swift
 
