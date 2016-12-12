@@ -256,161 +256,39 @@ print(person) // Writes in console: Debugging --> Name: Tim - Surname: Cook
 
 ```
 
-### Third party libraries (CocoaLumberjack)
+### Third party libraries
 
-Although `print` and `NSLog` are very useful options and it is very easy to use them, they are quite simply. Moreover, these options only write in console but they do not save a log in a file then we are not able to send to us if we need it. If we need a log system more complex or/and if we need to save a log in a file to be able to send them to our server or by email, `CocoaLumberjack` is the best option open source. `CocoaLumberjack is a fast & simple, yet powerful & flexible logging framework for Mac and iOS.`
+Although `print` and `NSLog` are very useful options and it is very easy to use them, they are quite simply. Moreover, these options only write in console or ASL but they do not save a log in a file then we are not able to send to us if we need it. For these reasons, there are some third party libraries which are more powerful and more customizable than the Apple ones.
 
-#### Benefits
++ #### CocoaLumberjack
 
+##### Benefits
 + Define different log levels.
-+ Choose the output: Xcode console, Apple System Logs, disk, etc.
-+ Define rolling frequency and maximum file size.
++ Choose the output: Xcode console, Apple System Logs or/and file.
++ Define **rolling frequency** and **maximum file size**.
++ Faster than NSLog.
 
-#### Requirements
++ #### SwiftyBeaver
 
-The current version of Lumberjack requires:
-
-+ Xcode 8 or later
-+ Swift 3.0 or later
-+ iOS 5 or later
-+ OS X 10.7 or later
-+ WatchOS 2 or later
-+ TVOS 9 or later
-
-Backwards compability
-
-+ for Xcode 7.3 and Swift 2.3, use the 2.4.0 version
-+ for Xcode 7.3 and Swift 2.2, use the 2.3.0 version
-+ for Xcode 7.2 and 7.1, use the 2.2.0 version
-+ for Xcode 7.0 or earlier, use the 2.1.0 version
-+ for Xcode 6 or earlier, use the 2.0.x version
-+ for OS X < 10.7 support, use the 1.6.0 version
-
-#### 1. Installation
-
-##### CocoaPods
-
-You just added in your pod file and install.
-
-+ Swift
-
-```Swift
-
-platform :ios, '8.0'
-
-target 'SampleTarget' do
-  use_frameworks!
-  pod 'CocoaLumberjack/Swift'
-end
-
-```
-
-+ Objective-C
-
-```Objective-C
-
-platform :ios, '7.0'
-pod 'CocoaLumberjack'
-
-```
-
-##### Carthage
-
-To install with Carthage, follow the instruction on [Carthage](https://github.com/Carthage/Carthage).
-
-Cartfile
-
-```Objective-C
-github "CocoaLumberjack/CocoaLumberjack"
-```
-
-#### 2. First steps
-
-##### Adding System Loggers
-
-Add the following code in Swift or Objective-C in the method `application:didFinishLaunchingWithOptions:` of `AppDelegate`.
-
-+ Swift
-
-```Swift
-DDLog.add(DDTTYLogger.sharedInstance()) // TTY = Xcode console
-DDLog.add(DDASLLogger.sharedInstance()) // ASL = Apple System Logs
-
-```
-
-+ Objective-C
-
-```Objective-C
-[DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
-[DDLog addLogger:[DDASLLogger sharedInstance]]; // ASL = Apple System Logs
-
-```
-
-##### Adding File Logger
-
-Add the following code in Swift or Objective-C in the method `application:didFinishLaunchingWithOptions:` of `AppDelegate`.
-
-+ Swift
+##### Benefits
++ Define different log levels.
++ Choose the output: Xcode console, file or/and **cloud**.
++ **Colored** output depending on log level.
++ AES256 encryptation to send logs to cloud.
++ Easy configuration for each output.
++ Mac app to analyze logs sent from your app.
 
 
-```Swift
++ #### CleanroomLogger
 
-let fileLogger: DDFileLogger = DDFileLogger() // File Logger
-fileLogger.maximumFileSize = 1024 * 1024; // 1MB
-fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
-fileLogger.logFileManager.maximumNumberOfLogFiles = 7
-DDLog.add(fileLogger)
+##### Benefits
++ Define different log levels, marking a special tag "log severity".
++ Make easier to find the exact line of code where is printing the log.
++ Has a function `trace()` which shows the exact execution path.
++ Is extensible, it allows to define custom implementations of different functions that could be used during the logging process.
+Define **rolling frequency**.
++ Choose the output: Xcode console, Apple System Logs or/and file.
 
-```
-
-+ Objective-C
-
-```Objective-C
-DDFileLogger *fileLogger = [[DDFileLogger alloc] init]; // File Logger
-fileLogger.maximumFileSize = 1024 * 1024; // 1MB
-fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
-fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
-[DDLog addLogger:fileLogger];
-
-```
-This configuration defines 7 as a number maximum of log files, if there are 7 files already the older will be override. The size maximum of each file will be 1 MB and each 24 hours will start a new file, but if the size of the current file achieves 1 Mb it will be started a new one also.
-
-
-##### Defining log level
-
-It would be a good practice to have a different log level depending on the version of the app. If we are developing, it could be a good idea to have all kind of logs then we can set the level in Verbose mode. But if we are in the release version could be better to have only important logs as warnings and errors. For this configuration we can use the next code:
-
-```Objective-C
-#ifdef DEBUG
-  static const DDLogLevel ddLogLevel = DDLogLevelVerbose;
-#else
-  static const DDLogLevel ddLogLevel = DDLogLevelWarning;
-#endif
-```
-
-##### Writing logs
-
-Finally we have to use `CocoaLumberjack` log "functions" to write log lines instead of NSLog and print. We can use the following levels:
-
-+ Swift
-
-```Swift
-DDLogVerbose("Verbose");
-DDLogDebug("Debug");
-DDLogInfo("Info");
-DDLogWarn("Warn");
-DDLogError("Error");
-```
-
-+ Objective-C
-
-```Objective-C
-DDLogVerbose(@"Verbose");
-DDLogDebug(@"Debug");
-DDLogInfo(@"Info");
-DDLogWarn(@"Warn");
-DDLogError(@"Error");
-```
 
 ## Bibliography
 
@@ -418,8 +296,8 @@ DDLogError(@"Error");
 
 +  Debasis Das (March 2015). [_Swift print, println, NSLog_](http://www.knowstack.com/swift-print-println-nslog/)
 
-+ Bart Jacobs (March 2013). [_CocoaLumberjack: Logging on Steroids_](http://blog.scottlogic.com/2015/02/11/swift-kvo-alternatives.html)
-
 **Github**
 
 + [_CocoaLumberjack_](https://github.com/CocoaLumberjack/CocoaLumberjack)
++ [_SwiftyBeaver_](https://github.com/SwiftyBeaver/SwiftyBeaver)
++ [_CleanroomLogger_](https://github.com/emaloney/CleanroomLogger)
