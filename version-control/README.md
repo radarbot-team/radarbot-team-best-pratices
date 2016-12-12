@@ -25,7 +25,7 @@ Two settings are available, and you should always define values for both of them
 
    - *versionName*: A string used as the version number shown to users. This setting can be specified as a raw string or as a reference to a string resource. The value is a string so that you can describe the app version as a <major>.<minor>.<point> string, or as any other type of absolute or relative version identifier. The versionName has no purpose other than to be displayed to users.  
 
-The Android framework provides an API to let you query the system for version information about your app. To obtain version information, use the **getPackageInfo(java.lang.String, int)** method of *PackageManager*.  
+The Android framework provides an API to let you query the system for version information about your app. To obtain version information, use the **getPackageInfo(String, int)** method of *PackageManager*.  
 When you use Instant Run, Android Studio automatically sets the versionCode to MAXINT and the versionName to "INSTANTRUN".
 
 ### Specify API Level Requirements
@@ -62,15 +62,15 @@ In Android Studio, go to **File > Settings** (on Mac, **Android Studio > Prefere
 ***2. Enable Version Control Integration***  
 Prior to using Git or any other version control with an existing project, ‘version control integration’ should be enabled. In Android Studio, got to **VCS > Enable Version Control Integration**. This step is for an already existing project in Android Studio, that is not is integrated with any version control.  
 
-![Menu VCS](statics/android-studio-menu-vcs.png)
+<img src="statics/android-studio-menu-vcs.png" width="300" height="185" />
 
 On enable, we will get a dialog window with options to choose like CVS, Git, Mercurial and Subversion. We will choose Git as example.  
 
-![](statics/android-studio-enable-vcs-dialog.png)
+<img src="statics/android-studio-enable-vcs-dialog.png" width="467" height="118" />
 
 On successful enable the options under VCS menu will change showing the Git options to add, commit, etc. The color of the files in Android Studio project explorer will change to brown from previous black. This indicates that the files are new and yet to be added to Git server.  
 
-![Menu VCS>Options](statics/android-studio-menu-vcs-options.png)
+<img src="statics/android-studio-menu-vcs-options.png" width="560" height="572" />
 
 ***3. gitignore – Exclude Files from Git***  
 This is an important step before adding the project files to Git version control. We do not want all the files from Android Studio to be added to Git. Files like generated code, binary files (executables) should not be added to Git (version control). Git provides a feature using which we can inform Git that the list of files given should be excluded in version control.  
@@ -110,26 +110,26 @@ Create a TXT file and name of the file should be `.gitignore`. There is no name 
 	build/  
 	app/build/  
 
-
+***4 Using Git***  
 ***4.1 Git with Local***  
 Now the project is ready to use with Git version control. Now it depends on your choice of the Git server. If you choose to use Git in just your local system (which is highly unlikely), you are all set. Go to **VCS > Git > Add** and the files are now added to Git and then you need to commit the changes. Now go to **VCS > Commit Changes** and you will get a dialog to enter the comments and to commit. Done and the project is added to Git.  
 
-![Git Commit](statics/android-studio-git-commit.png)
+<img src="statics/android-studio-git-commit.png" width="569" height="583" />
 
 If you wish to add the project to a remote repository that is residing somewhere on the network you need to add the project to remote repository and then use it.  
 
 ***4.2 Git using GitHub with Android Studio***  
 GitHub is an online service for project hosting using Git version control. To host the project on Git, a Git account should be created in github.com. Now you can share the Android project on GitHub. Go to **VCS > Import into Version Control > Share Project on GitHub**.  
 
- ![Share Project on GitHub](statics/android-studio-git-github.png)
+<img src="statics/android-studio-git-github.png" width="501" height="338" />
 
 Login with GitHub credentials:
 
-![GitHub credentials](statics/android-studio-github-credentials.png)
+<img src="statics/android-studio-github-credentials.png" width="333" height="183" />
 
 Create a new repository on GitHub and push the project to the GitHub repository.  
 
-![Share Project on GitHub](statics/android-studio-share-github.png)
+<img src="statics/android-studio-share-github.png" width="352" height="198" />
 
 ***4.3 Git using Bitbucket or Any Repo with Android Studio***  
 Bitbucket does not have a direct import feature as GitHub has. For remote Git repositories like Bitbucket which does not have an explicit import feature in Android Studio, we can use the command line and add the project to the remote repository. This is also applicable if you are in a company network and you have your own remote Git server.  
@@ -142,14 +142,14 @@ The URL is the Git remote repository.
 
 
 
-#### Gitflow for Android Studio
+#### Git Flow
 Generally teams have two branches: master and develop. Everyone commits straight to develop. If a person is in mid-feature or testing something out, often they would not commit their work until they were done, keeping their code only on their local machines. This can be very problematic and losing code is easy to do. Releases were made by merging develop straight into master branch and tagging the commit with the release number.
 
 This method of using git works ok for small sized teams of 2 – 3 developers. As soon as there are more developers on the team, things quickly become difficult to manage. Problems with this approach include: Branches stemming from different sources, branches created from other branches and not knowing what to do if there is a bug on production but there are new commits on the develop branch.
 
 Git Flow cames to solve these problems. The following diagram describes Git Flow really well:  
 
-![Git Flow](statics/git-flow.png)
+<img src="statics/git-flow.png" width="500" height="668" />
 
 Git Flow basically has the following different types of branches:
 
@@ -180,6 +180,8 @@ Not all Git clients provide support for Git flow. A list of a couple that do sup
    - [Smart Git](http://www.syntevo.com/smartgit/)  
    - [Source Tree](https://www.sourcetreeapp.com/)  
    - [Tower](https://www.git-tower.com/mac/)  
+
+**NOTE:** For more information about Git Flow [DevOps Repository](https://github.com/beeva/beeva-best-practices/tree/master/devops/git#git-flow)
 
 #### Changing working branch from Android Studio
 Developers can change the branch they are working on  by selecting the branch they want in the bottom left corner of Android Studio. This improves the management of Git Flow from Android Studio.  
