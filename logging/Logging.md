@@ -260,17 +260,15 @@ print(person) // Writes in console: Debugging --> Name: Tim - Surname: Cook
 
 Although `print` and `NSLog` are very useful options and it is very easy to use them, they are quite simply. Moreover, these options only write in console or ASL but they do not save a log in a file then we are not able to send to us if we need it. For these reasons, there are some third party libraries which are more powerful and more customizable than the Apple ones.
 
-+ #### CocoaLumberjack
+#### CocoaLumberjack
 
-##### Benefits
 + Define different log levels.
 + Choose the output: Xcode console, Apple System Logs or/and file.
 + Define **rolling frequency** and **maximum file size**.
 + Faster than NSLog.
 
-+ #### SwiftyBeaver
+#### SwiftyBeaver
 
-##### Benefits
 + Define different log levels.
 + Choose the output: Xcode console, file or/and **cloud**.
 + **Colored** output depending on log level.
@@ -279,9 +277,8 @@ Although `print` and `NSLog` are very useful options and it is very easy to use 
 + Mac app to analyze logs sent from your app.
 
 
-+ #### CleanroomLogger
+#### CleanroomLogger
 
-##### Benefits
 + Define different log levels, marking a special tag "log severity".
 + Make easier to find the exact line of code where is printing the log.
 + Has a function `trace()` which shows the exact execution path.
