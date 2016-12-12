@@ -286,7 +286,7 @@ Although `print` and `NSLog` are very useful options and it is very easy to use 
 + Make easier to find the exact line of code where is printing the log.
 + Has a function `trace()` which shows the exact execution path.
 + Is extensible, it allows to define custom implementations of different functions that could be used during the logging process.
-Define **rolling frequency**.
++ Define **rolling frequency**.
 + Choose the output: Xcode console, Apple System Logs or/and file.
 
 
