@@ -30,7 +30,7 @@ NSLog(@"Tim is %i years old", 43); // Writes in console: Tim is 43 years old
 
 ```
 
-For more information about `String` format specifiers: https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html
+For more information about `String` [_format specifiers_](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html).
 
 ##### Logging an object
 
