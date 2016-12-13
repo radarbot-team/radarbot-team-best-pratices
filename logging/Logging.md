@@ -267,6 +267,8 @@ Although `print` and `NSLog` are very useful options and it is very easy to use 
 + Define **rolling frequency** and **maximum file size**.
 + Faster than NSLog.
 
+For more information about the installation, first steps and advanced configurations [_CocoaLumberjack GitHub_](https://github.com/CocoaLumberjack/CocoaLumberjack)
+
 #### SwiftyBeaver
 
 + Define different log levels.
@@ -275,6 +277,8 @@ Although `print` and `NSLog` are very useful options and it is very easy to use 
 + AES256 encryptation to send logs to cloud.
 + Easy configuration for each output.
 + Mac app to analyze logs sent from your app.
+
+For more information about the installation, first steps and advanced configurations [_SwiftyBeaver GitHub_](https://github.com/SwiftyBeaver/SwiftyBeaver)
 
 
 #### CleanroomLogger
@@ -286,6 +290,7 @@ Although `print` and `NSLog` are very useful options and it is very easy to use 
 + Define **rolling frequency**.
 + Choose the output: Xcode console, Apple System Logs or/and file.
 
+For more information about the installation, first steps and advanced configurations [_CleanroomLogger GitHub_](https://github.com/emaloney/CleanroomLogger)
 
 ## Bibliography
 
@@ -293,7 +298,7 @@ Although `print` and `NSLog` are very useful options and it is very easy to use 
 
 +  Debasis Das (March 2015). [_Swift print, println, NSLog_](http://www.knowstack.com/swift-print-println-nslog/)
 
-**Github**
+**GitHub**
 
 + [_CocoaLumberjack_](https://github.com/CocoaLumberjack/CocoaLumberjack)
 + [_SwiftyBeaver_](https://github.com/SwiftyBeaver/SwiftyBeaver)
