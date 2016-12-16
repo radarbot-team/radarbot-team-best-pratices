@@ -46,11 +46,11 @@ The architecture that best fits most of our projects in Beeva has been **MVP + c
 - **Domain**: Holds all business logic. The domain layer starts with classes named *use cases* or *interactors* used by the application presenters. These use cases represent all the possible actions a developer can perform from the presentation layer.
 - **Repository**: Repository pattern.
 
-1. **Quality**
+### Quality
 
 Quality must be mantained in every component of the application, in every class or method. The use of an architecture is a necessary requirement to maintain the quality of a project, but is not sufficient. The [**SOLID principles**](https://es.wikipedia.org/wiki/SOLID) are a good guidelines that can be applied in order to create a system that is easy to maintain and extend over time.
 
-2. **Unit tests**
+### Unit tests
 
 Tests are one of the most importatn parts of the development. By creating and running unit tests against your code, you can easily verify that the logic of individual units is correct. There are two types of unit tests.
 
