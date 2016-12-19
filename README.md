@@ -43,8 +43,8 @@ The architecture that best fits most of our projects in Beeva has been **MVP + c
 ![MVP + Clean Architecture](https://github.com/googlesamples/android-architecture/wiki/images/mvp-clean.png)
 
 - **MVP**: Model View Presenter pattern.
-- **Domain**: Holds all business logic. The domain layer starts with classes named *use cases* or *interactors* used by the application presenters. These use cases represent all the possible actions a developer can perform from the presentation layer.
-- **Repository**: Repository pattern.
+- **Domain**: Holds all business logic. The domain layer starts with classes named *use cases* or *interactors* used by the application presenters. These use cases represent all the **possible actions** a developer can perform from the presentation layer.
+- **Repository**: Repository pattern to provide a local, memory and remote data sources, allowing to use objects without having to know how the objects are persisted.
 
 ### Quality
 
