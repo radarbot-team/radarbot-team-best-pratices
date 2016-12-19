@@ -8,7 +8,7 @@ When you check the Base Internationalization checkbox, Xcode will ask which reso
 
 ![Objective-C Initialization chain](statics/initInternationalization.png)
 
-if you wand add more languages, you can use the menu command Editor > Add Localization. Or right from the Info panel, press the + button and choose the language you want to add. Xcode will again ask which resources you plan to localize, and create a `[language code].lproj` folder for each.
+If you want to add more languages, you can use the menu command Editor > Add Localization. Or right from the Info panel, press the + button and choose the language you want to add. Xcode will again ask which resources you plan to localize, and create a `[language code].lproj` folder for each.
 
 ![Objective-C Initialization chain](statics/StoriboardInternalization.jpg)
 
@@ -16,7 +16,7 @@ When we add a new localization, Xcode scans through the base storyboard, extract
 
 **Localizing Image**
 
-When you want localize an image, you need select the image in the project navigator and in the file inspector you need touch the button named `Localize...`. Click the button and you’ll be prompted for confirmation. Choose the language as you want localized.
+When you want localize an image, you need select the image in the project navigator and in the file inspector you need touch the button named `Localize...`. Click the button and you’ll be prompted for confirmation, then choose the language.
 
 ![Objective-C Initialization chain](statics/French_img.png)
 
@@ -78,6 +78,8 @@ NSString * NSLocalizedStringWithDefaultValue(
 
 ```
 
+
+
 At runtime, NSLocalizedString determines the preferred language, and finds a corresponding Localizable.strings file in the app bundle. For example, if the user prefers French, the file `en.lproj/Localizable.strings` will be consulted.
 
 Here’s what that looks like:
@@ -87,6 +89,42 @@ Here’s what that looks like:
 "TXT_USER_PLACEHOLDER"="NIF, NIE, ID Card, Passport or Username";
 
 "TXT_BALANCE_AMOUNT"="Amount (%@)";
+
+```
+
+
+In order to improve our code and avoid using empty parameters there are different options like creating macros, creating an extension of a String or using an external library like (ex. https://github.com/AliSoftware/SwiftGen˚).
+
+Some examples:
+
+```objectivec
+#define LSSTRING(str) NSLocalizedString(str, nil)
+```
+
+```objectivec
+- (NSString *)localizedString:(NSString *) key language:(NSString*)language
+{    
+  if (language == nil)
+   {
+       language = [[NSLocale preferredLanguages] objectAtIndex:0];
+       language = [language substringToIndex:2];
+   }
+
+    NSString *path = [[NSBundle mainBundle] pathForResource:language ofType:@"lproj"];
+    NSBundle *languageBundle = [NSBundle bundleWithPath:path];
+    NSString *text = [languageBundle localizedStringForKey:key value:@"" table:nil];
+
+    if (!text)
+    {
+        path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
+        languageBundle = [NSBundle bundleWithPath:path];
+        text = [languageBundle localizedStringForKey:key value:@"" table:nil];
+    }
+
+    return text;
+}
+
+[textField setText:[self localizedString:text language:@"en"]];
 
 ```
 
@@ -154,7 +192,7 @@ Example:
 ```
 
 
-## Internationalization
+# Internationalization
 
 **NSLocale**
 
@@ -313,6 +351,43 @@ NSLog(@"fa_IR: %@", [numberFormatter stringFromNumber:@4.0]);
 // Output: "fa_IR: ‪‪٪۴۰۰‬.‬"
 
 ```
+
+
+Also remember that setting a `NSDateFormatter` or `NSNumberFormatter` is almost as slow as creating a new one. Therefore, if you frequently need to deal with multiple formats in your app, your code may benefit from initially creating, and reusing, multiple objects.
+
+If that’s your case and you’re fine with having one `NSDateFormatter` shared with all instances of your class, you can do the following:
+
+```objectivec
+// define static variable
+
+private static let formatter: NSDateFormatter = {
+  let formatter = NSDateFormatter()
+  formatter.dateFormat = "EEE MMM dd HH:mm:ss Z yyyy"
+  return formatter
+}()
+
+// you could use it like so
+
+func someMethod(date: NSDate) -> String {
+  return MyObject.formatter.stringFromDate(date)
+}
+```
+or
+
+```objectivec
+/- (NSDateFormatter *)formatter {
+    static NSDateFormatter *formatter;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _formatter = [[NSDateFormatter alloc] init];
+        _formatter.dateFormat = @"EEE MMM dd HH:mm:ss Z yyyy"; // twitter date format
+    });
+    return formatter;
+}
+```
+
+
+
 
 ## Bibliography
 
