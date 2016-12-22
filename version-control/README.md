@@ -25,54 +25,12 @@ Two settings are available, and you should always define values for both of them
 
    - *versionName*: A string used as the version number shown to users. This setting can be specified as a raw string or as a reference to a string resource. The value is a string so that you can describe the app version as a <major>.<minor>.<point> string, or as any other type of absolute or relative version identifier. The versionName has no purpose other than to be displayed to users.  
 
-The Android framework provides an API to let you query the system for version information about your app. To obtain version information, use the **getPackageInfo(String, int)** method of *PackageManager*.  
-When you use Instant Run, Android Studio automatically sets the versionCode to MAXINT and the versionName to "INSTANTRUN".
-
-### Specify API Level Requirements
-
-If your app requires a specific minimum version of the Android platform, you can specify that version requirement as API level settings in the app's `build.gradle` file. During the build process, these settings are merged into your app's manifest file. Specifying API level requirements ensures that your app can only be installed on devices that are running a compatible version of the Android platform.  
-If you specify API level requirements directly in your app's manifest file, the corresponding settings in the build files will override the settings in the manifest file. Additionally, defining these settings in the Gradle build files allows you to specify different values for different versions of your app. For greater flexibility and to avoid potential overwriting when the manifest is merged, you should remove these attributes from the `<uses-sdk>` element and define your API level settings in the Gradle build files instead.  
-
-There are two API level settings available:  
-   - *minSdkVersion*: The minimum version of the Android platform on which the app will run, specified by the platform's API level identifier.  
-
-   - *targetSdkVersion*: Specifies the API level on which the app is designed to run. In some cases, this allows the app to use manifest elements or behaviors defined in the target API level, rather than being restricted to using only those defined for the minimum API level.  
-
-When preparing to install your app, the system checks the value of these settings and compares them to the system version. If the `minSdkVersion` value is greater than the system version, the system prevents the installation of the app.  
-If you do not specify these settings, the system assumes that your app is compatible with all platform versions.  
-
-Versioning your code
---------------------
+### Versioning your code
 
 Android Studio supports a variety of version control systems (VCS’s), including Git, GitHub, CVS, Mercural, Subversion, and Google Cloud Source Repositories.  
-After importing your app into Android Studio, use the Android Studio VCS menu options to enable VCS support for the desired version control system, create a repository, import the new files into version control, and perform other version control operations:
+After importing your app into Android Studio, use the Android Studio VCS menu options to enable VCS support for the desired version control system, create a repository, import the new files into version control, and perform other version control operations.
 
-  1. From the Android Studio **VCS** menu, click **Enable Version Control Integration**.  
-  2. From the drop-down menu, select a version control system to associate with the project root, and then click **OK**.  
-
-The VCS menu now displays a number of version control options based on the system you selected.  
-
-#### Using Git as your version control system
-
-***1. Test if Git is Configured***  
-In Android Studio, go to **File > Settings** (on Mac, **Android Studio > Preferences**) **> Version Control > Git**. Then click ‘Test’ to ensure that Git is configured properly in Android Studio.  
-
-![Preferences>Git](statics/android-studio-preferences-git.png)
-
-***2. Enable Version Control Integration***  
-Prior to using Git or any other version control with an existing project, ‘version control integration’ should be enabled. In Android Studio, got to **VCS > Enable Version Control Integration**. This step is for an already existing project in Android Studio, that is not is integrated with any version control.  
-
-<img src="statics/android-studio-menu-vcs.png" width="300" height="185" />
-
-On enable, we will get a dialog window with options to choose like CVS, Git, Mercurial and Subversion. We will choose Git as example.  
-
-<img src="statics/android-studio-enable-vcs-dialog.png" width="467" height="118" />
-
-On successful enable the options under VCS menu will change showing the Git options to add, commit, etc. The color of the files in Android Studio project explorer will change to brown from previous black. This indicates that the files are new and yet to be added to Git server.  
-
-<img src="statics/android-studio-menu-vcs-options.png" width="560" height="572" />
-
-***3. gitignore – Exclude Files from Git***  
+### .gitignore – Exclude Files from Git  
 This is an important step before adding the project files to Git version control. We do not want all the files from Android Studio to be added to Git. Files like generated code, binary files (executables) should not be added to Git (version control). Git provides a feature using which we can inform Git that the list of files given should be excluded in version control.  
 Create a TXT file and name of the file should be `.gitignore`. There is no name for this file and ‘gitignore’ is the extension. It’s just a text file with list of file names to be excluded. You can put this file in the project root folder in Android Studio. This is an example of .gitignore file for Android projects. It’s almost the same for all Android projects.
 
@@ -110,39 +68,8 @@ Create a TXT file and name of the file should be `.gitignore`. There is no name 
 	build/  
 	app/build/  
 
-***4 Using Git***  
-***4.1 Git with Local***  
-Now the project is ready to use with Git version control. Now it depends on your choice of the Git server. If you choose to use Git in just your local system (which is highly unlikely), you are all set. Go to **VCS > Git > Add** and the files are now added to Git and then you need to commit the changes. Now go to **VCS > Commit Changes** and you will get a dialog to enter the comments and to commit. Done and the project is added to Git.  
-
-<img src="statics/android-studio-git-commit.png" width="569" height="583" />
-
-If you wish to add the project to a remote repository that is residing somewhere on the network you need to add the project to remote repository and then use it.  
-
-***4.2 Git using GitHub with Android Studio***  
-GitHub is an online service for project hosting using Git version control. To host the project on Git, a Git account should be created in github.com. Now you can share the Android project on GitHub. Go to **VCS > Import into Version Control > Share Project on GitHub**.  
-
-<img src="statics/android-studio-git-github.png" width="501" height="338" />
-
-Login with GitHub credentials:
-
-<img src="statics/android-studio-github-credentials.png" width="333" height="183" />
-
-Create a new repository on GitHub and push the project to the GitHub repository.  
-
-<img src="statics/android-studio-share-github.png" width="352" height="198" />
-
-***4.3 Git using Bitbucket or Any Repo with Android Studio***  
-Bitbucket does not have a direct import feature as GitHub has. For remote Git repositories like Bitbucket which does not have an explicit import feature in Android Studio, we can use the command line and add the project to the remote repository. This is also applicable if you are in a company network and you have your own remote Git server.  
-
-Go to terminal, change to project root in Android Studio and execute the following command:  
-
-	> git remote add origin https://user@bitbucket.org/user/wordpower.git
-
-The URL is the Git remote repository.
-
-
-
-#### Git Flow
+Git Flow
+--------
 Generally teams have two branches: master and develop. Everyone commits straight to develop. If a person is in mid-feature or testing something out, often they would not commit their work until they were done, keeping their code only on their local machines. This can be very problematic and losing code is easy to do. Releases were made by merging develop straight into master branch and tagging the commit with the release number.
 
 This method of using git works ok for small sized teams of 2 – 3 developers. As soon as there are more developers on the team, things quickly become difficult to manage. Problems with this approach include: Branches stemming from different sources, branches created from other branches and not knowing what to do if there is a bug on production but there are new commits on the develop branch.
