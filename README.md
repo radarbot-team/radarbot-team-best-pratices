@@ -52,14 +52,121 @@ Quality must be mantained in every component of the application, in every class 
 
 ## User Interface and Visuals
 
-How to build a user interface using Android layouts for all types of devices.<br/> 
+Here we will show you the best ways and benefits of structuring a layout file following simple guidelines.
 
- - Activity and fragment uses.
- - Use styles to avoid duplicate attributes in layout XMLs.
- - Add resources in xml files (color,string,dimen…).
- - include resources for all dimens.
-<br/> [More info] (http://developer.android.com/intl/es/training/best-ui.html).
-<br/> Material design: best practices (components, colors,  animations…).
+#### Activity and fragment uses.
+
+There is currently no pattern indicating when it is best to use a fragment or an activity.
+
+A good practice is the use of fragments to be able to isolate the functionality of each screen and even when creating interface pieces that need to be reused on other screens. In order to leave the activities as light as possible.
+
+On the other hand, when a fragment is destroyed, be sure to delete all references and callbacks to the activity, as well as object references within the activity
+
+Also avoid using nested fragments extensively, use them only when it makes sense.
+
+#### Naming
+One of the clearest conventions for naming files would be the following. `type_foo_bar.xml`. Examples: `fragment_order_details.xml`, `view_common_product.xml`, `activity_client_profile.xml`.
+
+#### Resources in xml files
+One of the characteristics that Android has, is the ability to have separate files with all `colors`, `dimensions`, `strings`,etc. Accessible to them from any layout only with the reference. This way we can keep our code better prepared for future changes.</br>
+
+Now a few tips to follow with different resources.
+
+##### Colors
+
+In this file we should only map different colors as if it were a palette. Never use definitions related to the state of a button or a textview because we could start repeating colors very easily.
+
+*Don't do this:*
+
+```xml
+<resources>
+    <color name="button_border">#FF4081</color>
+    <color name="button_background">#3F51B5</color>
+    <color name="button_shadow">#272727</color>
+    ...
+```
+
+*Instead, do this:*
+
+```xml
+<resources>
+    <color name="pink">#FF4081</color>
+    <color name="blue_dark">#3F51B5</color>
+    <color name="gray_dark">#272727</color>
+    ...
+```
+
+##### Dimensions
+
+The same way that we work with the colors file, we should use this as a palette of dimensions
+
+```xml
+<resources>
+    <!-- TextView paddings -->
+    <dimen name="textview_padding_left">15dp</dimen>
+    <dimen name="textview_padding_top">10dp</dimen>
+    ...
+
+    <!-- font sizes -->
+    <dimen name="font_large">18sp</dimen>
+    <dimen name="font_normal">15sp</dimen>
+    ...
+```
+
+##### Strings
+
+Try to be as concrete as possible and generate expats of names for different values.
+Unlike other files you can repeat values for more than one key.
+
+**Bad**
+```xml
+<resources>
+    <string name="user_not_found">User not found</string>
+    <string name="user_duplicate">User exists</string>
+  ...
+```
+
+**Good**
+```xml
+<resources>
+  <!-- User's error types -->
+    <string name="error.user.not_found">User not found</string>
+    <string name="error.user.duplicate">User exists</string>
+    ...
+```
+
+Note that none of these values must be capitalized. Only the first letter should be capitalized, since we can take advantage of `android:textAllCaps` in case we would like to capitalize everything.
+
+#### Use styles to avoid duplicate attributes in layout XMLs.
+Properties that are common for different elements or can be repeated frequently in a view, should be externalized in the styles file.
+
+```xml
+<style name="Button.Share">
+    <item name="android:background">@null</item>
+    <item name="android:textAllCaps">false</item>
+    <item name="android:drawablePadding">@dimen/padding_share</item>
+    <item name="android:textSize">@dimen/font_small</item>
+</style>
+```
+Applied to Button:
+```xml
+<Button
+    android:id="@+id/btnFacebook"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:drawableTop="@drawable/ic_facebook"
+    android:text="@string/facebook"
+    style="@style/Button.Share"
+    />
+```
+###### Split a large style file into other files
+
+In the case that we have a very large file with many styles or just because we feel the need to split the styles in any order, we can generate as many styles files as we want.
+For example: `styles.xml`, `styles_button.xml`, `styles_label.xml`, `styles_social_media.xml`,
+
+This technique is valid for the different resource files.
+
+[More info] (http://developer.android.com/intl/es/training/best-ui.html).
 
 ## Coding Style
 
