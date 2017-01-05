@@ -146,18 +146,7 @@ Macro:
 
 ### Swift’s print
 
-We can use `NSLog` in Swift also, but it is a better practice to use `print`. Basically, print will add a newline at the end of its content as `NSLog`.
-
-##### NSLog vs print
-
-
-+ `NSLog` is slower.
-
-+ `NSLog` adds a timestamp and identifier to the output, whereas print will not.
-
-+ `NSLog` synchronizes the log statements so that if you’re issuing logs from different threads concurrently, they won’t overlap with each other; print can result in jumbled output if performed simultaneously from separate threads without doing some synchronization (e.g. dispatching it to some serial queue, such as the main queue).
-
-+ When performed on physical device, `NSLog` statements appear in the device’s console whereas print only appears in the debugger console.
+We can use `NSLog` in Swift also, but it is a better practice to use `print`. Basically, print will add a newline at the end of its content as `NSLog`. [Here](http://www.knowstack.com/swift-print-println-nslog/), we can find a good comparative between `print` and `NSLog` (Note: the article compares `NSLog` vs `println` instead of `print` but apply also to `print`. Remind since Swift 2.0 `println` is deprecated).
 
 Examples of using:
 
