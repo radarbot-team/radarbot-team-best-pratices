@@ -10,11 +10,11 @@ Other links of interest:
 - [API reference.](https://developer.apple.com/reference/)
 - [Videos.](https://developer.apple.com/videos/)
 
-You can find information about Swift in the [official page](https://swift.org/) and more resources [here.](https://developer.apple.com/swift/resources/)
+You can find information about Swift in the [official page](https://swift.org/) and more resources [here](https://developer.apple.com/swift/resources/).
 
 ##How to install and update Xcode.
 
-You can find and download from the [official link](https://developer.apple.com/download/) and the [Mac App Store.](https://itunes.apple.com/es/app/xcode/id497799835?mt=12)
+You can find and download from the [official link](https://developer.apple.com/download/) and the [Mac App Store](https://itunes.apple.com/es/app/xcode/id497799835?mt=12).
 
 If you need to try the beta version of iOS you will also need the beta version of Xcode. You can download it from the [Beta Software](https://developer.apple.com/support/beta-software/) page.
 
