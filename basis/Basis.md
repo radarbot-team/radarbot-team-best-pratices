@@ -6,9 +6,9 @@ Everything you need to develop iOS applications can be found in the [Apple Devel
 
 Other links of interest:
 
-- [Guides and sample code.](https://developer.apple.com/library/content/navigation/)
-- [API reference.](https://developer.apple.com/reference/)
-- [Videos.](https://developer.apple.com/videos/)
+- [Guides and sample code](https://developer.apple.com/library/content/navigation/).
+- [API reference](https://developer.apple.com/reference/).
+- [Videos](https://developer.apple.com/videos/).
 
 You can find information about Swift in the [official page](https://swift.org/) and more resources [here](https://developer.apple.com/swift/resources/).
 
