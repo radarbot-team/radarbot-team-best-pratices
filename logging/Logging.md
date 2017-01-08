@@ -286,6 +286,7 @@ For more information about the installation, first steps and advanced configurat
 **Articles**
 
 +  Debasis Das (March 2015). [_Swift print, println, NSLog_](http://www.knowstack.com/swift-print-println-nslog/)
++  String format specifiers. [_String format specifiers_](https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/Strings/Articles/formatSpecifiers.html)
 
 **GitHub**
 
