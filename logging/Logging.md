@@ -146,7 +146,7 @@ Macro:
 
 ### Swift’s print
 
-We can use `NSLog` in Swift also, but it is a better practice to use `print`. Basically, print will add a newline at the end of its content as `NSLog`. [Here](http://www.knowstack.com/swift-print-println-nslog/), we can find a good comparative between `print` and `NSLog` (Note: the article compares `NSLog` vs `println` instead of `print` but apply also to `print`. Remind since Swift 2.0 `println` is deprecated).
+We can use `NSLog` in Swift also, but it is a better practice to use `print`. Basically, print will add a newline at the end of its content as `NSLog`. [Here](http://www.knowstack.com/swift-print-println-nslog/), we can find a good comparative between `print` and `NSLog` (Note: the article compares `NSLog` vs `println` instead of `print` but apply also to `print`. `println` is deprecated since Swift 2.0).
 
 Examples of using:
 
