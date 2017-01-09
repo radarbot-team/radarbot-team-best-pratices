@@ -123,7 +123,7 @@ Solutions to gather metrics of usage and crashes.
  - Use ProGuard or DexGuard.
  - Google developer console.
 
-## Version Control
+## [Version Control](version-control/README.md)
 
 Git and the .gitignore file.
 
