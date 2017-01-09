@@ -35,8 +35,6 @@ How to install and update Android Studio, JDK, SDK
 --------------------------------------------------
 
 ### Installation
-Android Studio provides the fastest tools for building apps on every type of Android device.
-
 To install Android Studio it is necessary to download java JDK and Android Studio. Both things are available in the links below:
 
    - [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
@@ -65,11 +63,4 @@ You can add other sites that host their own tools, then download the packages fr
 ### Update IDE and Change Channels
 Android Studio notifies you with a small bubble dialog when an update is available for the IDE, but you can manually check for updates by clicking **Help >Check for Update** (on Mac, **Android Studio > Check for Updates**).
 
-Updates for Android Studio are available from the following release channels:
-
-   - **Canary Channel**: These are bleeding-edge releases, updated roughly weekly. Although these builds are subject to more bug, the do get tested and we want to offer early access so you can try new features and provide feedback. This channel is not recommended for production development.
-   - **Dev Channel**: These are hand-picked canary builds that survived a full round of internal testing.
-   - **Beta Channel**: These are release candidates based on stable canary builds, released to get feedback before going into the stable channel.
-   - **Stable Channel**: The official stable release that is available for download.
-
-For your production Android projects you should use a version of Android Studio downloaded from the Stable Channel. If you would like to try one of the other channels (Canary, Dev o Beta) while still using the Stable build, you can safely install a second version of Android Studio by downloading the preview build from [tools.android.com](http://tools.android.com/download/studio).
+Updates for Android Studio are available from different channels (Canary, Dev, Beta and Stable). For production Android projects you should use a version of Android Studio downloaded from the Stable Channel (the official stable release that is available for download). If you would like to try one of the other channels (Canary, Dev o Beta) while still using the Stable build, you can safely install a second version of Android Studio by downloading the preview build from [tools.android.com](http://tools.android.com/download/studio).
