@@ -34,7 +34,7 @@ Some visual elements have an **intrinsic size** defined so it is not mandatory t
 override var intrinsicContentSize: CGSize { .. }
 ```
 
-**Frames with autoresizing masks** require a much lower computing cost and are convenient if the performance of autolayouts is not fast enough.
+**Frames with autoresizing masks** require a much lower computing cost and are convenient if the performance of Autolayout is not fast enough.
 
 ### Programmatically
 
@@ -125,7 +125,7 @@ struct wrongState {
 }
 ```
 
-If you make animations with autolayout you will need to call *layoutIfNeeded* in the animation block.
+If you make animations with Autolayout you will need to call *layoutIfNeeded* in the animation block.
 
 ```swift
 constraint.constant = 200
