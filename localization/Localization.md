@@ -2,21 +2,21 @@
 
 **Enabling Base Internationalization**
 
-Recent versions of Xcode turn on base internationalization by default but let's just make sure your project is using it. Select your project in Xcode's file navigator. (Make sure you're looking at the Project, not the target).
+Xcode turns on base internationalization by default but you need to make sure it is turned on. In Xcode check your file navigator. Make sure you're looking at the Project, not the target.
 
-When you check the Base Internationalization checkbox, Xcode will ask which resources to use as well as your default language. Xcode will create a `Base.lproj` folder, and add any resource files you select. It also creates a language folder for the development language.
+When the Base Internationalization is active, Xcode will ask which resources to use as well as your default language. Xcode will create a `Base.lproj` folder, and add any resource files you select. New folders will appear for each language.
 
 ![Objective-C Initialization chain](statics/initInternationalization.png)
 
-If you want to add more languages, you can use the menu command Editor > Add Localization. Or right from the Info panel, press the + button and choose the language you want to add. Xcode will again ask which resources you plan to localize, and create a `[language code].lproj` folder for each.
+If you want to add more languages, you can use the menu command Editor > Add Localization. This is also possible from the Info panel, press the + button and choose the new language you want to add. Xcode will ask which resources you want to localize, and create a `[language code].lproj` folder.
 
 ![Objective-C Initialization chain](statics/StoriboardInternalization.jpg)
 
-When we add a new localization, Xcode scans through the base storyboard, extracts those textual items to be localized and put them into the strings file.
+If we add a new localization, Xcode search through the base storyboard, extracts those textual items to be localized and add to the strings file.
 
 **Localizing Image**
 
-When you want localize an image, you need select the image in the project navigator and in the file inspector you need touch the button named `Localize...`. Click the button and you’ll be prompted for confirmation, then choose the language.
+If you need to localize an image, in the project navigator select the option `Localize...`. Click the button and choose the language.
 
 ![Objective-C Initialization chain](statics/French_img.png)
 
@@ -24,30 +24,28 @@ Next you’ll find two folders: `en.lproj` and `es.lproj` for example. Both fold
 
 **Localizing Dynamic Strings**
 
-Strings are perhaps the most versatile data type in computing. They’re passed around as symbols, used to encode numeric values, associate values to keys, represent resource paths, store linguistic content, and format information. Having a strong handle on user-facing strings is essential to making a great user experience.
+In Foundation, the macro for denoting strings as user-facing: `NSLocalizedString`.
 
-In Foundation, there is a convenient macro for denoting strings as user-facing: `NSLocalizedString`.
+`NSLocalizedString` replace all localized strings with their respective translation according to the `.string` files saves in the project.
 
-`NSLocalizedString` provides string localization in “compile-once / run everywhere” fashion, replacing all localized strings with their respective translation according to the string tables of the user settings. But even if you’re not going to localize your app to any other markets, `NSLocalizedString` does wonders with respect to copy writing & editing.
+`NSLocalizedString` has two arguments: key and comment.
 
-`NSLocalizedString` is a Foundation macro that returns a localized version of a string. It has two arguments: key, which uniquely identifies the string to be localized, and comment, a string that is used to provide sufficient context for accurate translation.
-
-In practice, the key is often just the base translation string to be used, while comment is usually nil, unless there is an ambiguous context:
+The key is a reference to the string used and the comment is usually nil, unless there is an ambiguous context:
 
 
 ```objectivec
-user.placeholder = NSLocalizedString(@"Username", nil);
+user.placeholder = NSLocalizedString(@"Title", nil);
 ```
 
-`NSLocalizedString` can also be used as a format string in `NSString +stringWithFormat:`. In these cases, it’s important to use the comment argument to provide enough context to be properly translated.
+`NSLocalizedString` can also be used with format `NSString +stringWithFormat:`.
 
 ```objectivec
-self.title = [NSString stringWithFormat:NSLocalizedString(@"%@'s Profile", @"{User First Name}'s Profile"), user.name];
+self.title = [NSString stringWithFormat:NSLocalizedString(@"%@'s Title", @"Title of Book), book.title];
 
 label.text = [NSString stringWithFormat:NSLocalizedString(@"Showing %lu of %lu cards", @"Showing {number} of {total number} cards"), [cards objectAtIndex:i], [cards count]];
 ```
 
-There are four varieties of `NSLocalizedString`, with increasing levels of control:
+`NSLocalizedString` have four varieties, with increasing levels of control:
 
 ```objectivec
 NSString * NSLocalizedString(
@@ -78,11 +76,9 @@ NSString * NSLocalizedStringWithDefaultValue(
 
 ```
 
-
-
 At runtime, NSLocalizedString determines the preferred language, and finds a corresponding Localizable.strings file in the app bundle. For example, if the user prefers French, the file `en.lproj/Localizable.strings` will be consulted.
 
-Here’s what that looks like:
+Example:
 
 ```objectivec
 
@@ -129,7 +125,7 @@ Some examples:
 
 Localizable.strings files are initially generated with `genstrings`.
 
-The `genstrings` utility generates a .strings file(s) from the C or Objective-C (.c or .m) source code file(s) given as the argument(s). A .strings file is used for localizing an application for different languages, as described under “Internationalization” in the Cocoa Developer Documentation.
+The `genstrings` tool can parse C, Objective-C, and Java code files with the `.c`, `.m`, or `.java` filename extensions. Although not strictly required, specifying an output directory is recommended and is where genstrings places the resulting strings files. In most cases, you would want to specify the directory containing the project resources for your development language.
 
 `genstrings` goes through each of the selected source files, and for each use of `NSLocalizedString`, appends the key and comment into a target file. It’s up to the developer to then create a copy of that file for each targeted locale and have a localizer translate it.
 
@@ -232,7 +228,7 @@ let ban = tr(.BananasOwner(2, "John"))
 
 **NSLocale**
 
-`NSLocale` is a Foundation class that encapsulates all of the conventions about language and culture for a particular locale.
+`NSLocale` is other Foundation class that encapsulates information about linguistic, cultural, and technological conventions and standards.
 
 Each locale corresponds to a locale identifier, such as en_US, fr_FR, ja_JP, and en_GB, which include a language code.
 
@@ -427,7 +423,6 @@ or
 ## Bibliography
 
 +  Internationalization and Localization. (https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPInternational/LocalizingYourApp/LocalizingYourApp.html)
-
 
 +  NSLocale. (https://developer.apple.com/reference/foundation/nslocale)
 
