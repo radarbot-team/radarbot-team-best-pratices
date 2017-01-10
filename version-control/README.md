@@ -20,7 +20,9 @@ If your app defines the app version directly in the `<manifest>` element, the ve
 Two settings are available, and you should always define values for both of them:
    - *versionCode*: An integer used to determine whether one version is more recent than another. Typically, you would release the first version of your app with versionCode set to 1.  
 
-   - *versionName*: A string used as the version number shown to users.  
+   - *versionName*: A string used as the version number shown to users. 
+
+**NOTE:** To see how to set these values go [here](../project-configuration/README.md#configure-gradle-to-build-variants)
 
 ### Versioning your code
 
@@ -82,3 +84,8 @@ The Branching Model of Git Flow is particularly useful for Android development f
 Developers can change the branch they are working on  by selecting the branch they want in the bottom left corner of Android Studio. This improves the management of Git Flow from Android Studio.  
 
 ![Change branch](statics/android-studio-change-branch.png)
+
+
+## Bibliography
+
++  Git Flow. (https://riggaroo.co.za/using-git-flow-for-android-development/)
