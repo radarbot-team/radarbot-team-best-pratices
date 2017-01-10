@@ -29,7 +29,7 @@
 - Getting Started: official documentation and guides.
 - How to install and update Android Studio, JDK, SDK.
 
-## Project Configuration
+## [Project Configuration](project-configuration/README.md)
 
 - Configure gradle to build variants, target sdk, min sdk…
 - Structure of folders and packages.
