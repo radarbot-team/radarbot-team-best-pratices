@@ -70,18 +70,9 @@ A gitignore file is a TXT file with the extension ‘.gitignore’ that specifie
 
 Git Flow
 --------
-The Branching Model of Git Flow is particularly useful for Android development since it is simpler to debug issues happening on production that might not be happening on development, checking out the version code that has the crashes and debugging from there.   
+The branching model of Git Flow is particularly useful for Android development since it is simpler to debug issues happening on production that might not be happening on development, checking out the version code that has the crashes and debugging from there.   
 
 **NOTE:** For more information about the usefulness of using Git Flow [Git Flow for Android Development](https://riggaroo.co.za/using-git-flow-for-android-development/)
 
 **NOTE:** For more information about Git Flow [DevOps Repository](https://github.com/beeva/beeva-best-practices/tree/master/devops/git#git-flow)
 
-#### Changing working branch from Android Studio
-Developers can change the branch they are working on  by selecting the branch they want in the bottom left corner of Android Studio. This improves the management of Git Flow from Android Studio.  
-
-![Change branch](statics/android-studio-change-branch.png)
-
-
-## References
-
-+  Git Flow. (https://riggaroo.co.za/using-git-flow-for-android-development/)  
