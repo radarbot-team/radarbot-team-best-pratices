@@ -72,7 +72,7 @@ One of the characteristics that Android has, is the ability to have separate fil
 
 Now a few tips to follow with different resources.
 
-#### *Colors*
+#### Colors
 
 In this file we should only map different colors as if it were a palette. Never use definitions related to the state of a button or a textview because we could start repeating colors very easily.
 
@@ -96,7 +96,7 @@ In this file we should only map different colors as if it were a palette. Never 
     ...
 ```
 
-#### *Dimensions*
+#### Dimensions
 
 The same way that we work with the colors file, we should use this as a palette of dimensions
 
@@ -113,7 +113,7 @@ The same way that we work with the colors file, we should use this as a palette 
     ...
 ```
 
-#### *Strings*
+#### Strings
 
 Try to be as concrete as possible and generate expats of names for different values.
 Unlike other files you can repeat values for more than one key.
