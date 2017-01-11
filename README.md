@@ -130,8 +130,8 @@ Unlike other files you can repeat values for more than one key.
 ```xml
 <resources>
   <!-- User's error types -->
-    <string name="error.user.not_found">User not found</string>
-    <string name="error.user.duplicate">User exists</string>
+    <string name="error_user_not_found">User not found</string>
+    <string name="error_user_duplicate">User exists</string>
     ...
 ```
 
@@ -141,7 +141,7 @@ Note that none of these values must be capitalized. Only the first letter should
 Properties that are common for different elements or can be repeated frequently in a view, should be externalized in the styles file.
 
 ```xml
-<style name="Button.Share">
+<style name="button_share">
     <item name="android:background">@null</item>
     <item name="android:textAllCaps">false</item>
     <item name="android:drawablePadding">@dimen/padding_share</item>
@@ -156,7 +156,7 @@ Applied to Button:
     android:layout_height="wrap_content"
     android:drawableTop="@drawable/ic_facebook"
     android:text="@string/facebook"
-    style="@style/Button.Share"
+    style="@style/button_share"
     />
 ```
 ### Split a large style file into other files
