@@ -5,10 +5,12 @@ Here we introduce some best practices for continuous integration that could be e
 - A code repository. All artifacts required to build the project should be placed in a unique repository.
 
 - Automate the build and deployment. A single command should have the capability of building the project. 
+
 <br/> With Gradle we can build by executing: 
 <br/> $ ./gradlew build
 <br/> or if we want to build a flavor:
 <br/> $ ./gradlew assemble/<flavor/>
+
 <br/> Within the build the following steps should be included:
 <br/>	- Unittests.
 <br/>	- Sonar or any tool for continuous inspection of code quality.
