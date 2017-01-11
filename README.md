@@ -24,7 +24,7 @@
 
 <!-- /MarkdownTOC -->
 
-## Basis
+## [Basis](basis/README.md)
 
 - Getting Started: official documentation and guides.
 - How to install and update Android Studio, JDK, SDK.
