@@ -9,7 +9,9 @@ Versioning is a critical component of your app upgrade and maintenance strategy.
    - Determines compatibility and identifies dependencies between different apps.
    - Services may need to check the app version to determine compatibility and establish upgrade/downgrade relationships.  
 
-Android does not use app version information to enforce restrictions on upgrades, downgrades, or compatibility of third-party apps. Instead, you are responsible for enforcing version restrictions within your app or by informing users of the version restrictions and limitations. The Android system does, however, enforce system version compatibility as expressed by the minSdkVersion setting in the build files. This setting allows an app to specify the minimum system API with which it is compatible.
+Android does not use app version information to enforce restrictions on upgrades, downgrades, or compatibility of third-party apps. Instead, you are responsible for enforcing version restrictions within your app or by informing users of the version restrictions and limitations. The Android system does, however, enforce system version compatibility as expressed by the minSdkVersion setting in the build files. This setting allows an app to specify the minimum system API with which it is compatible.  
+
+**NOTE:** For more information about Version your app [Google Versioning](https://developer.android.com/studio/publish/versioning.html)  
 
 ### Set Application Version Information
 
@@ -68,15 +70,9 @@ A gitignore file is a TXT file with the extension ‘.gitignore’ that specifie
 
 Git Flow
 --------
-The Branching Model of Git Flow is particularly useful for Android development for the following reasons:
+The Branching Model of Git Flow is particularly useful for Android development since it is simpler to debug issues happening on production that might not be happening on development, checking out the version code that has the crashes and debugging from there.   
 
-   - When needing to test user upgrade processes (database upgrades etc), checking out old versions of the code and building them is really straightforward.  
-   - It is very simple to debug issues happening on production that might not be happening on development, checking out the version of code that has the crashes and debugging from there is really simple.  
-   - Pull requests help improve the quality of the code, things are picked up before they are merged into development. Bugs are also found quicker.  
-   - Easy to understand method even for beginners.  
-   - Everyone understands how to use the branches and where branches can be made from and incorporated into. There is no guess work with regards to where a branch came from and how to merge it in.  
-   - Because we do not release every single bug fix or feature into production, we decided using git flow is the best choice.
-
+**NOTE:** For more information about the usefulness of using Git Flow [Git Flow for Android Development](https://riggaroo.co.za/using-git-flow-for-android-development/)
 
 **NOTE:** For more information about Git Flow [DevOps Repository](https://github.com/beeva/beeva-best-practices/tree/master/devops/git#git-flow)
 
@@ -86,6 +82,6 @@ Developers can change the branch they are working on  by selecting the branch th
 ![Change branch](statics/android-studio-change-branch.png)
 
 
-## Bibliography
+## References
 
-+  Git Flow. (https://riggaroo.co.za/using-git-flow-for-android-development/)
++  Git Flow. (https://riggaroo.co.za/using-git-flow-for-android-development/)  
