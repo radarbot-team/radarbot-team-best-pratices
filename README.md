@@ -67,7 +67,7 @@ It is recommended to follow a common style to write code into a team, to publish
 
  - **Java**
     <br/> [Code conventions] (http://www.oracle.com/technetwork/java/codeconventions-150003.pdf)
-    <br/> [Java Best Practices](https://github.com/beeva/beeva-best-practices/tree/master/backend/java)
+    <br/> [Java best practices](https://github.com/beeva/beeva-best-practices/tree/master/backend/java)
  - **Kotlin**
     <br/> [Code conventions] (https://kotlinlang.org/docs/reference/coding-conventions.html)
     <br/> [Kotlin best practices] (kotlin/README.md)
