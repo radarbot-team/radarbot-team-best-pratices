@@ -4,7 +4,7 @@ Project Configuration
 Configure build variants in gradle
 ----------------------------------
 
-**Establish applicationId in build.gradle**  
+###Establish applicationId in build.gradle  
 The `applicationId`, `versionCode` and `versionName` should be configured in the `build.gradle` of the main module.
 
 ```groovy
@@ -29,7 +29,7 @@ buildTypes {
     // ...
 }
 ```
-**Configuration for the release version**  
+###Configuration for the release version 
 Proguard is activated by default so you will only need to configure it if necessary. Proguard acts only upon code and not resources such as images. To remove these resources that are not used you need to set the option [shrinkResources](https://developer.android.com/studio/build/shrink-code.html?hl=es-419#shrink-resources) to _true_:
 ```groovy
 buildTypes {
@@ -42,7 +42,7 @@ buildTypes {
     // ...
 }
 ```
-**Configuration of the keystore file**  
+###Configuration of the keystore file  
 We can add the configuration needed to sign the apk that is going to be publish to the `build.gradle` file:
 ```groovy
 signingConfigs {
@@ -73,19 +73,19 @@ signingConfigs {
 ```
 This way we can store other sensible data that we do not want to commit to the repository.
 
-**Dependencies**  
+###Dependencies  
 In general, it is important to obtain the dependencies of our project from a repository and not from a local .jar file since it will be easier to update our dependency to its ultimate version, specially in projects where there is more than one developer, which is the normal case.
 It is recommended to have a separate file with the version of each dependency so that if a different module needs to use one of these dependencies, the version used will be the same as the one used in the main module for the same dependency.
 
 ```groovy
-// fichero dependencies.gradle
+// dependencies.gradle file
 ext {
   supportLibraryVersion = ‘25.1.0’
   butterknifeVersion = ‘8.4.0’
   // ...
 }
 
-// fichero build.gradle
+// build.gradle file
 dependencies {
   // ...
   compile "com.android.support:cardview-v7:$supportLibraryVersion"
@@ -99,10 +99,10 @@ We must not import all the dependencies from Google Play Services and Firebase. 
 
 Structure of folders and packages
 ---------------------------------
-####Code
+###Code
 The structure of packages we use will be related to the architecture we implement.
 
-####Resources
+###Resources
 
 ***Images***  
 The images must be generated for each density and they should be stored in their corresponding “drawable-density” folder. The root folder `drawable` should only be used to store xml files such as selectors, layer-lists, ....
