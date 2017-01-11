@@ -63,15 +63,17 @@ How to build a user interface using Android layouts for all types of devices.<br
 
 ## Coding Style
 
+It is recommended to follow a common style to write code into a team, to publish a public repository, to contribute to one of them, or even for a personal project. This styles are a good rule to maintain the code legibility. Below you can find the code styles of the main programming languages.
+
  - Java
-    <br/> [code conventions] (http://www.oracle.com/technetwork/java/codeconventions-150003.pdf)
-    <br/> [Java Best Practices](https://github.com/beeva/beeva-best-practices/tree/master/backend/java) 
+    <br/> [Code conventions] (http://www.oracle.com/technetwork/java/codeconventions-150003.pdf)
+    <br/> [Java Best Practices](https://github.com/beeva/beeva-best-practices/tree/master/backend/java)
  - Kotlin
-    <br/> [coding conventions] (https://kotlinlang.org/docs/reference/coding-conventions.html)
-    <br/> [Kotlin Best Practices] (kotlin/README.md)
+    <br/> [Code conventions] (https://kotlinlang.org/docs/reference/coding-conventions.html)
+    <br/> [Kotlin best practices] (kotlin/README.md)
  - Scala
-    <br/> [Scala Style Guide] (http://docs.scala-lang.org/style/)
-    <br/> [Scala Best Practices] (https://github.com/beeva/beeva-best-practices/tree/master/backend/scala)
+    <br/> [Scala style guide] (http://docs.scala-lang.org/style/)
+    <br/> [Scala best practices] (https://github.com/beeva/beeva-best-practices/tree/master/backend/scala)
 
 ## Libraries
 
