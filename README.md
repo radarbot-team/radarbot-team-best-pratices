@@ -54,7 +54,7 @@ Quality must be mantained in every component of the application, in every class 
 
 Here we will show you the best ways and benefits of structuring a layout file following simple guidelines.
 
-#### Activity and fragment uses.
+### Activity and fragment uses.
 
 There is currently no pattern indicating when it is best to use a fragment or an activity.
 
@@ -64,15 +64,15 @@ On the other hand, when a fragment is destroyed, be sure to delete all reference
 
 Also avoid using nested fragments extensively, use them only when it makes sense.
 
-#### Naming
+### Naming
 One of the clearest conventions for naming files would be the following. `type_foo_bar.xml`. Examples: `fragment_order_details.xml`, `view_common_product.xml`, `activity_client_profile.xml`.
 
-#### Resources in xml files
+### Resources in xml files
 One of the characteristics that Android has, is the ability to have separate files with all `colors`, `dimensions`, `strings`,etc. Accessible to them from any layout only with the reference. This way we can keep our code better prepared for future changes.</br>
 
 Now a few tips to follow with different resources.
 
-##### Colors
+#### *Colors*
 
 In this file we should only map different colors as if it were a palette. Never use definitions related to the state of a button or a textview because we could start repeating colors very easily.
 
@@ -96,7 +96,7 @@ In this file we should only map different colors as if it were a palette. Never 
     ...
 ```
 
-##### Dimensions
+#### *Dimensions*
 
 The same way that we work with the colors file, we should use this as a palette of dimensions
 
@@ -113,7 +113,7 @@ The same way that we work with the colors file, we should use this as a palette 
     ...
 ```
 
-##### Strings
+#### *Strings*
 
 Try to be as concrete as possible and generate expats of names for different values.
 Unlike other files you can repeat values for more than one key.
@@ -137,7 +137,7 @@ Unlike other files you can repeat values for more than one key.
 
 Note that none of these values must be capitalized. Only the first letter should be capitalized, since we can take advantage of `android:textAllCaps` in case we would like to capitalize everything.
 
-#### Use styles to avoid duplicate attributes in layout XMLs.
+### Use styles to avoid duplicate attributes in layout XMLs.
 Properties that are common for different elements or can be repeated frequently in a view, should be externalized in the styles file.
 
 ```xml
@@ -159,7 +159,7 @@ Applied to Button:
     style="@style/Button.Share"
     />
 ```
-###### Split a large style file into other files
+### Split a large style file into other files
 
 In the case that we have a very large file with many styles or just because we feel the need to split the styles in any order, we can generate as many styles files as we want.
 For example: `styles.xml`, `styles_button.xml`, `styles_label.xml`, `styles_social_media.xml`,
