@@ -9,7 +9,7 @@ Here we introduce some best practices for continuous integration that could be e
 <br/> or if we want to build a flavour:
 <br/> $ ./gradlew assemble<flavor>
 <br/> Within the build the following steps should be included:
-<br/>	- Unittest.
+<br/>	- Unittests.
 <br/>	- Sonar or any tool for continuous inspection of code quality.
 <br/>	- Functional tests.
 <br/>	For these steps, it can do with:
