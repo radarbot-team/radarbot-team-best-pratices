@@ -133,7 +133,7 @@ We must not import all the dependencies from Google Play Services and Firebase. 
 The structure of packages we use will be related to the [architecture](#application-architecture) we implement.
 
 ####Resources
-Images, layouts, strings, colors and dimensions are some of the resources we have in Android. These resources have their own rules in terms of names and where they should be stored. With images for example, we must have an image for each density and these should be store in their corresponding density folder. For more information about resources visit [User Interface and Visuals](#user-interface-and-visuals) section
+Images, layouts, strings, colors and dimensions are some of the resources we have in Android. These resources have their own rules in terms of names and where they should be stored. With images for example, we must have an image for each density and these should be store in their corresponding density folder. For more information about resources see [User Interface and Visuals](#user-interface-and-visuals) section
 
 ## Application Architecture
 
