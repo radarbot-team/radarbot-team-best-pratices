@@ -1,8 +1,5 @@
-BASIS
-=====
-
-Getting Started: official documentation and guides
---------------------------------------------------
+## Basis
+### Getting Started: official documentation and guides
 
 The documentation needed to work with Android can be found in the following url:
 
@@ -30,17 +27,15 @@ You can also find free courses taught by Google on the Udacity web page:
 
 [https://www.udacity.com/courses/android](https://www.udacity.com/courses/android)
 
-<br></br>
-How to install and update Android Studio, JDK, SDK
---------------------------------------------------
+### How to install and update Android Studio, JDK, SDK
 
-### Installation
+#### Installation
 To install Android Studio it is necessary to download java JDK and Android Studio. Both things are available in the links below:
 
    - [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
    - [Android Studio](http://developer.android.com/sdk/index.html)
 
-### SDK Manager
+#### SDK Manager
 Android SDK Manager separates SDK Tools, platforms and other components into packages of easy access and management.
 Once you have Android Studio installed, it is easy to keep the Android Studio IDE and the Android SDK Tools updated with automatic updates and the SDK Manager.  
 
@@ -57,10 +52,10 @@ The following list of packages are necessary for the development of an android p
    - **Google Repository**: Includes local Maven repository for Google libraries, which provide a variety of features and services for your apps.
    - **Intel o ARM System Images**: The system image is required in order to run the Android Emulator.  
 
-***Edit or add SDK tool sites***  
+**Edit or add SDK tool sites**
 You can add other sites that host their own tools, then download the packages from those sites.
 
-### Update IDE and Change Channels
+#### Update IDE and Change Channels
 Android Studio notifies you with a small bubble dialog when an update is available for the IDE, but you can manually check for updates by clicking **Help >Check for Update** (on Mac, **Android Studio > Check for Updates**).
 
 Updates for Android Studio are available from different channels (Canary, Dev, Beta and Stable). For production Android projects you should use a version of Android Studio downloaded from the Stable Channel (the official stable release that is available for download). If you would like to try one of the other channels (Canary, Dev o Beta) while still using the Stable build, you can safely install a second version of Android Studio by downloading the preview build from [tools.android.com](http://tools.android.com/download/studio).
