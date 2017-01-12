@@ -10,7 +10,7 @@ You can see the anatomy of a constraint in the [official documentation](https://
 
 When executing constraints if they are poorly defined can lead to inconsistencies that would cause us a runtime error when it can not satisfy all the constraints. It is important to **test our interface on all devices or circumstances** in which it can be used.
 
-**Prioritize your constraints** if you need it, in case of not being able to fulfill all, they are discarded those that have a lower priority. If you only need two or three levels of priority, use the ```UILayout``` constants otherwise define your own priority system:
+**Prioritize your constraints** if you need it, in case of not being able to fulfill all, they are discarded those that have a lower priority. If you only need two or three levels of priority, use the `UILayout` constants otherwise define your own priority system:
 
 ```swift
 constraint.priority = UILayoutPriorityDefaultLow
@@ -28,7 +28,7 @@ label.setContentHuggingPriority(UILayoutPriorityDefaultHigh, for: .horizontal)
 
 It is important to design the constraints thinking about the animations. If we want to animate a constraint, the only part that can be changed is the constant. In other case, we must activate or deactivate the constraint by losing the possibility to animate it.
 
-Some visual elements have an **intrinsic size** defined so it is not mandatory to define a height and a width, we must only define their position. For example: ```UILabel```, ```UIImageView```, ```UINavigationBar```... If you create a custom view and have a default size, you must override the method *intrinsicContentSize*.
+Some visual elements have an **intrinsic size** defined so it is not mandatory to define a height and a width, we must only define their position. For example: `UILabel`, `UIImageView`, `UINavigationBar`... If you create a custom view and have a default size, you must override the method *intrinsicContentSize*.
 
 ```swift
 override var intrinsicContentSize: CGSize { .. }
@@ -134,7 +134,7 @@ UIView.animate(withDuration: 1.0) {
 }
 ```
 
-If the animations are very complex an option is to execute a sequence of images. You should keep in mind that the animation should be short and control the weight of the files. You can do it using ```UIImageView``` as shown below: 
+If the animations are very complex an option is to execute a sequence of images. You should keep in mind that the animation should be short and control the weight of the files. You can do it using `UIImageView` as shown below: 
 
 ```swift
 imageView.animationImages = imagesArray
