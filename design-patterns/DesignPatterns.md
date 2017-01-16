@@ -2,9 +2,7 @@
 
 ## Object Initialization
 
-Initialization sets the instance variables of an object to reasonable and useful initial values. It can also allocate and prepare other global resources needed by the object. Every object that declares instance variables should implement an initializing method—unless the default set-everything-to-zero initialization is sufficient. If an object does not implement an initializer, Cocoa invokes the initializer of the nearest ancestor instead.
-
-Cocoa allows declare multiple initializers, with one or more parameters, which are instance methods that begin with **init** and return an object of the dynamic type *id* in Objective-C, and an object of specific class in Swift.
+Objects need initializer to set useful values to its instace variables, and prepare other global resorces. Every object should implement an initializing method, unless it has no variables and does not need additional initializers, but its ancestor's. Cocoa allows declare multiple initializers which are instance methods begining with **init** and return an object of the dynamic type `id` in Objective-C, and a specific class object in Swift.
 
 Here are a few examples of initializers:
 
@@ -24,22 +22,15 @@ init(timeInterval secsToBeAdded: TimeInterval, since date: Date)
 
 ### Designated and Convenience initializers
 
-The designated initializer plays an important role for a class. It ensures that inherited instance variables are initialized by invoking the designated initializer of the superclass. It is typically the init...` method that has the most parameters and that does most of the initialization work, and it is the initializer that secondary initializers of the class invoke with messages to self.
+The *designated initializer* ensures that inherited instance variables are initialized by invoking its superclass' designated initializer. It is the `init` method with the most parameters and does most of the initialization work. In addition, it is the initializer which secondary initializers invoke with messages to self. A subclass that needs to perform nontrivial initialization should override all of its superclass's designated initializers, but not de convenience ones.
 
-The designated initializer pattern helps ensure that inherited initializers properly initialize all instance variables. A subclass that needs to perform nontrivial initialization should override all of its superclass’s designated initializers, but it does not need to override the convenience initializers.
+In **Objective-C**, object initialization is based on the notion of a *designated initializer*. Initializers that are not designated initializers are known as *convenience initializers*, which delegate to another initializer (the designated) to terminate the initialization chain.
 
-In **Objective-C**, object initialization is based on the notion of a *designated initializer*, an initializer method that is responsible for calling one of its superclass’s initializers and then initializing its own instance variables. Initializers that are not designated initializers are known as *convenience initializers*. Convenience initializers typically delegate to another initializer—eventually terminating the chain at a designated initializer—rather than performing initialization themselves.
-
-To clarify the distinction between designated and designated initializers clear, you can add the `NS_DESIGNATED_INITIALIZER` macro to any method in the init family, denoting it a designated initializer. Using this macro introduces a few restrictions:
+To distinguish *desiganted* initializers from *convenience* initializers, you can add the `NS_DESIGNATED_INITIALIZER` macro to any method you consider designated. This macro introduces a few restrictions:
 
 * The implementation of a designated initializer must chain to a superclass init method (with `[super init...]`) that is a designated initializer for the superclass.
 * The implementation of a convenience initializer (an initializer not marked as a designated initializer within a class that has at least one initializer marked as a designated initializer) must delegate to another initializer (with [self init...]).
 * If a class provides one or more designated initializers, it must implement all of the designated initializers of its superclass.
-
-If any of these restrictions are violated, you receive warnings from the compiler.
-
-If you use the `NS_DESIGNATED_INITIALIZER` macro in your class, you need to mark all of your designated initializers with this macro. All other initializers will be considered to be convenience initializers.
-
 Example:
 
 ```objectivec
@@ -51,23 +42,19 @@ The figure below shows the overall initializer chain for all three classes:
 
 ![Objective-C Initialization chain](statics/ObjectiveC.InitializationChain.png)
 
-In **Swift**, *designated initializers* are the primary initializers for a class. A designated initializer fully initializes all properties introduced by that class and calls an appropriate superclass initializer to continue the initialization process up the superclass chain.
+In **Swift**, *designated initializers* are the primary initializers for a class. Classes tend to have few designated initializers, or just one, but every class must have at least one. In some cases, this requirement is satisfied by inheriting one or more designated initializers from a superclass.
 
-Classes tend to have very few designated initializers, and it is quite common for a class to have only one. Designated initializers are “funnel” points through which initialization takes place, and through which the initialization process continues up the superclass chain.
-
-Every class must have at least one designated initializer. In some cases, this requirement is satisfied by inheriting one or more designated initializers from a superclass.
-
-*Convenience initializers* are secondary, supporting initializers for a class. You can define a convenience initializer to call a designated initializer from the same class as the convenience initializer with some of the designated initializer’s parameters set to default values. You can also define a convenience initializer to create an instance of that class for a specific use case or input value type.
-
-You do not have to provide convenience initializers if your class does not require them. Create convenience initializers whenever a shortcut to a common initialization pattern will save time or make initialization of the class clearer in intent.
+*Convenience initializers* are secondary, and you do not have to provide them if your class does not need the. You can define a convenience initializer to call a designated initializer from the same class as the convenience initializer with some of the designated initializer’s parameters set to default values.
 
 There is a private word to use when an initializer is a convenience one, and this word is `convenience`. Designated initializers do not use any reserved word to denote it.
 
 Example:
 
 ```	swift
+let name: String
+
 init(name: String) {
-	...
+	self.name = name
 }
 	
 convenience init() {
@@ -94,7 +81,7 @@ The delegating class has a property, usually named `delegate`, and declares, wit
 
 > To find more infomation about *Protocol*, [click here](https://developer.apple.com/library/content/documentation/General/Conceptual/DevPedia-CocoaCore/Protocol.html).
 
-In the informal protocol approach, the delegate implements only those methods in wich it has an interest in coordinating itself with the delegating object or affecting that object's default behaviour. If the delegating class declares a formal protocol, the delegate may choose to implement those methods marked optional, but it must implement the required ones.
+Informal protocol approach is that where the delegate implements only those methods in which it has interest to be communicated with the delegating object. If the delegating class declares a formal protocol, the delegate must implement the required methods, but no the optional ones.
 
 The mechanism of delegation is illustrated by the next figure:
 
@@ -102,9 +89,9 @@ The mechanism of delegation is illustrated by the next figure:
 
 ### The form of delegation messages
 
-Delegating methods have a conventional form. They begin with the name of the class object doing the delegating. Usually this object name is followeb by an auxiliary verb indicative of the tempral status of the reported event. This verb, in other words, indicates wheter the event is about to occur (*Should* or *Will*) or whether it has just occurred (*Did* or *Has*). This temporal distinction helps to categorize those messages that expect a return value and those that do not. 
+Delegating methods begin with the name of the class object doing the delegating. Usually this object name is followed by an auxiliary verb indicative of the tempral status of the reported event, indicating wheter the event is about to occur (*Should* or *Will*) or whether it has just occurred (*Did* or *Has*). This temporal distinction helps to categorize those messages that expect a return value and those that do not. 
 
-Delegation methods with return values
+Delegation methods with return values:
 
 ```objectivec
 //NSApplication
@@ -120,9 +107,7 @@ Delegation methods with return values
 - (NSRect)windowWillUseStandardFrame:(NSWindow *)window defaultFrame:(NSRect)newFrame;
 ```
 
-The delegate that implements these methods can block the impending event (by returning *NO* in the first two methods), or alter a suggested value (the index set and the frame rectangle in the last two methods).
-
-Other delegation methods are invoked by messages that do not expect a return value and so are typed to return *void*. These messages are purely informational, and the method names often contain *Did*, *Will*, or some other indication of a transpired or impending event.
+Delegation methods with no returning type, are purely informational, and the method names often containa *Did*, *Will*, or some other indication of a transpired or impending event.
 
 ```objectivec
 //NSWindow 
@@ -137,23 +122,23 @@ Other delegation methods are invoked by messages that do not expect a return val
 
 ## Target-Action
 
-A typical application's user interface consists of a number of graphical objects, and perhaps the most common of these objects are controls. A control is a graphical analog of a real-world or logical device (button, switch, textfield...). As with real-world control, such as radio tuner, you use it to convey your intent to some system of which it is a part-that is, an application.
+An application's user interface is made of several graphical objects, and the most common of these objects are controls. A control is a graphical analog of a real-world that you use to convey your intent to some system on which it is a part of.
 
-The role of a control on a user interface is simple: it interprets the intent of the user and instructs some other objects to carry out that request. When a user acts on the control by, say, clicking it or pressing the *Return key*, the hardware device generates a raw event. The control accepts the event and translates it into an instruction that is specific to the application. However, events by themselves do not give much information about the user's intent, they marely tell you that the user clicked a mouse button or pressed a key. So some mechanism must be called upon to provide the translation between event and instruction. This mechanism is called **target-action**.
+A control interprets the intent of the user and instructs some other object to carry out that request. When a user acts on the control, the hardware generates a raw event. The control accepts the event, and translates it into an instruction that is specific to the application. Events by themselves do not give much information about the user's intent, so some mechanism must be called upon to provide the translation between event and instruction. This is called **target-action**.
 
-Cocoa uses the target-action mechanism for communication between a control and another object. This mechanism allows the control and to encapsulate the information necessary to send an application-specific instruction to the appropiate object. The receiving object is called the `target`. The `action` is the message that the control sends to the target. The object that is interested in the user event `-the target-`is the one that imparts significance to it, and this significance is usually reflected in the name it gives to the action.
+The object that controls the user event is `the target`, and `the action` is the message that the control sends to the target.
 
 ![Target-Action mechanism](statics/TargetAction.png)
 
 ### The target
 
-A target is a receiver of an action message. A control holds the target of its action message as an outlet. The target usually is an instance of one of yout custom classes, although it can be any Cocoa object whose class implements the appropiate action method.
+A target is a receiver of an action message and it could be one of your custom class. These action messages are sent by control objects which its targets are holded as an outlet. 
 
-Control objects do not retain their targets. However, clients of controls sending action messages are responsible for ensuring that their targets are available to receive action messages. To do this, they may have to retain their targets in memory-managed environments. 
+Owners of controls sending action messages are responsible for ensuring that the targets of these controls are available to receive the action messages. It could be possible by retaining the targets in memory-managed environments, because *control objects* do not retain its targets.
 
 ### The action
 
-An action is the message a control sends to the target or, from the perspective of the target, the method that the target implements to respond to the action message. A control stores an action as an instance variable of type `SEL -Objective-C-` or `Selector -Swift-`, -data types used to specify the signature of a message-. An action message must have a simple, distinct signature. The method it invokes returns nothing and usually has a parameter containing the object sending the message. This parameter, by convention, is named *sender*.
+An action is the message a control sends to the target or, the method that the target implements to respond to the action message. A control stores an action as an instance variable of type `SEL -Objective-C-` or `Selector -Swift-`. An action message must have a simple, distinct signature. The method it invokes returns nothing and usually has a parameter containing the object sending the message. This parameter, by convention, is named *sender*.
 
 Example of action methods with one, two or three parameters:
 
@@ -187,8 +172,6 @@ Action methods declared by some Cocoa classes can also have the equivalent signa
 @IBAction func doSomething(sender: UIButton)
 @IBAction func doSomething(sender: UIButton, forEvent event: UIEvent)
 ```
-
-In this case, `IBAction` does not designate a data type for a return value, no value is returned. *IBAction* is a type qualifier that Interface Builder notices during application development to synchronize actions added programmatically with its internal list of action methods defined for a project.
 
 The sender parameter usually identifies the control sending the action message. The target can query the sender for more information if it needs to. If the actual sending substitutes another object as sender, you should treat that object in the same way. 
 
@@ -331,7 +314,7 @@ extension PersonObservable {
 
 ### NSNotificationCenter
 
-An `NSNotificationCenter`object (or simply, **notification center**) provides a mechanism for bradcasting information within a program. An NSNotificationCenter object is essentially a notification dispatch table.
+An `NSNotificationCenter`object provides a mechanism for bradcasting information within a program. An NSNotificationCenter object is essentially a notification dispatch table.
 
 NSNotificationCenter provides a centralized hub through which any part of an application may notifiy and be notified of changes from any other part of the application. Observers register with a notification center to respond to particular events with a specified action. Each time an event occurs, the notification goes through its dispatch table, and messages any registered observers for that event.
 
@@ -412,11 +395,6 @@ The following diagram represents the generic structure. You will see how product
 
 ![Class cluster uml](statics/ClassClusterUML.png)
 
-* `Abstract Factory`: This abstract class defines the signature of the different methods that create out products.
-* `Concrect Factory 1` and `Concrect Factory 2`: These are our concrete classes that implement our methods for each product's families. By knowing the family and product, the factory is able to create an instance of the product for that family.
-* `IProductA` and `IProductB`: These are our interfaces that define our products that are independent of their family. A family is introduced in their concrete subclasses.
-* `ProductA` and `ProductB`: These are the concrete classes that implement _IProductA_ and _IProductB_, respectively.
-
 ### Example
 
 Consider the problem of constructing a class hierarchy that defines objects to store numbers of different types: `char, int, float, double`. Because numbers of different types have many features in common (they can be converted from one type to another and can be represented as strings, for example), they could be represented by a single class. However, their storage requirements differ, so it is inefficient to represent them all by the same class. Taking this fact into consideration, to solve the problem, the class architecture could be designed like:
@@ -463,19 +441,9 @@ If it is rarely necessary to create a subclass the the cluster architecture is c
 
 ## Prototype
 
-The **Prototype pattern** is used to create a new object by duplicating existing objects called *prototypes*, and they have a cloning capability.
-
-This pattern is used in the folowwing use cases:
-
-* When you need to create an instance without knowing the hierarchy of a class.
-* When you need to create class isntances that are dynamically loaded.
-* When you need to have a simple object system and not include parallel hierarchy of a factory class.
+This pattern used to create a new object by duplicating existing objects called *prototypes* which have a cloning capability. The most common uses of this patter is to create an instance without knowing its class hierarchy, create class instances that are dynamically loaded, and have simple object system and not include parallel hierarchy of a factory class.
 
 ![Prototype UML](statics/PrototypeUML.png)
-
-* `Client`: This class contains a list of objects called prototypes that are instances of the *AbstractPrototype* abstract calss. The *Client* class needs to clone these prototypes without having to know their internal structure and subclass hierarchy.
-* `AbstractPrototype`: This is an abstract class that can duplicate itself. This class contains a clonning method called `clone()`.
-* `ConcretePrototype1`and `ConcretePrototype2`: These are concrete classes that inherit form the *AbstractPrototype* class. They define a prototype and have both cloning method called `clone()`.
 
 **Foundation** has a protocol named `NSCopying` which declares a method for providing functional copies of an object. The exact meaning of *copy* can vary from class to class, but a copy must be a functionally independent object with values identical to the original at the time the copy was made. A copy produced with **NSCopying** is implicitly retained by the sender, who is responsible for releasing it.
 
@@ -515,7 +483,7 @@ class Person: NSObject, NSCopying {
 
 The concept behind this pattern is to transform a request into an object in order to facilitate some actions, such as undo/redo, inserto into a queue, or tracking of the request.
 
-The command pattern creats distance between the client that requests an operation and the object that can perform it. The request is encapsulated into an object. This object contains a reference to the reciver who will effectively execute the operation.
+The command pattern creates distance between the client that requests an operation and the object that can perform it. The request is encapsulated into an object. This object contains a reference to the receiver who will effectively execute the operation.
 
 The real operation is managed by the receiver and the command is like an order; it only contains a reference to the invoker, the object that will perform the action and an execute function will call the real operation on the worker. 
 
@@ -528,14 +496,6 @@ This pattern allows the following features:
 * Allows the parametrization of clients with different requests
 
 ![Command UML](statics/Command.png)
-
-The classes participating in this pattern are as follows:
-
-* `Command`: This declares the interface for executing an operation
-* `ConcreteCommand`: This implements the *Command* interface with the execute method by invoking the corresponding operations on *Receiver*. It defines a link between the *Receiver* class and the action.
-* `Client`: This creates a *ConcreteCommand* object and sets its receiver.
-* `Invoker`: This asks the command to carry out the request.
-* `Receiver`: This knows how to perform the operations.
 
 ### How does it works?
 
@@ -564,19 +524,13 @@ In order with the *Command pattner* workflow, the `client` will create a **NSInv
 
 ## Extensions
 
-Sometimes, you may find that you wish to extend an existing class by adding behavior that is useful only in certain situations. As an example, you might find that your application often needs to display a string of characters in a visual interface. Rather than creating some string-drawing object to use every time you need to display a string, it would make more sense if it was possible to give the NSString class itself the ability to draw its own characters on screen.
-
-In situations like this, it does not always make sense to add the utility behavior to the original, primary class interface. Drawing abilities are unlikely to be needed the majority of times any string object is used in an application, for example, and in the case of NSString, you cannot modify the original interface or implementation because it is a framework class.
-
-However, Objective-C allows you to add your own methods to existing classes through **categories and class extensions**, and **extensions** in Swift.
+Sometimes it is useful to extend an existing system class by adding behaviour instead of using inheritance. Objective-C makes it possible with **categories and class extensions**, and Swift provides **extensions**.
 
 ### Objective-C categories
 
-In order to add a method to an existing class, the easiest way is to use a **category**. 
+A **cateogry** allows add methods to an exixting class and it can be declared for any class. Any methods that you declare in a category will be available to all instances of the original class, as well as any sublcasses of the original class. At runtime, there is no difference between a method added by a category and one that is implemented by the original class.
 
-A category can be declared for any class, even if you do not have the original implementation source code (such as for standard Cocoa or Cocoa Touch classes). Any methods that you declare in a category will be available to all instances of the original class, as well as any sublcasses of the original class. At runtime, there is no difference between a method added by a category and one that is implemented by the original class.
-
-The syntax to declare a **category** used the `@interface` keyword, just like a standard Objective-C class description, but does not indicate any inheritance from a subclass. Instead, it specified the name of the category in parentheses, like this:
+The syntax to declare a **category** use the `@interface` keyword and the name of the category in parentheses, like this:
 
 ```objective-c
 @interface ClassName (CategoryName)
@@ -612,7 +566,7 @@ A category is usually declared in a separate header file and implemented in a se
 
 Categories can be used to declare either instane methods or class methods but are not usually suitable for declaring additional properties. It is valid syntax to include a property declaration in a category interface, but it is not possible to declare an additional instance variable in a category. This means the compiler will not synthesize any instance variable, nor will it synthesize any property accessor methods. You can write your own accessor methods in the category implementation, but you will not be able to keep track of a value for that property unless it is already stored by the original class.
 
-Any methods added by a category are available to all instances of the class and its subclasses, you will need to import the category header file in any source code file where you wish to use the additional methods, otherwise you will run into compiler warnings and errors.
+Any methods added by a category are available to all instances of the class and its subclasses, you will need to import the category header file in any source code file where you wish to use the additional methods.
 
 ```objectivec
 #import NSString+Utils.h
@@ -629,7 +583,7 @@ Any methods added by a category are available to all instances of the class and 
 
 ### Objective-C class extensions
 
-A class extension bears some similarity to a category, but it can only be added to a class for which you have the source code a compile time. The methods are declared by a class extension are implemented in the `@implementation` block for the original class so you cannot, for example, declare a class extension on a framework class, suchs as a Cocoa or Cocoa Touch class like *NSString*.
+A **class extension** can only be added to a class for which you have the source code at compile time. The methods declared by a class extension are implemented in the `@implementation` block for the original class so you cannot declare a class extension on a framework class.
 
 The syntax to declare a class extension is similar to hte syntax for a category, and looks like this:
 
@@ -643,7 +597,7 @@ The syntax to declare a class extension is similar to hte syntax for a category,
 
 Because no name is given in the parentheses, class extensions are often referred to as *anonymous categories*.
 
-Unlike regular categories, a class extension can add its own properties and instance variables to a class. If you declare a property in a class extension, like this:
+A class extension can add its own properties and instance variables to a class. If you declare a property in a class extension, like this:
 
 ```objectivec
 @interface ClassName()
@@ -656,7 +610,7 @@ the compiler will automatically synthesize the relevant accessor methods, as wel
 
 If you add any methods, these must be implemented in the primary implementation for the class.
 
-**Class extensions** are often used to extend the public interface with additional private methods or/and properties for use within the implementation of the class itself. It is common, for example, to define a property `readonly` in the interface, but `readwrite` in a class extension declared above the implementation, in order that the internal methods of the class can change the property value directly.
+**Class extensions** are often used to extend the public interface with additional private methods and properties for use within the implementation of the class itself. It is common to define a property `readonly` in the interface, but `readwrite` in a class extension declared above the implementation, in order that the internal methods of the class can change the property value directly.
 
 ### Swift extensions
 
@@ -708,84 +662,50 @@ A powerful mechanism for separating construction from use is **Dependency Inject
 
 The invoking object does not control what kind of object is actually returned (as long it implements the appropiate interface), but the invoking object still actively resolves the dependency.
 
-True *Dependency Injection* goes on step further. The class take no direct steps to resolve its dependencies; it is completely passive. Instead, it provides setter method of constructor arguments (or both) that are used to *inject* the dependencies. During the construction process, the DI container instantiates the required objects (usually on demand) and uses the constructor arguments or setter methods provided to wire together the dependencies. Which dependent objects are actually used is specified through a configuation file or programmatically in a special-purpose construction module.
+With dependency injection, the class is completely passive resolving its depencencies. It provides setter method of constructor arguments, or both, that are used to *inject* the dependencies. During the construction process, the DI container instantiates the required objects and uses the constructor arguments or setter methods provided to wire together the dependencies.
 
 ### Constructor injection
 
-> **Note**: iOS does not have constructors, it has initializers, but **constructor** is a standard DI term, and it is easier to look up accross the languages.
- 
-In constructor injection, a dependency is passed into the constructor (the designated initializer) and captured for later use:
+> **Note**: In iOS, constructor are knows as *initializers*.
 
-```objectivec
-@interface Example ()
+Constructor injection required its dependencies passed into the designated initializer, and retained for later use. 
 
-@property (nonatomic, strong, readonly) NSUserDefaults *userDefaults;
+```swift
+class Example {
 
-@end
-
-@implementation Example
-
-- (instancetype)initWithUserDefaults:(NSUserDefaults *userDefaults) {
-    
-    self = [super init];
-    
-    if (self) {
-        _userDefaults = userDefaults;
-    }
-    
-    return self;
+	let notificationCenter: NSNotificationCenter
+	
+	init(notificationCenter: NSNotificationCenter) {
+		self.notificationCenter = notificationCenter
+	}
 }
 
-@end
 ```
 
-The dependency can be captured in an instance variable or in a property. Now every place in this class that would refer to the singleton `[NSUserDefaults standardUserDefaults]` should instead refer to `self.userDefaults` or `_userDefaults`:
+In this class, instead of using `NSNotificationCenter.defaultCenter()`, should refer to `self.notificationCenter`:
 
-```objectivec
-- (NSNumber *)nextReminderId {
-    
-    NSNumber *currentReminderId = [self.userDefaults objectForKey:@"currentReminderId"];
-    
-    if (currentReminderId) {
-        currentReminderId = @([currentReminderId intValue] + 1);
-    } else {
-        currentReminderId = @0;
-    }
-    
-    [_userDefaults setObject:currentReminderId forKey:@"currentReminderId"];
-    
-    return currentReminderId;
+```swift
+func registerObservers() {
+	
+	notificationCenter.addObserver(self, selector: #selector(Example.selectorExample), name: "exampleNotification", object: nil)
+    notificationCenter.addObserver(self, selector: #selector(Example.otherSelectorExample), name: "otherExampleNotification", object: nil)
 }
 ```
 
 ### Property injection
 
-In property injection, the code for `nextReminderId` looks the same, referring to `self.userDefaults`. But instead of passing the dependency to the initializer, we make it a settable property:
+In property injection, instead of passing the dependency to the initializer, we make it a settable property. 
 
-```objectivec
-@interface Example
+```swift
+class Example {
 
-@property (nonatomic, readwrite, strong) NSUserDefaults *userDefaults;
-
-- (NSNumber *)nextReminderId;
-
-@end
-```
-
-What should happen if the property is not set? In that case, let’s use lazy initialization to establish a reasonable default in the getter:
-
-```objectivec
-- (NSUserDefaults *)userDefaults {
-   
-    if (!_userDefaults) {
-        _userDefaults = [NSUserDefaults standardUserDefaults];
-    }
-   
-    return _userDefaults;
+	lazy var notificationCenter: NSNotificationCenter {
+		return NSNotificationCenter.default()
+	}()
 }
-```
 
-Now, if any calling code sets the userDefaults property before it is used, `self.userDefaults` will use the given value. But if the property is not set, then `self.userDefaults` will use `[NSUserDefaults standardUserDefaults]`.
+```
+With lazy initialization, the property is initialized the first time it is used. The next time it is invoked, `notificationCenter` will have a value.
 
 > More information about Dependency Injection:
 > 
