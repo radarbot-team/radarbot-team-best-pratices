@@ -465,12 +465,16 @@ When the user uninstall the application, all the files will be kept in the devic
 
 **Important: All applications can read or delete all files that you created in this storage.**
 
-### SQLite Database.
+### SQLite Database
 _-Structured data? Well, you've come to the right place._
 
 The slowest option. There is not much to say about this method. You just have to keep in mind that the operations **should** be done outside the main thread.
 
 Currently we can use [Room](https://developer.android.com/topic/libraries/architecture/room.html). A persistence library made by Google to give us a level of abstraction of all the boilerplate code we that need to generate SQLite queries.
+
+### Cloud Storage
+Cloud storage is a simple and scalable way to store, access and share data over the internet.
+There are different platforms that allow us to use cloud storage. But we will only make reference to two of the most important: [Firebase](https://firebase.google.com/docs/guides/?hl=es-419) and [DynamoDB](https://docs.aws.amazon.com/es_es/amazondynamodb/latest/developerguide/Introduction.html).
 
 ## Analytics & Crash Logs
 
