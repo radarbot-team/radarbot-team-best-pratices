@@ -393,8 +393,37 @@ Solutions to gather metrics of usage and crashes.
 
 ## Continuous Integration
 
- - Use of Gradle.
- - Bamboo, Jenkins..
+Continuous Integration is a practice, which requires discipline, particularly when the development environment contains a significant amount of complexity.  Best practices are methods or techniques that consistently bring superior results. Best practices evolve over time as new technology and techniques are introduced or improvements discovered.
+
+Here we introduce some best practices for continuous integration that could be especially helpful for mobility teams based in Android.
+
+- **A code repository**. All artifacts required to build the project should be placed in a unique repository.
+
+- **Automate the build and deployment**. A single command should have the capability of building the project. 
+
+ With Gradle we can build by executing: 
+ *./gradlew build*
+ or if we want to build a flavor:
+ *./gradlew assembleflavor*
+
+ Within the build the following steps should be included:
+	- Unittests.
+	- Sonar or any tool for continuous inspection of code quality.
+	- Functional tests.
+ For these steps, it can do with:
+		- Bamboo: every step can be configured as a task or job in Bamboo. In case any step fails, the builds should fail and automatically notify the team.
+		- Jenkins: every step can be configured as a stage within the pipeline of Jenkins. In case any step fails, the builds should fail and automatically notify the team.
+
+- **Commit frequently (at least once a day)**. Developers should commit frequently – at least once per day – several times a day is recommended.  By doing so, developers will be able to know the real state and health of the software, will reduce the number of conflicting changes and will detect possible issues sooner.
+
+
+- **Fast builds (preferred less than 10 minutes)**. Builds should be fast, anything longer than 10 minutes becomes a dysfunction in the process, because people won’t commit as frequently. Large builds can be broken into multiple jobs and executed in parallel. All tests should run automatically to validate that the software behaves as expected but in case that functional tests like Calabash, Appium, etc, take long time to run, then we can have:
+	- One automated build process that runs only a basic set of tests.
+	- Another automated process that runs all tests (It can be run every night).
+	- Trigger additional tests manually.
+
+- **Everyone can see the latest build**. It should be easy to find out whether the build breaks and, if so, who made the relevant change, so the whole team should be able to easily see these results especially when the build fails. Developers should be notified as soon as possible and why it failed, so that they can fix it as quickly as possible. Every build should be posted in Bamboo or Jenkins and also commits since last build, changes, tests results, etc. 
+
 
 ## Deployment & Publishing
  
