@@ -1,6 +1,6 @@
 # Testing techniques TDD, BDD and Acceptance Test
 
-###Índex
+### Índex
 
 * [Introduction](#introduction)
 
@@ -14,7 +14,7 @@
 
 
 ----------------
-##Introduction
+## Introduction
 ----------------
 
 Let's do a review of the techniques most widespread agile development
@@ -34,7 +34,7 @@ review.
 
 
 --------
-##TDD 
+## TDD 
 --------
 
 Test-driven Development or TDD is a programming technique that focuses
@@ -78,7 +78,7 @@ To understand some of these disadvantages born BDD and other techniques
 are used as are Acceptance Test.
 
 -------
-##BDD 
+## BDD 
 -------
 
 Guided BDD behavior or development is a process that extends TDD ideas
@@ -128,7 +128,7 @@ the functionality is made, we want to know if what the user really
 looking for it there is evidence of acceptance.
 
 -----------------
-##Acceptance Test
+## Acceptance Test
 -----------------
 
 
@@ -179,7 +179,7 @@ abstraction wrong in declaring the proves.
 
 
 -------------
-##Conclusions 
+## Conclusions 
 -------------
 
 As we can see BDD gets the best practices of RUP and tries to guide
