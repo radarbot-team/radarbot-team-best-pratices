@@ -131,7 +131,7 @@ Polymer({
    });
 ```
 
-If you need to add EventListeners manually in our code, the document should be able to remove them when required or always if a lifecycle 'detached' occurs. This has to be done in this way because polymer espects that components detached are not tied to asynchronous functions, since it could lead to memory leaks. We must also remember that, if it's necessary use the *this* context we, must pass it through our function by different means available (i.e. by the use of bind).
+If you need to add EventListeners manually in our code, the document should be able to remove them when required or always if a lifecycle 'detached' occurs. This has to be done in this way because polymer expects that components detached are not tied to asynchronous functions, since it could lead to memory leaks. We must also remember that, if it's necessary use the *this* context we, must pass it through our function by different means available (i.e. by the use of bind).
 
 We may also use on-event annotations. In the particular case oftouch events, such as on-tap, it is sctrongly recomended to make use of the on-click listener instead, since it has a better performance.
 
