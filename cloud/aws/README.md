@@ -23,10 +23,10 @@
 ---
 ## Introduction
 
-While **Cloud** services offer flexibility, scalability and better economy of scale, there are also important concerns about security. 
+While **Cloud** services offer flexibility, scalability and better economy of scale, there are also important concerns about security.
 
 Cloud services such as Software as a service (SaaS), Platform as a
-service (PaaS) or Infrastructure as a service (IaaS) will each have their own security concerns that need to be addressed. 
+service (PaaS) or Infrastructure as a service (IaaS) will each have their own security concerns that need to be addressed.
 
 As more data moves from centrally located on-premise servers to the Cloud, the potential for personal and private data to be compromised has increased.
 
@@ -55,7 +55,7 @@ Please also note that Information in the part of **Services** it is also split o
 - RDS
 
 ---
-## Cloud Best Practices 
+## Cloud Best Practices
 
 There are 5 main best practices that you must know in order to use AWS with success.
 
@@ -64,14 +64,14 @@ There are 5 main best practices that you must know in order to use AWS with succ
 Assume that your hardware will fail. Assume that outages will occur. Assume that some disaster will strike
 your application. Assume that you will be slammed with more than the expected number of requests per second some
 day. Assume that with time your application software will fail too. By being a pessimist, you end up thinking about
-recovery strategies during design time, which helps in designing an overall system better. 
+recovery strategies during design time, which helps in designing an overall system better.
 
 AWS specific tactics for implementing this best practice:
 
 1. Use ElasticIps for failover gracefully combine with Elastic Load Balancers and Route 53 service to minimize service outages.
 2. Utilize multiple Availability Zones. By
 deploying your architecture to multiple availability zones, you can ensure highly availability. Active multi AZs in Amazon RDS to avoid database outages. Many AWS services are multi AZ by default like S3,DynamoDB
-3. Use Elastic Load Balancers to distribute traffic accross multiple AZs. 
+3. Use Elastic Load Balancers to distribute traffic accross multiple AZs.
 4. Maintain an Amazon Machine Image so that you can restore and clone environments very easily in
 a different Availability Zone.
 5. Utilize Amazon CloudWatch (or various real-time open source monitoring tools) to get more
@@ -92,7 +92,7 @@ context of the cloud. Design your architecture in order to support multiple cons
 
 AWS specific tactics for implementing this best practice:
 
-1. Use Amazon SQS to isolate components 
+1. Use Amazon SQS to isolate components
 2. Use Amazon SQS as buffer between components
 3. Design every component such that it expose a service interface and is responsible for its own
 scalability in all appropriate dimensions and interacts with other components asynchronously
@@ -104,7 +104,7 @@ deployed more often
 
 ### Implement elasticity
 
-Elasticity is the ability of an app to adapt for their use. Can be implemented manually or automatically. 
+Elasticity is the ability of an app to adapt for their use. Can be implemented manually or automatically.
 
 To implement “Elasticity”, one has to first automate the deployment process and streamline the configuration and build
 process. This will ensure that the system can scale without any human intervention.
@@ -124,7 +124,7 @@ latest version of an application from during system startup or use AWS Code Depl
 Machine Image so that it is easier to manage and maintain. Pass configuration files or parameters at
 launch time and retrieve user data and instance metadata after launch.
 
- 
+
 
 
 ---
@@ -136,7 +136,7 @@ your requests by using multiple concurrent threads will store or fetch the data 
 
 AWS specific tactics for implementing this best practice:
 
-1. Multi-thread your Amazon S3 requests 
+1. Multi-thread your Amazon S3 requests
 2. Multi-thread your Amazon DynamoDB requests
 3. Stream your information to multiple consumers with Amazon Kinesis and Amazon DynamoDB Streams.
 4. Create a JobFlow using the Amazon Elastic MapReduce Service for each of your daily batch processes
@@ -153,14 +153,14 @@ dynamically
 In general it’s a good practice to keep your data as close as possible to your compute or processing elements to reduce
 latency. In the cloud, this best practice is even more relevant and important because you often have to deal with
 Internet latencies. Moreover, in the cloud, you are paying for bandwidth in and out of the cloud by the gigabyte of data
-transfer and the cost can add up very quickly. 
+transfer and the cost can add up very quickly.
 
 AWS specific tactics for implementing this best practice:
 
 1. Utilize the same Availability Zone to launch a cluster of machines
 2. Use Amazon S3 to store all of the static files used by your application
 3. Create a distribution of your Amazon S3 bucket and let Amazon CloudFront caches content in that
-bucket 
+bucket
 
 
 ---
@@ -179,11 +179,11 @@ The idea is not provide deep and boring documentation but highlight the roadmap 
 
 ### Description
 
-The primary technological goal of any cloud migration project is to transfer an existing compute resource/application from one on-premise environment to another in the cloud, as quickly, efficiently, and cost effectively as possible. 
+The primary technological goal of any cloud migration project is to transfer an existing compute resource/application from one on-premise environment to another in the cloud, as quickly, efficiently, and cost effectively as possible.
 
 This is especially critical when considering a migration to a public cloud; considerations must include security controls, latency and subsequent performance, operations practices for backup/recovery and others.
 
-For many companies, the initial pull to cloud based services is primary the lower cost – especially since the repeated infrastructure upgrades are no longer required. 
+For many companies, the initial pull to cloud based services is primary the lower cost – especially since the repeated infrastructure upgrades are no longer required.
 
 However many companies find themselves staying on cloud operations for other strategic reasons like improving productivity, move more swiftly and focus on business transformation related activates not just technical activities. We have had not one client move from the cloud back to on premise solutions.
 
@@ -200,27 +200,27 @@ Make sure of what functions/ features of your applications are most used in your
 
 
 #### Time Planning
-Another important part of migrating process is to calculate how long the migration will take, and which are the key parts to transition first because you never want the business to suffer any longer, or any losses, in a drawn out transition. 
+Another important part of migrating process is to calculate how long the migration will take, and which are the key parts to transition first because you never want the business to suffer any longer, or any losses, in a drawn out transition.
 
-Start with the features that are not the most popular, then after you have mastered those, work your way up to the most frequently used. Also, make sure that you build an emergency exit into your project plan. 
+Start with the features that are not the most popular, then after you have mastered those, work your way up to the most frequently used. Also, make sure that you build an emergency exit into your project plan.
 
 If things don’t work out as expected in the cloud, you should have a way to dial back to your on premise solution, just in case, without affecting your business.
 
 
 #### Availability & Resiliency
-To be effective on a cloud infrastructure, the application architecture needs to be addressed for multiple points of failures. 
+To be effective on a cloud infrastructure, the application architecture needs to be addressed for multiple points of failures.
 
-Though a lift and shift approach it should be strongly be evaluated re-factoring or re-architecting options before deciding on an approach to be carried out, and even more will be required a strategy to follow several testing cases to provide quality to the final result. 
+Though a lift and shift approach it should be strongly be evaluated re-factoring or re-architecting options before deciding on an approach to be carried out, and even more will be required a strategy to follow several testing cases to provide quality to the final result.
 
 
 #### DNS/URL/IP Management
-Legacy applications within an enterprise are often accessed by business users via internal intranet URL. This URL common name and DNS management in a typical enterprise would have evolved over the last couple of decades into a complex setup, the management of which is often eased by having a centralized server cluster. 
+Legacy applications within an enterprise are often accessed by business users via internal intranet URL. This URL common name and DNS management in a typical enterprise would have evolved over the last couple of decades into a complex setup, the management of which is often eased by having a centralized server cluster.
 
 Running out of IP addresses is also not uncommon. When you migrate an application to the cloud (private or public), the DNS entry rewiring often ends up as a nontrivial exercise. Multicloud or hybrid-cloud scenarios make this even more complex, careful planning and network design is of utmost importance.
 
 
 #### Security & Access Management
-A server farm infrastructure typically provides for a centralized security access mechanism like webseal or forefront plug-ins tied into the corporate active directory or LDAP. 
+A server farm infrastructure typically provides for a centralized security access mechanism like webseal or forefront plug-ins tied into the corporate active directory or LDAP.
 
 Many of the applications leverage this without any application specific security checks or balances in place. In this case the cloud can be a very secure place, but it will only be as secure as the application is, so it is very important to check security here in all cases.
 
@@ -234,37 +234,37 @@ Major security problems are always related to the way the security tools, method
 
 
 #### Monitoring & Alerts
-The workflow of many operations & production support teams start with the monitoring alerts typically in place for these enterprise server clusters. 
+The workflow of many operations & production support teams start with the monitoring alerts typically in place for these enterprise server clusters.
 
 Alert centralized tools do the server monitoring with a customized solution to inform the right teams and stakeholders. Again, the application is often unaware of the surrounding support structures that exist to keep it up and running, so before migrating to the cloud it is capital to deploy mechanisms to monitor the services and not only the servers.
 
 
 #### Server Sprawl
-Sometimes data centers have poor hardware resource utilization, poor system and software level security and wasted energy. Migration and deployment models available are designed to avoid this server sprawl. 
+Sometimes data centers have poor hardware resource utilization, poor system and software level security and wasted energy. Migration and deployment models available are designed to avoid this server sprawl.
 
 Though the public cloud players have some very good tooling in place, private clouds or hybrid clouds may be a different story. Often, organizational inertia and existing team structures will try to enforce legacy deployment models to the cloud, but is highly recommended to analyze and create new ones if required.
 
 
 #### Licensing
-Server sprawl could also be caused by licensing issues because multiple applications could share the same license, whereas it would be a substantially different cost model when going to individual servers – however small the server is. 
+Server sprawl could also be caused by licensing issues because multiple applications could share the same license, whereas it would be a substantially different cost model when going to individual servers – however small the server is.
 
 If this forces a legacy deployment model onto the applications, it may be worthwhile to consider re-platforming to open source tools.
 
 
 #### Certificate Management
-Many enterprise applications are self-signed, usually using an in-house certificate authority solution. This is also integrated with internal DNS and URLs. 
+Many enterprise applications are self-signed, usually using an in-house certificate authority solution. This is also integrated with internal DNS and URLs.
 
 Cloud migration is an opportunity for the applications to ‘grow-up’ and be first world citizens.
 
 
 #### Production Support
-It is not uncommon for legacy applications to require direct database access or admin access for production support or business operations requirements. 
+It is not uncommon for legacy applications to require direct database access or admin access for production support or business operations requirements.
 
-It is recommended that when migrating such applications to the cloud, both application access and network access are important parameters to consider and evaluate properly in order to implement the right solution. 
+It is recommended that when migrating such applications to the cloud, both application access and network access are important parameters to consider and evaluate properly in order to implement the right solution.
 
 
 #### Disaster Recovery (DR)
-Apart from being highly available (HA), many enterprise applications have centralized DR plans and processes in place. 
+Apart from being highly available (HA), many enterprise applications have centralized DR plans and processes in place.
 
 Cloud migration provides an opportunity to tier the applications based on service levels and DR profiles, and develop application specific deployment models.
 
@@ -276,13 +276,13 @@ Do you have vendors, partners, clients that are accessing your on premise soluti
 
 
 #### End User Adoption
-Once the business has migrated fully to cloud based operations, it’s crucial to shift the focus to end user adoption. Cloud based technology offer greater features and flexibility than premise based. 
+Once the business has migrated fully to cloud based operations, it’s crucial to shift the focus to end user adoption. Cloud based technology offer greater features and flexibility than premise based.
 
 Many companies fail to leverage these benefits and continue their new cloud operations in the same manner as their earlier premise solution.
 
 
 #### Cultural Change
-Recognize and prepare for the change: cultural changes and general operational changes to how things work. Be open-minded as change can be hard, but worth it on the other side. 
+Recognize and prepare for the change: cultural changes and general operational changes to how things work. Be open-minded as change can be hard, but worth it on the other side.
 
 The positive side to all of this change is that final customer should always be accompanied throughout the whole process. Remember that the cloud is always a relationship, not merely a product.
 
@@ -291,41 +291,41 @@ The positive side to all of this change is that final customer should always be 
 
 In order to complete this document we are going to provide some more information related to common mistakes when deploying migrations to the cloud.
 
-Perhaps the best approach is to complete the migration process by deploying the previous best practices from the beginning to the end and try to avoid all the following common mistakes. 
+Perhaps the best approach is to complete the migration process by deploying the previous best practices from the beginning to the end and try to avoid all the following common mistakes.
 
-Good luck with all of your migrations!. 
+Good luck with all of your migrations!.
 
 
 #### Expenses
 
 The first major mistake that enterprise makes when moving their IT operations on-premise to the cloud is not understanding the total cost of the process.
 
-There are several complex metrics that must be used when determining if a migration of an application or project to the cloud is actually saving the company money. 
+There are several complex metrics that must be used when determining if a migration of an application or project to the cloud is actually saving the company money.
 
-This is why it is highly recommended to invert time in measure the actual cost versus future cost on the cloud. 
+This is why it is highly recommended to invert time in measure the actual cost versus future cost on the cloud.
 
 
 #### Security & Governance
 
-Another common mistake is plunging into the cloud without considering the security and governance standards that must be met. 
+Another common mistake is plunging into the cloud without considering the security and governance standards that must be met.
 
 Always is up to the IT department to balance and follow up the proposal of accessibility and security in the IT infrastructure when migrated to the cloud.
 
 
 #### Priorice
 
-Prioritizing what applications (and in what order) are needed to be moved to the cloud is an important goal. 
+Prioritizing what applications (and in what order) are needed to be moved to the cloud is an important goal.
 
-Not everything needs to be moved into the cloud. Managers should look for applications that can be moved to the cloud in a cost-effective way, without sacrificing usability and security. 
+Not everything needs to be moved into the cloud. Managers should look for applications that can be moved to the cloud in a cost-effective way, without sacrificing usability and security.
 
 By taking it on a case by case basis, special care can be taken for every specific applications in order to choose the best option.
 
 
 #### Reusing
 
-Legacy applications can have an architecture that is the exact opposite of cloud-native applications. 
+Legacy applications can have an architecture that is the exact opposite of cloud-native applications.
 
-By simply doing a lift and shift to the cloud, these applications could become less available or more unstable, so is also highly recommended to evaluate and deploy a new version of the application for the cloud. 
+By simply doing a lift and shift to the cloud, these applications could become less available or more unstable, so is also highly recommended to evaluate and deploy a new version of the application for the cloud.
 
 Luckily, in many cases the application refactoring that is required to fully leverage the cloud is only incremental compared to the lift and shift model. Often, a new deployment architecture will be sufficient to address the challenges. But simply lifting & shifting: i.e. replicating the legacy architecture in the cloud is a recipe for disaster.
 
@@ -353,7 +353,7 @@ This means that when a new account is created, a new alias for the corporative m
 
 Users in the account can be created with the Identity and Access Management (IAM) service. Following the previous section, where the creation of different accounts per environment, all subordinated to a master account for the billing and corporative tools, the same can be said about user management.
 
-Not only the billing is consolidated into the master account. IAM users are managed with this account too, providing the assumption of the desired role with one single login. 
+Not only the billing is consolidated into the master account. IAM users are managed with this account too, providing the assumption of the desired role with one single login.
 
 ![Delegated user management](static/delegated.png "Delegated user management")
 
@@ -363,7 +363,7 @@ There is a github project for performing this, named [Anwbis](https://github.com
 
 The minimum set of permissions rule apply when a new user is created. The BEEVA convention for the naming is the same as the corporative email without the @beeva.com, so i.e. for a new user named *john.doe@beeva.com*, the user *john.doe* is created in the master account. For external users, the rule is to writte *john.doe.contractor*.
 
-The user is created with the MFA flag marked as true, so he can login into the different accounts using his multifactor authentication device (tipically [Google Authenticator](https://support.google.com/accounts/answer/1066447?hl=es), but tipically there is no permission to login into the master account in the AWS Management Console. 
+The user is created with the MFA flag marked as true, so he can login into the different accounts using his multifactor authentication device (tipically [Google Authenticator](https://support.google.com/accounts/answer/1066447?hl=es), but tipically there is no permission to login into the master account in the AWS Management Console.
 
 The policy Corp-IAM-Permissions has been created to provide the minimum permission rule for assuming the role in the child accounts. At the time of this writting it is the following (The master account ID has been deleted by obvious reasons):
 
@@ -420,10 +420,10 @@ In the role, the minimum permissions for the kind of user has to be provided. Se
 
 #### Steps in the master account
 
-In order to provide the delegated use, a group named 
+In order to provide the delegated use, a group named
 
 ```
-corp-<project>-master-<role_name> 
+corp-<project>-master-<role_name>
 ```
 
 has to be created in the master account, where role name is tipically *admin*, *developer*, *devops* or *user*. It has only a policy named *Delegated_Roles* with the following structure:
@@ -439,11 +439,11 @@ has to be created in the master account, where role name is tipically *admin*, *
         "arn:aws:iam::************:role/pre-<project>-delegated-<role>",
         "arn:aws:iam::************:role/pro-<project>-delegated-<role>",
         "arn:aws:iam::************:role/val-<project>-delegated-<role>"
-      ], 
+      ],
     "Condition" : { "Null" : { "aws:MultiFactorAuthAge" : "false" } }
   }]
 }
-``` 
+```
 
 Where *role* is *admin*, *developer*, *devops* or *user*. In this example there are four environments for the project, but this policy could be extended with all the needed roles.
 
@@ -459,7 +459,7 @@ aws_access_key_id=<AccessKey>
 aws_secret_access_key=<SecretKey>
 ```
 
-When the user want to get a set of valid credentials with anwbis (version 1.2.1, at the time of the writting), he can do it by typing the following: 
+When the user want to get a set of valid credentials with anwbis (version 1.2.1, at the time of the writting), he can do it by typing the following:
 
 ```
 anwbis  --profile <profile> -p <project> -e <environment> -r <role_name> --region <region_to_use>
@@ -505,7 +505,7 @@ Simple Storage Service. S3 is a highly-scalable, reliable and low-latency distri
 ##### Durability and Availability
 Amazon S3 is designed for 99,999999999% **durability** per object and 99,99% **availability** over a 1 year period.
 
-S3 provides mechanisms to prevent accidental deletion, allowing object versioning, and deletion with Multi-Factor Authentication. 
+S3 provides mechanisms to prevent accidental deletion, allowing object versioning, and deletion with Multi-Factor Authentication.
 
 Also, you can use Reduced Reduntant Storage option (RRS) which provides a lower level of durability at a lower storage cost. Even being less durable than standard S3 objects, is still designed to provide 400 times more durability than a standard disk drive.
 
@@ -584,7 +584,7 @@ Amazon EC2 is one of the primary AWS service which provide the Infrastructure as
 ##### Security
 * As in the previous sections, follow the Standard Naming convention for Key Pairs and Security Groups, this is always useful so  you can understand the purpose in at first glance.
 * **Never** ever share any of your Key Pairs unless it is really needed.
-* Create separate Keys and Groups for each group of Instances. Never use a single Key Pairs or Security Group for your entire region. 
+* Create separate Keys and Groups for each group of Instances. Never use a single Key Pairs or Security Group for your entire region.
 * Perform frecuently cleaning and remove unused Security Groups / Key Pairs, specially remove the keys of users who are not part of the project or organization. Also unused ports (perphaps opened temporary) should be part of the cleaning.
 * Use IAM permissions and never ever share the master key.
 * Recycle the keys periodically, let's say half-yearly or yearly and create the new keys including master key.
@@ -661,7 +661,7 @@ NOTE: If you are using gradle you can follow [this tutorial](http://blog.xebia.f
 
 ###### 2. Get the Native SQLite4Java dependecies
 
-Once the main dependency is added, you need to add the native SQLite4Java dependencies. If these libraries are not present in the system DynamoDBLocal does not start due to an error on execution time. 
+Once the main dependency is added, you need to add the native SQLite4Java dependencies. If these libraries are not present in the system DynamoDBLocal does not start due to an error on execution time.
 
 ```xml
 <dependency>
@@ -737,7 +737,7 @@ Besides, you need to add a plugin to move the native dedepencies to an specific 
 
 ###### 3. Set sqlite4java.library.path properly
 
-Finally, you need to set `sqlite4java.library.path` system property. It can be done using this sentence in your java code: 
+Finally, you need to set `sqlite4java.library.path` system property. It can be done using this sentence in your java code:
 
 ```java
 System.setProperty("sqlite4java.library.path", "native-libs");
@@ -851,7 +851,7 @@ public class UserRepositoryImplTest {
 	/**
      * Method that inserts data for each specific test. For example you
 	 * can use a CSV file with fake items on it.
-     * DynamoDB items can be loaded using dynamoDBMapper.save instruction 
+     * DynamoDB items can be loaded using dynamoDBMapper.save instruction
      */
 	private void insertTestData(String fileName) throws Exception {
                 User userDAO = new User();
@@ -893,7 +893,7 @@ public class User {
 ```
 <a name="f1">1</a>: https://aws.amazon.com/es/blogs/aws/amazon-dynamodb-libraries-mappers-and-mock-implementations-galore/. [↩](#a1)  
 <a name="f2">2</a>:http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBLocal.html [↩](#a2)
-<a name="f3">3</a>:http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.html [↩](#a3) 
+<a name="f3">3</a>:http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.html [↩](#a3)
 <a name="f4">4</a>:https://aws.amazon.com/es/blogs/aws/dynamodb-local-for-desktop-development/ [↩](#a4)  
 
 ### Scaling (ELBs y ASGs)
@@ -906,7 +906,7 @@ There are some considerations to make better use of S3.
 
 * **Make use of different object types defined by its access frecuency and criticality**. You can choose between:
 	* *Standard*.
-	* *Infrequent Accessed Data (IA)*: 99% availability instead of eleven 99,999999999. 
+	* *Infrequent Accessed Data (IA)*: 99% availability instead of eleven 99,999999999.
 	* *Reduced Redundant Storage (RRS)*: Less durability.
 
 * **Use Server Side encryption** for the projects which needs to store encrypted data at rest. SSE make use of AES 256 algorithm to encrypt and decrypt the information.
@@ -985,7 +985,7 @@ Therefore, protect your AWS account access key like you would your credit card n
 ---
 ### Lambda
 
-AWS Lambda is a compute service where you can upload your code to AWS Lambda and the service can run the code on your behalf using AWS infrastructure. After you upload your code and create what we call a Lambda function, AWS Lambda takes care of provisioning and managing the servers that you use to run the code. 
+AWS Lambda is a serverless compute service to allow you running code in response to events managing automatically the underlying compute resources for you, so just have to upload the code to AWS Lambda and the service can run the code on your behalf using AWS infrastructure. After you upload your code and create what is called a Lambda function, AWS Lambda takes care of provisioning and managing the servers that you use to run the code. 
 
 The following are recommended best practices for using AWS Lambda:
 
@@ -1015,7 +1015,7 @@ You can activate long polling by set a value between 1 - 20 seconds for Receive 
 
 Visibility Timeout avoid that two consumers receive the same message from a queue. If you set a visibility timeout too low ( like 0 s ) multiple consumer will process the same from that queue. In the other hand if you use a high visibility timeout value ( like 12h ) and the consumer of message die before complete message process you must wait too long in order to other consumer be able to consume that message.
 
-![](static/Visibility_Timeout.png) 
+![](static/Visibility_Timeout.png)
 
 #### Use Batching
 
@@ -1033,13 +1033,13 @@ Engines compatible with aws are MySQL, MariaDB, PostgreSQL, Oracle, Microsoft SQ
 
 These are the best practices you should follow when using this service:
 
-* **Monitor :** It is very important to be aware of the use that your database receives to maintain system performance and availability . 
+* **Monitor :** It is very important to be aware of the use that your database receives to maintain system performance and availability .
 You can use the console to view metrics in real time for your DB instance or consume Enhanced Monitoring JSON output from CloudWatch Logs , this will help you to be notified when usage patterns change or when you approach the capacity of your deployment . More about [Enhanced Monitoring](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_Monitoring.OS.html).  
 Study performance problems in your metrics, you can improve the performance of the most used and most resource consumption queries using Tuning Queries consultations, read about best practices to use in each database engine [here](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_BestPractices.html#CHAP_BestPractices.TuningQueries) .
 
 * **Scale up :** You must be prepared to scale up your DB instance when you receive unexpected increases from your applications.
 
-* **Better safe than sorry :** 
+* **Better safe than sorry :**
  * **Automatic backups :** Having backups is a must, enable and select the appropriate time of day to occur. [See more](http://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Overview.BackingUpAndRestoringAmazonRDSInstances.html).
  * **Test failover**  for your database instance to understand how long the process takes for your use case and to make sure that the application that accesses your database instance can automatically connect to the new DB instance later Of the failover.
  * **Recovery after failover** or database failure is very costly and slow , maintain control over the workload your database requires and if you need to increase it do any or all of the following:
@@ -1058,7 +1058,7 @@ For information on IAM best practices see [IAM Best Practices](#iam) .
 
 ### References
 
-* [Architecting for the Cloud: Best Practices](http://media.amazonwebservices.com/AWS_Cloud_Best_Practices.pdf) 
+* [Architecting for the Cloud: Best Practices](http://media.amazonwebservices.com/AWS_Cloud_Best_Practices.pdf)
 * [IAM Best Practices](http://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html)
 * [AWS SQS Developer Guide](http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/Welcome.html)
 * [Lambda Developer Guide](http://docs.aws.amazon.com/lambda/latest/dg/welcome.html)
