@@ -985,7 +985,7 @@ Therefore, protect your AWS account access key like you would your credit card n
 ---
 ### Lambda
 
-AWS Lambda is a compute service where you can upload your code to AWS Lambda and the service can run the code on your behalf using AWS infrastructure. After you upload your code and create what we call a Lambda function, AWS Lambda takes care of provisioning and managing the servers that you use to run the code. 
+AWS Lambda is a serverless compute service to allow you running code in response to events managing automatically the underlying compute resources for you, so just have to upload the code to AWS Lambda and the service can run the code on your behalf using AWS infrastructure. After you upload your code and create what is called a Lambda function, AWS Lambda takes care of provisioning and managing the servers that you use to run the code. 
 
 The following are recommended best practices for using AWS Lambda:
 
