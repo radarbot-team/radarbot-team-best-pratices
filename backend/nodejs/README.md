@@ -1,7 +1,7 @@
 ![alt text](static/nodejs.png "Node.js")
 
 # Node.js Style Guide & Best Pratices
-At this point we're going to talk about Node.js, we're useing Node.js to develop lightweight and efficient network apps using an event-driven, non-blocking I/O on the top of Chrome's V8 JavaScript engine.
+This document describes the way we use Node.js in BEEVA. We use it to develop lightweight and efficient network apps using an event-driven, non-blocking I/O on the top of Chrome's V8 JavaScript engine.
 
 ## Index
 
@@ -10,7 +10,7 @@ At this point we're going to talk about Node.js, we're useing Node.js to develop
   * [Challenges](#challenges)
 
 * [Frameworks](#frameworks)
-  * [Comparative](#comparative)
+  * [Comparison](#comparison)
 
 * [DevOps](#devOps)
   * [Logging](#logging)
@@ -29,79 +29,78 @@ At this point we're going to talk about Node.js, we're useing Node.js to develop
 
 ## Introduction
 
-Node.js like Python and other languages can be used to develop desktop/console tools or to develop highly scalable network applications.
-**This guide will focus on using Node.js to develop network applications**.
-Since developments are made in Javacript Node.js, we recommend reading the language specific section in this [guide](../../frontend/javascript/README.md).
+As Python and other languages, Node.js can be used to develop either desktop/console tools or highly scalable network applications.
+**This guide will focus on Node.js usage to develop network applications**.
+Since developments make use of Javacript Node.js, we recommend reading the language specific section in this [guide](../../frontend/javascript/README.md).
 
 ### Purpose
 
-The purpose of this guide is to share our knowledge in the development of network apps in Node.js. We choosed these areas because they are oriented to help in the built of apps scalable in a fast but reliable way.
+The purpose of this guide is to share our knowledge in the development of network apps in Node.js, which allow building fast, scalable applications in a reliable way.
 
-These areas are:
-* Use of Frameworks: They help us in the development of new apps through its tools and a design and struct proposal for our apps.
+Covered areas include:
 
-* DevOps: We've grouped here all the techniques oriented to easy deploy, mantain and monitorize the health of our Node.js apps
+* Use of Frameworks: They ease applications' development providing several tools and design patterns.
 
-* Automated Testing with TDD & BDD: We offer a serie of advices in order to implement this testing philosophy in our developments.
+* DevOps: Techniques and good practices focused on easy deploy, maintenance and monitoring the health of our Node.js apps
+
+* Automated Testing with TDD & BDD: Series of advices in order to implement this testing philosophy in our developments.
 
 ### Challenges
 
 The two main challenges to be resolved by a developer to program begins with Node.js are:
 
-* Asynchrony: Although there are several ways to manage the async flow as libraries (i.e. [async](https://www.npmjs.com/package/async), [co](https://www.npmjs.com/package/co)), promises ([q](https://www.npmjs.com/package/q), [mpromise](https://www.npmjs.com/package/mpromise), ...) or conventions ([CPS](https://en.wikipedia.org/wiki/Continuation-passing_style)), it should handle them properly and avoid excessive nesting callbacks ([Pyramid of Doom](http://tritarget.org/blog/2012/11/28/the-pyramid-of-doom-a-javascript-style-trap/)) and the excessive reliance on a particular library. A major problem arises when we are trying to follow the execution flow of our code and the error handling. Initially it's difficult to adopt this way of work and can be perceived as a loss of control over it. However, it is a powerful tool that allows us to make better use of resources.
+* Asynchrony: Although there are several ways to manage the async flow as libraries (i.e. [async](https://www.npmjs.com/package/async), [co](https://www.npmjs.com/package/co)), promises ([q](https://www.npmjs.com/package/q), [mpromise](https://www.npmjs.com/package/mpromise), ...) or conventions ([CPS](https://en.wikipedia.org/wiki/Continuation-passing_style)), they should be handled properly and avoiding excessive nesting callbacks ([Pyramid of Doom](http://tritarget.org/blog/2012/11/28/the-pyramid-of-doom-a-javascript-style-trap/)) and the excessive reliance on a particular library. A major problem arises when we are trying to follow the execution flow of our code and the error handling. Initially it is difficult to adopt this way of work and can be perceived as a loss of control over it. However, when mastered, it is a powerful tool that allows us to make better use of resources.
 
-* Duality between Application and Server: When we are working with Node.js, we must understand that it's slightly different from those other familiar languages ​​like Java and PHP,  which for develop web applications usually have the support of Apache or Tomcat or other application servers. Although this is usually shielded by frameworks, we should not forget this part of work, which requires us to delve deeper into DevOps issues as the application log, error handling or profiling application issues ports and performance parameters.
+* Duality between Application and Server: When working with Node.js, you should understand that it is slightly different from those other familiar programming languages ​​like Java and PHP. Developing web applications using those languages usually involves the need of an application server, like Apache or Tomcat. Although this is usually shielded by frameworks, some DevOps aspects are even more important to be taken care of: application logs, error handling or profiling application issues ports, performance metrics...
 
 ## Frameworks
 
-The node frameworks are layers on the top of http and use Middleware plugins to interact with the requests and responses.
-Middlewares are a powerful yet simple concept: the output of one unit/function is the input for the next. In this section we're going to talk about three main frameworks that we are using on productive projects. Some of them are in microservices environments, RESTful APIs and web servers. Finally we offer a comparative in order to help to choose a tool for future projects with Node.js.
+Node frameworks are layers on the top of http and use middleware plugins to interact with requests and responses.
+Middlewares are a powerful but simple concept: a function or unit's output becomes the input for the next one. In this section we will discuss three main frameworks that we are using on productive projects. Some of them are placed in microservice environments, RESTful APIs and web servers. Finally, we provide a comparison in order to help choosing a tool for future projects with Node.js.
 
-The frameworks described at this guide are hosted in separated files:
+Each of the mentioned frameworks can be browsed in separate sections: 
 
   * [Express](./expressjs.md)
   * [Hapi](./hapijs.md)
   * [Restify](./restify.md)
 
-### Comparative
+### Comparison
 
-#### When use Restify instead of Express
+#### When to use Restify instead of Express
 
-1. Exists to let you build "strict" API services that are maintanable and observable.
+1. Restify lets you build "strict" API services that are both maintainable and observable.
 
-2. Comes with automatic DTrace support for all your handlers, if you're running on a platform that supports DTrace.
+2. Restify provides automatic DTrace support for all your handlers, provided that they are running on a DTrace supported platform.
 
-3. Is lighter than Express
+3. Restify is lighter than Express
 
-#### When do not use Restify instead of Express
+#### When not to use Restify instead of Express
 
-1. Express use case is targeted at browser applications and contains a lot of functionality, such as templating and rendering, to support that.
+1. Express is appropriate in browser applications, supporting lots of functionality like rendering or templating. Restify does not support that features.
 
-2. Restify does not support that. Express is more powerful on this.
-
-3. More indicated when you have a large number of queries.
+2. Express works better when a large number of queries are expected.
 
 #### Conclusion Restify vs Express
 
-Restify: If I need a framework that gave me absolute control over interactions with HTTP and full observability into the latency and characteristics of my applications.
+If you need a framework that grants absolute control over interactions with HTTP and full observability into applications' latency and characteristics, **Restify** is your framework.
 
-Express: If you don't need absolute control over these interactions, or don't care about those aspect(s), and I need to manage a large number of queries.
+If, on the other hand, you do not need absolute control over these interactions or do not care at all, or if a large number of queries is expected, **Express** is a better option.
 
-You can see a perfomance comparison between Hapi, Express and Restify in the following [link](https://raygun.io/blog/2015/03/node-performance-hapi-express-js-restify/)
+You can inspect a perfomance comparison between Hapi, Express and Restify in the following [link](https://raygun.io/blog/2015/03/node-performance-hapi-express-js-restify/)
 
 ## DevOps
 
-At this section we're going to cover the areas related with staging, logging security and clustering, all these issues are related with DevOps and due to the Node.js dual nature are important for developers and sysadmin.
+This topic address topics related with DevOps, like staging, logging, security and clustering. Due to the dual nature of Node.js, these topics are important for developers and sysadmins.
 
 ### Logging
 
-An important part for developers is the ability to do logs, to have control over the code was developed. The default form to do this in Nodejs is to use *console.log*. But isn't a good practices.
-Don't write *console.log* all over the code to debug it and then commenting them out when they are no longer needed. For this purpose it's better to use a library to logging.
+Log traces are essential for developers in order to have control over developed code. Although the most common way to log in Nodejs is to use *console.log*, it is not considered a good practice at all. Instead of spreading *console.log* statements and commenting them out when they are not needed, it is way better to use a logging library.
 
-In some projects we're using a dual system of logging with:
-#### [Morgan](https://www.npmjs.com/package/morgan) for the apache style logs.
+For example, in BEEVA we are using [Morgan](https://www.npmjs.com/package/morgan).
 
-Morgan is a HTTP request logger middleware for node.js.
+#### [Morgan](https://www.npmjs.com/package/morgan)
+
+Morgan is a HTTP request logger middleware for node.js that uses apache style logs.
 
 Output example:
 ´´´bash
@@ -116,17 +115,18 @@ morgan('combined', { skip: (req, res) => { return res.statusCode < 400 } });
 ```
 
 #### [Bunyan](https://www.npmjs.com/package/bunyan) for the business logic logs.
-Bunyan is a simple and fast JSON logging library for node.js services.
-Manifesto: Server logs should be structured. JSON's a good format. Let's do that. A log record is one line of *JSON.stringify*'d output.
+Bunyan is a simple and fast JSON business library for node.js services. It is used for business logic logs.
+
+Server logs should be structured, and JSON is an adequate format. A log record is one line of *JSON.stringify*'d output.
 
 Output example:
 ´´´bash
 {"name":"myserver","hostname":"banana.local","pid":123,"req":{"method":"GET","url":"/path?q=1#anchor","headers":{"x-hi":"Mom","connection":"close"}},"level":3,"msg":"start request","time":"2012-02-03T19:02:46.178Z","v":0}
 
 ´´´
-Note: Be careful with the content write to this kind of logs. the message it's fully customizable but export all the http request object or the full error stack could damage the performance.
+Note: Take care choosing the content to add to every log. Although messages are fully customizable, logging the whole http request object of a full error stack could impact performance. 
 
-example of use:
+Example of use:
 
 ```javascript
 import bunyan from 'bunyan';
@@ -136,34 +136,34 @@ log.info("hi");
 *Features*
 
 - Elegant log method API
-- Extensible streams system for controlling where log records go (to a stream, to a file, log file rotation, etc.)
-- Bunyan CLI for pretty-printing and filtering of Bunyan logs
-- Simple include of log call source location (file, line, function) with src: true
-- Lightweight specialization of Logger instances with log.child
+- Extensible stream system for controlling where log records go (to a stream, to a file, log file rotation, etc.)
+- Bunyan CLI for pretty-printing and Bunyan logs filtering
+- Easy inclusion of log source location (file, line, function) with *src: true*
+- Lightweight specialization of Logger instances with *log.child*
 - Custom rendering of logged objects with "serializers"
-- Runtime log snooping via Dtrace support
+- Runtime log snooping via *Dtrace* support
 - Support for browserify.
 
 
 ### Security
 
-It's very important to check and verify these areas in any Node.js development, even if it still is not public:
+Even when developing non public applications, it is really important to pay attention to security aspects:
 
 * Authentication, user an session management.
 * Configuration Management i.e. Security HTTP Headers
 * Data Validation on client side
 * Database injections,...
 * Security Transmission
-* Denial of Service
+* Denial Of Service
 * Error Handling
 
 All these areas are deeply covered in the security and hardening [section of this repository](../../it_security/security_hardening/README.md).
 
-In this section we're going to show you some references and middlewares that are easy to include as first protection.
+In this section, some references and middlewares that are easy to include as first protection are described.
 
 #### [Lusca](https://www.npmjs.com/package/lusca)
 
-Lusca is Web application security middleware for Express. **It requires express-session**.
+Lusca is a Web application security middleware for Express. **It requires express-session**.
 
 ```javascript
   import express from 'express';
@@ -201,10 +201,8 @@ You can opt into methods one by one:
 
 #### [Helmet](https://www.npmjs.com/package/helmet)
 
-Helmet can help protect your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
-Next, you can use helmet in your application (for example in Express):
-
-Running app.use(helmet()) will include 6 of the 9, leaving out *contentSecurityPolicy*, *hpkp*, and *noCache*.
+Helmet can help protecting your app from some well-known web vulnerabilities by setting HTTP headers appropriately.
+To use it in your application with Express:
 
 ```javascript
 import express from 'express';
@@ -225,6 +223,8 @@ Helmet is a collection of 9 smaller middleware functions that set security-relat
 > - **frameguard** to prevent clickjacking
 > - **xssFilter** adds some small XSS protections in most recent web browsers.
 
+Running app.use(helmet()) will include 6 of the previous 9, leaving out *contentSecurityPolicy*, *hpkp*, and *noCache*.
+
 You can also use each module individually:
 
 ```javascript
@@ -234,21 +234,21 @@ You can also use each module individually:
 
 ### Clustering
 
-Using the [Node.js Cluster API](https://nodejs.org/dist/latest-v4.x/docs/api/cluster.html) could boost the performance of our app. It's useful but must be used with care. Remember that this api it's stable only in versions greater than v.4
+Using the [Node.js Cluster API](https://nodejs.org/dist/latest-v4.x/docs/api/cluster.html) could boost your application's performance. It is useful but must be used with care. Remember that this API is stable only in versions greater than v.4
 
 There are two ways of implement this api:
 
-* PM2 Interface It adds the support automatically it's easy and fast to implement.
+* **PM2 Interface** It adds support automatically and it is implemented easy and fast.
 
-* Manually in our code. It's more flexible because the threads could share resources and messages between them.
+* **Manually in our code** It is more flexible because threads can share resources and messages amongst them.
 
-It's recommendable to add one thread by core, and in case of extreme stability require, one less for the management.
+It is recommended to add a thread per core, and in case of extreme stability require, one less for the management.
 
-It's useful to add a mechanism to respawn the threads and count the number of reboots to kill the app in case of unrecoverable problems, for the process management could restart the app.
+It is useful to add a mechanism to respawn threads and count the number of reboots to kill the app in case of unrecoverable problems, for the process management could restart the app.
 
 ### Staging
 
-As any other server it's relevant to provide some profiling options. The common way to do this it's through a property file.
+As with any other server some profiling options are supported. The most usual way to use them is through a property file.
 
 * Manually through merging files with lodash.
 
@@ -320,13 +320,13 @@ config=_.merge(
 
 ## Testing
 
-In this section we're going to offer a way to implement TDD and BDD in your Node.js developments but if you want to go deeper, please visit the [testing section of this repository](../../qa_testing/testing/README.md).
+In this section we discuss a way of implementing TDD and BDD in your Node.js developments but if you want to go deeper, please visit the [testing section of this repository](../../qa_testing/testing/README.md).
 
 ### TDD with Sinon and Proxyquire
 
 #### Focusing
 
-Test-driven development (TDD), as many of you might know, is one of the main, agile development techniques. The genius of TDD lies in increased quality of code, faster development resulting from greater programmer confidence, and improved bug detection.
+Test-driven development (TDD) is one of the main agile development techniques. The strengths of TDD lies in increased quality of code, faster development resulting in greater programming confidence, and improved early bug detection.
 
 #### Structure for TDD
 
@@ -353,19 +353,19 @@ my-application/
 
 ##### Installation
 
-Sinon.js are available as a npm module, it should be install globally with:
+Sinon.js is available as a npm module, it should be install globally with:
 
 ``` shell
 $ npm install sinon
 ```
 
-Proxyquire.js are available as a npm module, it should be install globally with:
+Proxyquire.js is available as a npm module, it should be install globally with:
 
 ``` shell
 $ npm install proxyquire
 ```
 
-And also is necessary Chai.js and can be install locally as a development dependency with:
+Chai.js is also required and can be installed locally as a development dependency with:
 
 ``` shell
 $ npm install --save-dev chai
@@ -375,9 +375,9 @@ $ npm install --save-dev chai
 
 ##### Describes and it functions
 
-The different test suite will be group into a describe functions, it consist in a description about the suite, and a function that contains inside the 'it' functions to include every single unit test case. Each 'it' function also contains the description of the single unit test and the function to test one component of your application (model, controller or route). If the complexity of file functions is greater probably will be necessary to use more describe functions inside another.
+Tests Suites are grouped into describe functions, responsible of describing suite, and a function that contains inside the 'it' functions to include every single unit test case. Each 'it' function also contains the description of the single unit test and the function to test one component of your application (model, controller or route). If the complexity of file functions is greater probably will be necessary to use nested describe functions.
 
-A structure example is the following:
+An example of a TDD test structure is the following:
 
 ```javascript
 var chai       = require('chai');
@@ -461,16 +461,20 @@ describe('UNIT Test for CONTROLLER', function() {
 
 #### Use cases
 
-- To implement the different validations options you need to import the assert and expect libraries, you can do this with:
+- To implement the different validation options you need to import *assert* and *expect* libraries, like this:
+
 ```javascript
 var expect = require('chai').expect;
 var assert = require('chai').assert;
 ```
-And use in the response of your functions like this:
+
+And use them in the response of your functions like this:
+
 ```javascript
 expect(err).to.be.null;
 expect(data).to.be.string;
 ```
+
 - This Test uses different mocks for functions and methods. For example:
 	- Proxyquire. This library override methods of a module behave like the original. The original method invokes the app.js file. The test mock this invocation.
 
@@ -479,7 +483,7 @@ expect(data).to.be.string;
         					{'../app':appMock});
         ```
 
-	- Sinon. Stub it allows us to preprogram the output method. This method is very interesting because us can try differents outputs "Ok" or "Error".
+	- Sinon. *Stubs* allow us to pre-define the output method. It allows to use different successful (Ok) or Error outputs.
 
         ```javascript
         var stub = sinon.stub(model.db, 'save');
@@ -493,13 +497,14 @@ expect(data).to.be.string;
         stub.yields(null, error);
         ```
 
-	- Sinon. Assert it allows us to know how many times we pass this method only once.
+	- Sinon. *Assert* allows to perform validations over how many times a method was called in tests.
 
 		```javascript
         sinon.assert.calledOnce(stub);
         ```
 
-- It's good practice to use a callback function (done), inside the 'it' unit case function to try all the validations and to finish the case. And example is the following:
+- It is considered a good practice to use a callback function called *done()*, inside the *it* unit case function to try all the validations and to finish the case. And example is the following:
+
 ```javascript
 controllerMock.store(args,function(err,data) {
     expect(data).to.be.an('Object');
@@ -510,22 +515,23 @@ controllerMock.store(args,function(err,data) {
     done();
 });
 ```
-- Another good practices is to use a "restore()" functions before finish test:
+
+- Another good practice is to use a *restore()* function before finishing the test:
+
 ```javascript
 stub.restore();
 ```
 
 #### Recommendations and some tips and tricks
 
-> - The same layer structure of files should be reflect in the test/unit directory. Example: If the app have directories with routes, controllers and models, is necessary to do the test for all the files.
-> - It's necessary to do a it test case for each function of the original file (model, controller, route).
+> - Directory structure in tests has to mimic the one in the app code.
+> - It is necessary to implement an it testcase for each function in the original file (model, controller, route).
 
 #### Hooks
 
-Hooks are functions that can be used to prepare and clean the environment before and after each test suite is executed. Hooks can use callbacks to defined if the beginning and end of the test suite case works fine. It's necessary to use this hooks always in a test suite case.
+Hooks are functions that can be used to prepare and clean the environment before and after each test suite is executed. 
 
-
-The following example, are hooks to create mock that will be used in different test, before and after the execution of test suite case:
+The following example uses hooks to create mocks used in different test, before and after the execution of test suite case:
 
 ```javascript
 before(function(done) {
@@ -573,7 +579,7 @@ my-application/
 
 #### Dependencies
 
-##### Instalation
+##### Installation
 
 Cucumber.js is available as an npm module. Install globally with:
 
@@ -589,14 +595,14 @@ $ npm install --save-dev cucumber
 
 ##### Develop and run test
 
-For checking response code and fields, maybe you also need:
+To check code and fields, you will also probably need:
 
 * chai
 * json-schema
 
 #### Features
 
-The acceptance-test features with user histories must be packed and stored in files with .feature extension. Must be stored in features folder. This Features are written using Gherkin language:
+The acceptance-test features with user histories must be packed and stored in files with *.feature* extension inside a *feature* folder. Those Features are written using Gherkin language:
 
 ``` gherkin
 # features/feature-file1.feature
@@ -612,62 +618,26 @@ Feature: Example feature
 		Then I should see "Usage" as the page title
 ```
 
-It's a best practice to store these files under /features in acceptance-test subfolder.
+It is not the purpose of this guide how to describe correct features in Gherkin, but there are a set of recommendations:
 
-It isn't the purpose of this article how to describe correct features in Gherkin, but there are a set of recommendations:
-
-1. Use Background and Scenario Outline if it's posible.
-2. Don't write large feature files. You can pack these features in more files. For example, if you have 24 scenarios for testing two different application param values, yo can choose:
+1. Use *Background* and *Scenario Outline* if it's posible.
+2. Do not write large feature files. You can pack these features in more files. For example, if you have 24 scenarios for testing two different application param values, you can choose:
 	* createnotification.feature (24 Scenarios). **NOT GOOD**
 	* createnotification_app1.feature (the first 12 Scenarios) and createnotification_app2.feature (the remaining 12 Scenarios). **BETTER**
 	* createnotification_app1_ok.feature (the first 2 Scenarios for app1), createnotification_app1_errors.feature (the remaining 10 Scenarios for app1), createnotification_app2_ok.feature (the first 2 Scenarios for app2) and createnotification_app2_errors.feature (the remaining 10 Scenarios for app2). **BEST**
 
 You can check the official cucumber github repository for a beggining guide [Feature-Introduction](https://github.com/cucumber/cucumber/wiki/Feature-Introduction)
 
-You can also check more examples how to describe Features using Gherkin in this [link](http://docs.behat.org/en/v2.5/guides/1.gherkin.html)
+You can also review more examples about how to describe Features using Gherkin in this [link](http://docs.behat.org/en/v2.5/guides/1.gherkin.html)
 
 
 #### Step Definitions
 
-Step definitions are defined in javascript files under my.application/features/step_definitions folder. This step definitions are
+Step definitions are defined in javascript files under *my.application/features/step_definitions* folder. This step definitions are
 
 Best practices:
-1. Don't write redundant or near Step definitions. Example:
-``` gherkin
-	Given(/^the following data for creating a notification:$/, function (table, callback) {
-		//step code
-	});
-
-	Given(/^the following data for creating a notification:$/, function (table, callback) {
-		//step code
-	});
-```
-or
-
-``` gherkin
-	Given(/^the following data for creating a notification:$/, function (table, callback) {
-		//step code
-	});
-
-	Given(/^the following data for create a new notification:$/, function (table, callback) {
-		//step code
-	});
-```
-
-You can use the same step definition for all of them.
-
-2. Don't write ambiguos or near Step definitions:
-``` gherkin
-	Given(/^the following signature "([^"]*)"$/, function (signature, callback) {
-		//step code
-	});
-
-	Given(/^the following "([^"]*)" signature$/, function (signature, callback) {
-		//step code
-	});
-```
-Those are the same definition for an unique step.
-
+1. Do not write redundant or very similar Step definitions. You can use the same step definition for all of them.
+2. Do not write ambiguous or very similar Step definitions. You can group them in an unique step.
 3. Group step definitions by functionality, and use only one for common step definitions. Example:
 
 ```
@@ -686,7 +656,7 @@ my-application/
 
 ```
 
-4. Gruop Given, When and Then step definitions in the same file section. Example:
+4. Group *Given*, *When* and *Then* step definitions in the same file section. Example:
 
 ``` gherkin
 	Given(/^step 1 definition$/, function (callback) {
@@ -746,18 +716,18 @@ module.exports = function () {
 	});
 };
 ```
-You can also check more examples how to describe Step definitions in this [link]
+You can also review more examples how to describe Step definitions in this [link]
 (https://github.com/cucumber/cucumber/wiki/Step-Definitions)
 
 #### Support Files
 
-Support files let you setup the environment in which steps will be run, and define step definitions. The most important support file is the World function, but you may need more functions for testing.
+Support files allows you to setup the environment in which steps will be run, and define step definitions. The most important support file is the *World* function, but you may need more functions for testing.
 
 The secondary files you need to develop and store are the hooks functions. These two with other acceptance-test functions files must be stored in support subfolder.
 
 #### World function
 
-World is a constructor function with utility properties, destined to be used in step definitions. World function file should have this desired structure:
+*World* is a constructor function with utility properties, intended to be used in step definitions. World function file should have this desired structure:
 
 1. Require section for imports.
 
@@ -769,9 +739,9 @@ World is a constructor function with utility properties, destined to be used in 
 
 5. Server properties and constants for making requests.
 
-6. Functions for start and stop a mock server for acceptance-tests.
+6. Functions for starting and stopping a mock server for acceptance-tests.
 
-7. Requests functions to call server endpoints you wish to call.
+7. Request functions to call server endpoints you wish to call.
 
 8. Client-side response methods for check if you receive the expected responses.
 
@@ -885,24 +855,25 @@ exports.World = World;
 
 #### Hooks
 
-Hooks are functions that can be used to prepare and clean the environment before and after each scenario is executed. Hooks can use callbacks, return promises, or be synchronous. The first argument to hooks is always the current scenario.
+Hooks are functions that can be used to prepare and clean the environment before and after each scenario is executed. Hooks can use callbacks, return promises, or can be synchronous. The first argument into hooks is always the current scenario.
 
 There are four different Hook function types:
-1. Scenario hooks: will be run before/after the first/last step of each scenario. They will run in the same order of which they are registered.
 
-2. Step hooks: will be run before/after every step of each scenario. Dos not work with scenarios which have backgrounds.
+1. Scenario hooks: will be run before/after the first/last step of each scenario. They will run in the same order they are registered.
 
-3. Tagged hooks: will be run before/after certain scenarios. You have to use tags for select subset of scenarios to run with this kind of hooks.
+2. Step hooks: will be run before/after every step of each scenario. They do not work in scenarios with backgrounds.
+
+3. Tagged hooks: will be run before/after certain scenarios. You have to use tags to select a subset of scenarios to run with this kind of hooks.
 
 4. Global hooks: will be run once before any scenario is run.
 
-Best practices for using Hooks, are:
+Best practices about hooks follow:
 
-* Pack all of them in a single file.
-* Store this file with World function file.
+* Pack all hooks in a single file.
+* Store this file with *World* function file.
 * Use a little set of hooks.
 
-The following example are hooks for clean data repository (in mongoDB) before every scenario, and start/stop server in every Scenario:
+The following example are hooks for cleaning data repository (in mongoDB) before every scenario, and start/stop server in every Scenario:
 
 ```javascript
 var expect = require('chai').expect,
@@ -941,7 +912,7 @@ module.exports = hooks;
 ### Integration Testing with Mocha
 
 #### Focusing
-Integration testing is where we write end-to-end tests, verifying the state of the app/UI along the way.
+Integration testing is where end-to-end tests are written, verifying the state of the app/UI along the way.
 
 #### Structure for Integration Testing
 
@@ -962,18 +933,18 @@ my-application/
 
 ##### Installation
 
-Mocha.js are available as a npm module, it should be install globally with:
+*Mocha.js* are available as a npm module, it should be installed globally with:
 
 ``` shell
 $ npm install -g mocha
 ```
 
-And locally in your project as a development dependency of your application with:
+And locally inside your project as a development dependency for your application with:
 ``` shell
 $ npm install --save-dev mocha
 ```
 
-And also is necessary Chai.js and can be install locally as a development dependency with:
+It is also necessary to install *Chai.js* locally as a development dependency with:
 ``` shell
 $ npm install --save-dev chai
 ```
@@ -981,7 +952,9 @@ $ npm install --save-dev chai
 #### Develop an run test
 
 ##### Describes and it functions
-The purpose of integration testing is to verify functional, performance, and reliability requirements placed on major design items. These "design items", i.e., assemblages (or groups of units), are exercised through their interfaces using black box testing, success and error cases being simulated via appropriate parameter and data inputs. Simulated usage of shared data areas and inter-process communication is tested and individual subsystems are exercised through their input interface. Test cases are constructed to test whether all the components within assemblages interact correctly, for example across procedure calls or process activations, and this is done after testing individual modules, i.e., unit testing. The overall idea is a "building block" approach, in which verified assemblages are added to a verified base which is then used to support the integration testing of further assemblages.
+The purpose of integration testing is to verify functional, performance, and reliability requirements placed on major design items. These "design items", i.e., assemblages (or unit groups), are exercised through their interfaces using black box testing, success and error cases being simulated via appropriate parameter and data inputs. 
+
+Simulated usage of shared data areas and inter-process communication is tested and individual subsystems are exercised through their input interface. Test cases are implemented to test whether all components within assemblages interact correctly, for example across procedure calls or process activations. This is done after testing individual modules, i.e., unit testing. The overall idea is a "building block" approach, in which verified assemblages are added to a verified base which is then used to support the integration testing of further assemblages.
 
 A structure example is the following:
 
@@ -1119,21 +1092,21 @@ describe('INTEGRATION TEST - object', function () {
 
 #### Use cases
 
-- To implement the different validations options you need to import the assert and expect libraries, you can do this with:
+- To implement different validation options you need to import the *assert* and *expect* libraries, you can do this with:
 
     ```javascript
 var assert = require('chai').assert;
     ```
 
-	And use in the response of your functions like this:
+And use them in your functions' responses like this:
 
     ``` javascript
 assert.equal(res.status, 200);
     ```
 
-- It's good practice to use a callback function (done), inside the 'it' integration case function to try all the validations and to finish the case. And example is the following:
+- It is good practice to use a callback function *done()*, inside the 'it' integration case function to try all the validations and to finish the case. And example is the following:
 
-    ```javascript
+```javascript
 .end(function (err, res) {
     if (err)
         done(err);
@@ -1144,23 +1117,24 @@ assert.equal(res.status, 200);
         }, 10000);
     }
 });
-    ```
+```
 
-- To do a test of a route file, to simulate a http call with methods get, post or another, you need the library supertest, you can install as development dependency with:
+- To implement a route file test simulating an http call with get, post or other methods, you need the *supertest* library, which you can install as development dependency with:
 
-    ```javascript
+```javascript
 $ npm install --save-dev supertest
-    ```
+```
 
-- You can import with:
+- You can import it with:
 
-    ```javascript
+```javascript
 var supertest = require('supertest');
 var request = supertest('http://' + config.server.host);
-    ```
-- And you can use this library to try a url with http method post in a it test case function like this example:
+```
 
-	```javascript
+- And you can use this library to try a url with post http method in an it test case function like this example:
+
+```javascript
 it('Should execute ok', function (done) {
     request.post('/api/execute')
         .set('Accept', 'application/json')
@@ -1178,11 +1152,11 @@ it('Should execute ok', function (done) {
             }
         });
 });
-	```
+```
 
-- Also it's a good practice to do a test cases with wrong data to try the error exceptions like this example:
+- Also it is a good practice to implement test cases with wrong data to try the error exceptions like this example:
 
-    ```javascript
+```javascript
 it('Should fail validate', function (done) {
     request.post('/api/execute')
         .set('Accept', 'application/json')
@@ -1198,52 +1172,52 @@ it('Should fail validate', function (done) {
             }
         });
 });
-    ```
+```
 
 #### Recommendations and some tips and tricks
 
-> - For model test you need to create a test enviroment with diferent information about start port, database name, etc... because the execution of tests can't interrupt or save data in a execution enviroment. Example: config.server.port
+> - To model tests you need to create a test environment with different information about start port, database name, etc... because the tests execution can not interrupt or save data in a execution environment. Example: *config.server.port*
 > - Use a mock file to get some fake data to store and delete in a test database to try the model functions of crud operations.
 
 You can get more information about Mocha and Chai in detail from both [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/)
 
 ## Best Practices
 
-This brief section it's intended to give some easy and quick tips to rememeber during any Node.js development.
+This brief section is intended to give some easy and quick tips to remember during any Node.js development.
 
 * Modularize developments as far as possible.
-* Use [Javascript patterns](../../frontend/general/javascript/patterns) as possible.
-* Strict mode, please. With this flag you can opt in to use a restricted variant of JavaScript. It eliminates some silent errors and will throw them all the time.
+* Use [Javascript patterns](../../frontend/general/javascript/patterns) as much possible.
+* Use *Strict* mode. With this flag you can opt in to use a restricted variant of JavaScript. It eliminates some silent errors and will throw them all the time.
 * Use tools for Static code analysis. Use either JSLint, JSHint or ESLint. Static code analysis can catch a lot of potential problems with your code early on.
-* No eval, or friends. Eval is not the only one you should avoid, in the background each one of the following expressions use eval: setInterval(String, 2), setTimeout(String, 2) and new Function(String). But why should you avoid eval? It can open up your code for injections attacks and is slow (as it will run the interpreter/compiler).
-* Use a framework that helps us to structure the project.
-* Don't use deprecated versions of Express (for example 2.x and 3.x are no longer maintained). Security and performance issues in these versions won’t be fixed.
+* No eval, or friends. Eval is not the only one you should avoid, in the background each one of the following expressions use eval: *setInterval(String, 2)*, *setTimeout(String, 2)* and *new Function(String)*. Why should you avoid eval? It can open up your code for injections attacks and is slow (as it will run the interpreter/compiler).
+* Use a framework that helps you to structure the project.
+* Never use deprecated versions of Express (for example 2.x and 3.x are no longer maintained). Security and performance issues in these versions will not be fixed.
 * Complete your developments with automated testing.
 * Always use a CVS like GIT, SVN, and follow its best practices like GitFlow, Trunk, Branching,...
 
-* Avoid using console.log() in your code.
-* Using configuration files against variables for ports, ips of other machines, ...
-* Implement differente logs for application and for Node.js.
+* Avoid usage of *console.log()* in your code.
+* Always use configuration files instead of variables for ports, ips of other machines, ...
+* Implement different logs for application and for Node.js.
 * Use ES6 new features i.e. arrow function, to make the Scope safety and your code more concise and clarity. Check the examples in the Javascript section of this guide: [Arrow Functions](https://github.com/beeva/beeva-best-practices/tree/master/frontend/general/javascript/es6#arrow_functions).
 * Use domains facing try-catch blocks for error handling.
 * In public servers add a safety middleware as [helmet](https://www.npmjs.com/package/helmet) or [lusca](https://www.npmjs.com/package/lusca).
 
 * Include and maintain [package.json](https://docs.npmjs.com/files/package.json) file with the version number (using *$npm init*).
 * Mark the package as private: true to its release.
-* For production applications control the version number of our units (according to criticity of the project set to minor or patch).
+* For production applications control the version number of your units (according to importance of the project set to minor or patch).
 * Define and test entry points in the distribution file [package.json](https://docs.npmjs.com/files/package.json#scripts).
 * Use *DevDependencies* and *Dependencies* sections of [package.json](https://docs.npmjs.com/files/package.json#dependencies).
 * Use [retire](https://www.npmjs.com/package/retire) to verify outdated or unsafe dependencies.
-* Do not install units in our global development environment.
+* Do not install units in the global development environment.
 * Before deployments delete the *node_modules* folder and check file dependencies [package.json](https://docs.npmjs.com/files/package.json).
 
 * Use tools like [PM2](https://www.npmjs.com/package/pm2) or [forever](https://www.npmjs.com/package/forever) as a tool for application restart.
 
 * [Use LTS versions of Node.js for Production](https://nodejs.org/en/blog/community/node-v5/), since 4.2.* all even versions are *LTS* and odd like 5.3.* are *Stable with latest features*.
-* Install node and npm interperters localy through [NVN](https://github.com/creationix/nvm) without using sudo.
+* Install node and npm interpreters localy through [NVN](https://github.com/creationix/nvm) without using sudo.
 * Clear the local cache after each update NPM version: *$npm cache clean*
 
-Another interesting point thinking on how web applications should be written it's follow [The Twelve-Factor application manifesto](http://12factor.net/).
+Another interesting point thinking on how web applications should be written is following the [The Twelve-Factor application manifesto](http://12factor.net/).
 
 * One codebase tracked in revision control, many deploys.
 * Explicitly declare and isolate dependencies.

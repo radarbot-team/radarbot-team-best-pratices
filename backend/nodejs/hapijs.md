@@ -4,9 +4,9 @@
 
 Hapi is a rich framework for building applications and services that allows developers to focus on writing reusable application logic instead of spending time building infrastructure.
 
-Hapi's extensive plugin system allows us to quickly build, extend, and compose brand-specific features on top of its rock-solid architecture.
+*Hapi* plugin system allows to quickly build, extend, and compose brand-specific features on top of its rock-solid architecture.
 
-In this guide we're going to cover this areas:
+In this guide, the following sections are covered:
 * [Hello World](#hello-world)
 * [Application structure](#application-structure)
 * [Plugins](#plugins)
@@ -14,7 +14,7 @@ In this guide we're going to cover this areas:
 
 ## Hello World
 
-Here is a basic example in **Hapi** to launch an application and to open *http://localhost:8000/hello* in your browser:
+Here is a basic example in *Hapi* to launch an application and to open *http://localhost:8000/hello* in your browser:
 
 ```javascript
 'use strict';
@@ -41,9 +41,9 @@ server.start(() => {
 });
 ```
 
-As we mentioned sooner, the Hapi's great power are the plugins. Hapi has an extensive and powerful plugin system that allows you to very easily break your application up into isolated pieces of business logic, and reusable utilities.'use strict';
+*Hapi*'s great power relies in the extensive and powerful plugin system that allows you to very easily break your application up into isolated pieces of business logic, and reusable utilities.
 
-There are a lot of plugins in the community but we can write our own plugin so easy. A very simple plugin looks like:
+A very rich set of plugins is available in the community, but custom plugins can be also used if required. A very simple plugin looks like:
 
 ```javascript
 exports.register = (server, options, next) => {
@@ -59,11 +59,11 @@ exports.register.attributes = {
 };
 ```
 
-The **options** parameter is the custom configuration when you use the plugin. The **next** is a method to be called when the plugin has completed the steps to be registred. And the **server** object is a reference to the *server* your plugin is being loaded in.
+The *options* parameter is the custom configuration when you use the plugin. The *next* is a method to be called when the plugin has completed the steps to be registered. Finally, the *server* object is a reference to the *server* your plugin is being loaded in.
 
-Additionally, the **attributes** is an object to provide some additional information about the plugin, as name or version.
+Additionally, *attributes* is an object to provide some additional information about the plugin, as name or version.
 
-If we want to use a plugin, first at all we need register it in the server. For example:
+In order to use a plugin, it needs to be registered in the server. For example:
 
 ```javascript
 // load one plugin
@@ -102,7 +102,7 @@ server.register(
 
 ## Application structure
 
-To create a new API server with **Hapi** we can use the following structure:
+To create a new API server with *Hapi*, the following structure can be used:
 
 ```
 + server
@@ -130,7 +130,7 @@ To create a new API server with **Hapi** we can use the following structure:
 |- package.json
 ```
 
-The **app.js** file is the main file of the application. We start the server here and configure all the plugins.
+The *app.js* file is the main file of the application. The server is started and configured like this:
 
 ```javascript
 import Hapi from 'hapi';
@@ -165,7 +165,7 @@ server.register([
 );
 ```
 
-In the **routes.js** file is configured all routes of the services. We define the routes as a plugin:
+In the *routes.js* file, all service routes are configured in a plugin:
 
 ```javascript
 /**
@@ -186,7 +186,7 @@ exports.register.attributes = {
 };
 ```
 
-In **config/environment** we put the external configuration of the application by enviroments. The **plugins** folder contains all the custom plugins that we need: routes, scheduler, utils... And finally, in **api** folder there is all the endpoints/services of the application. Each set of endpoints is a individual folder with the *index.js* and the *controller.js*.
+In *config/environment*, external application's configuration is placed by environment. The *plugins* folder contains all needed custom plugins : routes, scheduler, utils... And finally, *api* folder contains all application's endpoints/services. Each set of endpoints is an individual folder with the *index.js* and the *controller.js*.
 
 **index.js**
 ```javascript
@@ -244,7 +244,7 @@ export const remove = (req, res, next) => res({}).code(200);
 
 ## Plugins
 
-There is a large set of plugins for Hapi, with which we can perform simple and configurable way a number of standard tasks. We will list the best known and used by the community and its primary mission:
+There is a large set of plugins for *Hapi* to implement a very rich number of standard tasks. The most popular ones are the following:
 
 **Authentication**
 
@@ -285,7 +285,7 @@ There is a large set of plugins for Hapi, with which we can perform simple and c
 
 ## API
 
-Hapi has a fairly extensive [API](http://hapijs.com/api), that we can refer to develop new functionality on the applications.
+*Hapi* has a fairly extensive [API](http://hapijs.com/api), that we can refer to develop new functionality on the applications.
 
 The API is divided in four blocks:
 

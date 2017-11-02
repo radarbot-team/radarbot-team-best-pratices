@@ -2,7 +2,7 @@
 
 # Node.js Style Guide & Best Pratices: Restify
 
-Restify is a light framework similar to Express and very easy for building REST APIs. This is the easy way to create a REST API application:
+*Restify* is a light framework similar to Express and very easy for building REST APIs.
 
 In this guide we're going to cover these areas about using Restify in our apps:
 
@@ -10,6 +10,7 @@ In this guide we're going to cover these areas about using Restify in our apps:
 * [Application Structure](#application-structure)
 
 ## Hello World
+This is the easy way to create a REST API application:
 
 ``` javascript
 import restify from 'restify';
@@ -26,7 +27,7 @@ server.listen(3000, () => {
 
 ## Application Structure
 
-This is one of desired structure for restify server application:
+One of the most common file hierarchy is presented below:
 
 ```
 my-application/
@@ -93,13 +94,13 @@ my-application/
 
 ### server.js
 
-1. Import 'restify', 'q' dependencies and 'static-server.js', '/lib/log/logger.js' user files.
+1. Import *restify*, *q* dependencies and *static-server.js*, */lib/log/logger.js* user files.
 2. Start function.
-3. Restify's createServer function invocation.
+3. *Restify*'s *createServer()* function invocation.
 4. Launch server database repository.
-5. Set restify server functions like CORS filters, Oauth settings, parsers, etc...
+5. Set *restify* server functions like CORS filters, Oauth settings, parsers, etc...
 6. Launch server listener for catching requests.
-7. Stop function.
+7. *stop()* function.
 
 ```javascript
 import restify from 'restify'; //1
@@ -191,7 +192,7 @@ module.exports = (() => {
 
 ### static-server.js
 
-This file it's recommended for creating listener to server.
+This file is recommended for creating listener to server.
 
 ```javascript
 import restify from 'restify';
@@ -222,7 +223,7 @@ module.exports = (() => {
 
 ### bin/www
 
-This file it's recommended for starting application server.
+This file is recommended for starting application server.
 
 ```javascript
   import server from '../server');
