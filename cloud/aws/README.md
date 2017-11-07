@@ -985,16 +985,20 @@ Therefore, protect your AWS account access key like you would your credit card n
 ---
 ### Lambda
 
-AWS Lambda is a compute service where you can upload your code to AWS Lambda and the service can run the code on your behalf using AWS infrastructure. After you upload your code and create what we call a Lambda function, AWS Lambda takes care of provisioning and managing the servers that you use to run the code. 
+AWS Lambda is a serverless compute service to allow you running code in response to events managing automatically the underlying compute resources for you, so just have to upload the code to AWS Lambda and the service can run the code on your behalf using AWS infrastructure. After you upload your code and create what is called a Lambda function, AWS Lambda takes care of provisioning and managing the servers that you use to run the code. 
 
-The following are recommended best practices for using AWS Lambda:
+The following are some of the recommended best practices for using AWS Lambda:
 
 * Write your Lambda function code in a stateless style, and ensure there is no affinity between your code and the underlying compute infrastructure.
 * Lower costs and improve performance by minimizing the use of startup code not directly related to processing the current event.
 * Use the built-in CloudWatch monitoring of your Lambda functions to view and optimize request latencies.
-* Delete old Lambda functions that you are no longer using.
-* Use Lambda function versioning and aliases  to better manage your in-production Lambda function code
-* Test your functions before enable your event sources
+* Get rid of unused functions deleting old Lambda functions no longer used.
+* Use Lambda function versioning and aliases to better manage your in-production Lambda function code
+* Test your functions before enable your event sources, also with different batch and record sizes
+* Load test your Lambda function to determine an optimum timeout value
+* It is very useful to know the AWS Lambda Limits such as the payload size, file descriptors and temp folder space.
+
+You can find more best practices in the [AWS Lambda Oficial Documentation](http://docs.aws.amazon.com/lambda/latest/dg/best-practices.html)
 
 ---
 ### SQS
