@@ -16,7 +16,7 @@
     * [Storage](#storage)
         * [Bigtable](#bigtable)
         * [Datastore](#datastore)
-        * [Cloud Storage](#cloud-storage)
+        * [Storage](#storage)
         * [SQL](#sql)
         * [Spanner](#spanner)
     * [Networking](#networking)
@@ -36,7 +36,7 @@
         * [Endpoints](#endpoints)
     * [Big Data](#big-data)
         * [BigQuery](#bigquery)
-        * [Pub/Sub](#pub/sub)
+        * [Pub/Sub](#pub-sub)
         * [Dataproc](#dataproc)
         * [Dataflow](#dataflow)
         * [ML Engine](#ml-engine)
@@ -126,7 +126,7 @@ while another type is intended to archive data that will be accessed no more tha
 
 The following link shows all different options to storage: https://cloud.google.com/storage-options/
 
-#### Cloud Storage
+#### Storage
 
 ##### Storage class
 
