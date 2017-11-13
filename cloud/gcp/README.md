@@ -20,9 +20,6 @@
         * [SQL](#sql)
         * [Spanner](#spanner)
     * [Networking](#networking)
-        * [VPC network](#vpc-network)
-        * [Network services](#network-services)
-        * [Interconnect](#interconnect)
     * [Stackdriver](#stackdriver)
         * [Monitoring](#monitoring)
         * [Debug](#debug)
@@ -185,6 +182,8 @@ Subnets can also help us organize the project VM instances. Subnets are ranges o
 
 Some Cloud Platform resources can be created in specific regions and zones, such as VM instances, App Engine applications and BigQuery datasets. It's important to have this on mind, since regions and zones represent specific geographical locations, and a good design of the resources distribution can achieve an adequate service redundancy or minimize the latency in the accesses to them.
 
+---
+
 ### Stackdriver
 
 TBD
@@ -250,8 +249,6 @@ TBD
 TBD
 
 #### ML Engine
-
-
 
 #### Dataprep
 
