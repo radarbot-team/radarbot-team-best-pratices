@@ -173,30 +173,17 @@ TBD
 
 ### Networking
 
-Cada proyecto Cloud Platform dispone de serie de 5 redes independientes. Los recursos de un proyecto pueden organizarse usando estas redes, incluso si están distribuidos en distintas regiones, ya que las IPs que manejan son globales. En caso de ser necesario, la cuota de redes puede aumentarse hasta un número de 15 por proyecto.
+Each Cloud Platform project has 5 independent networks. The resources within a project can be organized using these networks, even if they are distributed in different regions, since the IPs they manage are global. If necessary, this network quota can be increased to 15 per project.
 
-El tráfico de red de entrada a las instancias de VMs y balanceadores de carga pueden configurarse a través de reglas de firewall para, por ejemplo, gestionar el escalado de los clústeres. Por otro lado, para controlar el tráfico de red de salida deben usarse rutas. A modo de ejemplo, con las rutas puede derivarse todo el tráfico a un rango de IPs corporativo a través de una VPN. Si se necesita un grano de control que llegue a nivel de puerto, deben configurarse las iptables a nivel de instancia de VM.
+Incoming network traffic to the VM instances and the load balancers can be configured through firewall rules to, for example, manage the clusters autoscaling. Also, routes must be used to control the outgoing network traffic. As an example, you can use routes to derive all the traffic to a specific range of corporate IPs through a VPN. If a low level control is a must, you can configure the iptables in every single VM instance.
 
-Cada nueva instancia de VM adquiere una dirección IP interna que puede usar para comunicarse con otras instancias de la misma red. Se puede adjuntar, además, una dirección IP pública efímera o estática para habilitar en la instancia el acceso a recursos externos a la red, incluidas las API de Cloud Platform; en este caso, lo ideal es limitar el tráfico entrante en estas instancias haciendo uso de reglas de firewall.
+Each new VM instance acquires an internal IP address that it can use to communicate with other instances of the same network. An ephemeral or static public IP address may also be attached to the VM instance to enable access to external resources, including the Cloud Platform APIs; in this case, a best practice is to limit the incoming traffic in these instances by using firewall rules.
 
-Si se requiere que las instancias sean exclusivamente internas, es necesario configurar un Proxy NAT para que puedan acceder a internet. El acceso vía SSH a estas instancias de VM no puede hacerse de manera directa; se hará a través de una instancia de VM bastionada propiamente configurada.
+If the VM instances are required to be exclusively internal, you must configure a NAT Proxy so that they can access the internet. The access via SSH to these VM instances can not be done directly; a bastion VM instance properly configured must be used instead.
 
-Las subredes también pueden ayudarnos a organizar las instancias de VMs de un proyecto. Las subredes son rangos de IPs no públicos, por lo que no dependen de una red principal común. Al igual que las redes, pueden aprovecharse del enrutado del tráfico mediante el uso de reglas de firewall y rutas.
+Subnets can also help us organize the project VM instances. Subnets are ranges of non-public IPs, so they don't depend on a main common network. Like networks, they can take advantage of traffic routing by using firewall rules and routes.
 
-Ciertos recursos de Cloud Platform pueden crearse en regiones y zonas específicas, como pueden ser instancias de VMs de Compute Engine, aplicaciones de App Engine o datasets de BigQuery. Es importante tener esto en cuenta, ya que las regiones y zonas representan ubicaciones geográficas concretas, y un buen diseño de distribución de recursos puede lograr una redundancia de servicio adecuada o minimizar la latencia en los accesos a éstos.
-
-
-#### VPC network
-
-TBD
-
-#### Network services
-
-TBD
-
-#### Interconnect
-
-TBD
+Some Cloud Platform resources can be created in specific regions and zones, such as VM instances, App Engine applications and BigQuery datasets. It's important to have this on mind, since regions and zones represent specific geographical locations, and a good design of the resources distribution can achieve an adequate service redundancy or minimize the latency in the accesses to them.
 
 ### Stackdriver
 
