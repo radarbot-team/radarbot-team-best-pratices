@@ -99,7 +99,17 @@ TBD
 
 #### Cloud Functions
 
-TBD
+Google Cloud Functions is a **serverless compute service** that allow to write business logic for building and connecting cloud services. This solution grants Functions as a Service (FaaS) what abstract the developers completely from managing any server or runtime environment and being free of any system maintenance. This benefit is translated into elastic scalability without worrying about provisioning any infrastructure.
+
+In its beta release, the only supported language for writing code is JavaScript and execute in a standard Node.js runtime environment. The powers of npm and package.json can be use to resolve dependencies.
+
+**Connect and extend cloud services**. It has the feature of being able to integrate with the rest of Google services through a connective layer of logic allowing to develop use cases with event-drive code. 
+
+**Service execution in response to events**. Configure the functions as a response of different cloud events with a trigger. Nowadays, Cloud Functions supports events form HTTP, Cloud Storage, Cloud Pub/Sub, Firebase (DB, Storage, Analytics, Auth) and Stackdriver Logging.
+
+**Microservices over monoliths**. As much as you want to speed up your development, this service helps to compile systems composed of small and independent units of code whose functionality focuses on doing a single task efficiently. Instead of having to deploy applications as monoliths, you can create services in a single function to offer a new solution in form of microservices.
+
+**Serverless economics**. Cloud Functions are invoiced on demand based on the execution time (down to 100 milliseconds), therefore you will pay as long as the function is active.
 
 ---
 
