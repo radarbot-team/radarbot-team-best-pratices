@@ -121,9 +121,13 @@ Variations within each service complicate things. For example, Cloud Storage sto
 However, one type of Cloud Storage is good for streaming video,
 while another type is intended to archive data that will be accessed no more than once a year.
 
-The following link shows all different options to storage: https://cloud.google.com/storage-options/
-
 #### Storage
+
+Google Cloud Storage is the object storage service to files, from file service to analytics/ML and to backup information for near and longtime periods.
+
+Includes features like lifecycle management, versioned, deletion policies, scalability, durability, availability and consistency, and a price that adapts to the needs of each client or business.
+
+Each object is grouped in Buckets, and is important to apply an access policy for the different objects.
 
 ##### Storage class
 
@@ -136,21 +140,6 @@ The following link shows all different options to storage: https://cloud.google.
 | Duration        | Hot data       | Hot data       | 30 day minimum | 90 day minimum |
 | Retrieval cost  | none           | none           | $        | $$ |
 
-###### Regional
-
-TBD
-
-###### Multi-Regional
-
-TBD
-
-###### Nearline
-
-TBD
-
-###### Coldline
-
-TBD
 
 #### Cloud SQL
 
@@ -167,6 +156,8 @@ TBD
 #### Bigtable
 
 TBD
+
+The following link shows all different options to storage in more detail: https://cloud.google.com/storage-options/
 
 ### Networking
 
