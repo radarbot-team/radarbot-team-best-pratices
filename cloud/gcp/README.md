@@ -99,9 +99,9 @@ TBD
 
 #### Cloud Functions
 
-Google Cloud Functions is a **serverless compute service** that allow to write business logic for building and connecting cloud services. This solution grants Functions as a Service (FaaS) what abstract the developers completely from managing any server or runtime environment and being free of any system maintenance. This benefit is translated into elastic scalability without worrying about provisioning any infrastructure.
+Google Cloud Functions is a **serverless compute service** that allows to write business logic for building and connecting cloud services. This solution grants Functions as a Service (FaaS) what abstracts developers completely from managing any server or runtime environment and being free of any system maintenance. This benefit is translated into elastic scalability without worrying about provisioning any infrastructure.
 
-In its beta release, the only supported language for writing code is JavaScript and execute in a standard Node.js runtime environment. The powers of npm and package.json can be use to resolve dependencies.
+In its beta release, the only supported language for writing code is JavaScript and executes in a standard Node.js runtime environment. The powers of npm and package.json can be used to resolve dependencies.
 
 **Connect and extend cloud services**. It has the feature of being able to integrate with the rest of Google services through a connective layer of logic allowing to develop use cases with event-drive code. 
 
@@ -110,6 +110,23 @@ In its beta release, the only supported language for writing code is JavaScript 
 **Microservices over monoliths**. As much as you want to speed up your development, this service helps to compile systems composed of small and independent units of code whose functionality focuses on doing a single task efficiently. Instead of having to deploy applications as monoliths, you can create services in a single function to offer a new solution in form of microservices.
 
 **Serverless economics**. Cloud Functions are invoiced on demand based on the execution time (down to 100 milliseconds), therefore you will pay as long as the function is active.
+
+Due to the beta release, there are some restrictions to take into account:
+- The API might be changed in backward-incompatible ways and is not subject to any SLA or deprecation policy.
+- There is only one option of region to choose: us-central1.
+- Google Cloud Functions offers the feature of a Cloud Functions Local Emulator that allows to deploy, run and debug the cloud functions on your local machine. 
+    - Google do not recommend the use of this feature for production.
+    - Those functions deployed in the Local Emulator whose triggers are non-HTTP (like Pub/sub or Storage) will not be invoked by the services. As long as the purpose of the Emulator is as a development environment, if you want to invoke these functions, you have to call them manually.  
+
+Best practices:
+- Avoiding the continuous running of a function and the possibility to be forcibly terminated by the system. There are two approaches depending on the kind of the function. For HTTP functions, the solution is calling a termination method like send(), json() or end(), once the function has been completed. On the other hand, for background functions, you could either invoke the callback argument or return a Promise when the function has finished. 
+   
+- In order to resist the temporary errors of the code, there is an option of "Retry on failure" included in the cloud functions. By default it is disabled and if the function fails there is no attempt to execute it again. Enabling this option, if for any reason, including code errors, the function fails, it will try again for a maximum of seven days. 
+
+By last, there are several warnings that are good to know:
+- Those functions written by the Firebase SDK can not be deployed using the gcloud command-line tools and vice versa.
+- If the project ID contain a colon, functions with HTTP(S) triggers are not supported.
+- When a project is deleted, the whole work of this project will too and the project ID can not ever be used again.
 
 ---
 
