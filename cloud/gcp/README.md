@@ -121,7 +121,7 @@ Variations within each service complicate things. For example, Cloud Storage sto
 However, one type of Cloud Storage is good for streaming video,
 while another type is intended to archive data that will be accessed no more than once a year.
 
-#### Storage
+#### Cloud Storage
 
 Google Cloud Storage is the object storage service to files, from file service to analytics/ML and to backup information for near and longtime periods.
 
