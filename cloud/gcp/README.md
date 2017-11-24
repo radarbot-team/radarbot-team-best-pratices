@@ -6,40 +6,40 @@
 
 * [Introduction](#introduction)
 * [Services](#services)
-    * [IAM](#iam)
-    * [APIs](#apis)
+    * IAM
+    * APIs
     * [Compute](#compute)
-        * [App Engine](#app-engine)
-        * [Compute Engine](#compute-engine)
-        * [Container Engine](#container-engine)
+        * App Engine
+        * Compute Engine
+        * Container Engine
         * [Cloud Functions](#cloud-functions)
     * [Storage](#storage)
-        * [Bigtable](#bigtable)
-        * [Datastore](#datastore)
-        * [Storage](#storage)
-        * [SQL](#sql)
-        * [Spanner](#spanner)
+        * [Cloud Storage](#cloud-storage)
+        * Bigtable
+        * Datastore
+        * SQL
+        * Spanner
     * [Networking](#networking)
-    * [Stackdriver](#stackdriver)
-        * [Monitoring](#monitoring)
-        * [Debug](#debug)
-        * [Trace](#trace)
-        * [Logging](#logging)
-        * [Error Reporting](#error-reporting)
-    * [Tools](#tools)
-        * [Container Registry](#container-registry)
-        * [Source Repositories](#source-repositories)
-        * [Deployment Manager](#deployment-manager)
-        * [Endpoints](#endpoints)
-    * [Big Data](#big-data)
-        * [BigQuery](#bigquery)
-        * [Pub/Sub](#pub-sub)
-        * [Dataproc](#dataproc)
-        * [Dataflow](#dataflow)
-        * [ML Engine](#ml-engine)
-        * [Dataprep](#dataprep)
-        * [Datalab](#datalab)
-        * [Data Studio](#data-studio)
+    * Stackdriver
+        * Monitoring
+        * Debug
+        * Trace
+        * Logging
+        * Error Reporting
+    * Tools
+        * Container Registry
+        * Source Repositories
+        * Deployment Manager
+        * Endpoints
+    * Big Data
+        * BigQuery
+        * Pub/Sub
+        * Dataproc
+        * Dataflow
+        * ML Engine
+        * Dataprep
+        * Datalab
+        * Data Studio
 * [References](#references)
 
 ---
@@ -65,37 +65,7 @@ The structure of GCP is composed by projects and resources (included in projects
 
 ## Services
 
-### IAM
-
-TBD
-
----
-
-### APIs
-
-TBD
-
----
-
 ### Compute
-
-TBD
-
-
-#### App Engine
-
-TBD
-
-
-#### Compute Engine
-
-TBD
-
-
-#### Container Engine
-
-TBD
-
 
 #### Cloud Functions
 
@@ -148,9 +118,11 @@ Variations within each service complicate things. For example, Cloud Storage sto
 However, one type of Cloud Storage is good for streaming video,
 while another type is intended to archive data that will be accessed no more than once a year.
 
-The following link shows all different options to storage: https://cloud.google.com/storage-options/
+#### Cloud Storage
 
-#### Storage
+Google Cloud Storage is the object storage service to files, from file service to analytics/ML and to backup information for near and longtime periods.
+Includes features like lifecycle management, versioned, deletion policies, scalability, durability, availability and consistency, and a price that adapts to the needs of each client or business.
+Each object is grouped in Buckets, and is important to apply an access policy for the different objects.
 
 ##### Storage class
 
@@ -163,37 +135,16 @@ The following link shows all different options to storage: https://cloud.google.
 | Duration        | Hot data       | Hot data       | 30 day minimum | 90 day minimum |
 | Retrieval cost  | none           | none           | $        | $$ |
 
-###### Regional
+##### Best practices
 
-TBD
+- Buckets and objects names are global unique and publicly visible, consider using them that best identifies your business, this is a guidelines that can help you: https://cloud.google.com/storage/docs/naming
+- Protect the objects and buckets with access control lists.
+- Enable the object versioning to avoid lost old versions of your data.
+- Enable the lifecycle management to delete or change the storage class for the older objects versions.
 
-###### Multi-Regional
+The following link shows all different options to storage in more detail: https://cloud.google.com/storage-options/
 
-TBD
-
-###### Nearline
-
-TBD
-
-###### Coldline
-
-TBD
-
-#### Cloud SQL
-
-TBD
-
-#### Cloud Spanner
-
-TBD
-
-#### Datastore
-
-TBD
-
-#### Bigtable
-
-TBD
+---
 
 ### Networking
 
@@ -208,86 +159,6 @@ If the VM instances are required to be exclusively internal, you must configure 
 Subnets can also help us organize the project VM instances. Subnets are ranges of non-public IPs, so they don't depend on a main common network. Like networks, they can take advantage of traffic routing by using firewall rules and routes.
 
 Some Cloud Platform resources can be created in specific regions and zones, such as VM instances, App Engine applications and BigQuery datasets. It's important to have this on mind, since regions and zones represent specific geographical locations, and a good design of the resources distribution can achieve an adequate service redundancy or minimize the latency in the accesses to them.
-
----
-
-### Stackdriver
-
-TBD
-
-#### Monitoring
-
-TBD
-
-#### Debug
-
-TBD
-
-#### Trace
-
-TBD
-
-#### Logging
-
-TBD
-
-#### Error Reporting
-
-TBD
-
----
-
-### Tools
-
-#### Container Registry
-
-TBD
-
-#### Source Repositories
-
-TBD
-
-#### Deployment Manager
-
-TBD
-
-#### Endpoints
-
-TBD
-
----
-
-### Big Data
-
-#### BigQuery
-
-TBD
-
-#### Pub/Sub
-
-TBD
-
-#### Dataproc
-
-TBD
-
-#### Dataflow
-
-TBD
-
-#### ML Engine
-
-#### Dataprep
-
-TBD
-
-#### Datalab
-
-TBD
-
-#### Data Studio
-
-TBD
 
 ---
 
