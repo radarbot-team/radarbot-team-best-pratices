@@ -1228,7 +1228,7 @@ func main() {
 }
 ~~~
 
-### Unused Variables
+### Unused Variables
 
 **Wrong**
 
@@ -1329,7 +1329,7 @@ func main() {
 }
 ~~~
 
-### Redeclaring Variables Using Short Variable Declarations
+### Redeclaring Variables Using Short Variable Declarations
 
 **Wrong**
 
@@ -1355,7 +1355,7 @@ func main() {
 }
 ~~~
 
-### Can't Use Short Variable Declarations to Set Field Values
+### Can't Use Short Variable Declarations to Set Field Values
 
 **Wrong**
 
@@ -1413,7 +1413,7 @@ func main() {
 }
 ~~~
 
-### Accidental Variable Shadowing
+### Accidental Variable Shadowing
 
 ~~~go
 package main
@@ -1432,7 +1432,7 @@ func main() {
 }
 ~~~
 
-### Can't Use "nil" to Initialize a Variable Without an Explicit Type
+### Can't Use "nil" to Initialize a Variable Without an Explicit Type
 
 **Wrong**
 
@@ -1458,7 +1458,7 @@ func main() {
 }
 ~~~
 
-### Using "nil" Slices and Maps
+### Using "nil" Slices and Maps
 
 It's OK to add items to a "nil" slice, but doing the same with a map will produce a runtime panic.
 **Wrong**
@@ -1484,7 +1484,7 @@ func main() {
 }
 ~~~
 
-### Map Capacity
+### Map Capacity
 
 You can specify the map capacity when it's created, but you can't use the cap() function on maps.
 **Wrong**
@@ -1498,7 +1498,7 @@ func main() {
 }
 ~~~
 
-### Strings Can't Be "nil"
+### Strings Can't Be "nil"
 
 **Wrong**
 
@@ -1528,7 +1528,7 @@ func main() {
 }
 ~~~
 
-### Array Function Arguments
+### Array Function Arguments
 
 **Wrong** (if you want to modify the array)
 
@@ -1568,7 +1568,7 @@ func main() {
 }
 ~~~
 
-### Unexpected Values in Slice and Array "range" Clauses
+### Unexpected Values in Slice and Array "range" Clauses
 
 **Wrong**
 
@@ -1602,7 +1602,7 @@ func main() {
 }
 ~~~
 
-### Accessing Non-Existing Map Keys
+### Accessing Non-Existing Map Keys
 
 **Wrong**
 
@@ -1636,7 +1636,7 @@ func main() {
 }
 ~~~
 
-### Strings Are Immutable
+### Strings Are Immutable
 
 **Wrong**
 
@@ -1669,7 +1669,7 @@ func main() {
 }
 ~~~
 
-### Strings Are Not Always UTF8 Text
+### Strings Are Not Always UTF8 Text
 
 ~~~go
 package main
@@ -1688,7 +1688,7 @@ func main() {
 }
 ~~~
 
-### String Length
+### String Length
 
 ~~~go
 package main
@@ -1709,7 +1709,7 @@ func main() {
 }
 ~~~
 
-### Missing Comma In Multi-Line Slice, Array, and Map Literals
+### Missing Comma In Multi-Line Slice, Array, and Map Literals
 
 **Wrong**
 
@@ -1743,16 +1743,16 @@ func main() {
 
 ~~~
 
-### log.Fatal and log.Panic Do More Than Log
+### log.Fatal and log.Panic Do More Than Log
 
 Logging libraries often provide different log levels. Unlike those logging libraries, the log package in Go does more than log if you call its Fatal*() and Panic*() functions. When your app calls those functions Go will also terminate your app
 
-### Built-in Data Structure Operations Are Not Synchronized
+### Built-in Data Structure Operations Are Not Synchronized
 
 Even though Go has a number of features to support concurrency natively, concurrency safe data collections are not one them :-) It's your responsibility to ensure the data collection updates are atomic. Goroutines and channels are the recommended way to implement those atomic operations, but you can also leverage the "sync" package if it makes sense for your application.
 
 
-### Iteration Values For Strings in "range" Clauses
+### Iteration Values For Strings in "range" Clauses
 
 ~~~go
 package main
@@ -1775,7 +1775,7 @@ func main() {
 
 ~~~
 
-### Fallthrough Behavior in "switch" Statements
+### Fallthrough Behavior in "switch" Statements
 
 **Wrong**
 
@@ -1820,7 +1820,7 @@ func main() {
 }
 ~~~
 
-### Increment and Decrement
+### Increment and Decrement
 
 **Wrong**
 
@@ -1852,7 +1852,7 @@ func main() {
 }
 ~~~
 
-### Bitwise NOT Operator
+### Bitwise NOT Operator
 
 **Wrong**
 
@@ -1879,7 +1879,7 @@ func main() {
 }
 ~~~
 
-### Unexported Structure Fields Are Not Encoded
+### Unexported Structure Fields Are Not Encoded
 
 The struct fields starting with lowercase letters will not be (json, xml, gob, etc.) encoded, so when you decode the structure you'll end up with zero values in those unexported fields.
 
@@ -1910,7 +1910,7 @@ func main() {
 }
 ~~~
 
-### App Exits With Active Goroutines
+### App Exits With Active Goroutines
 
 **Wrong**
 
@@ -1992,7 +1992,7 @@ func doit(workerId int, wq <-chan interface{},done <-chan struct{},wg *sync.Wait
 }
 ~~~
 
-### Sending to an Unbuffered Channel Returns As Soon As the Target Receiver Is Ready
+### Sending to an Unbuffered Channel Returns As Soon As the Target Receiver Is Ready
 
 The sender will not be blocked until your message is processed by the receiver.
 
@@ -2015,7 +2015,7 @@ func main() {
 }
 ~~~
 
-### Sending to an Closed Channel Causes a Panic
+### Sending to an Closed Channel Causes a Panic
 
 **Wrong**
 
@@ -2073,7 +2073,7 @@ func main() {
 }
 ~~~
 
-### Using "nil" Channels
+### Using "nil" Channels
 
 Send and receive operations on a nil channel block forver
 
@@ -2145,7 +2145,7 @@ func main() {
 }
 ~~~
 
-### Methods with Value Receivers Can't Change the Original Value
+### Methods with Value Receivers Can't Change the Original Value
 
 ~~~go
 package main
@@ -2187,7 +2187,7 @@ func main() {
 
 ## Intermediate Level
 
-### Closing HTTP Response Body
+### Closing HTTP Response Body
 
 **Wrong**
 
@@ -2256,7 +2256,7 @@ func main() {
 }
 ~~~
 
-### Closing HTTP Connections
+### Closing HTTP Connections
 
 **Wrong**
 
@@ -2337,7 +2337,7 @@ func main() {
 }
 ~~~
 
-### Recovering From a Panic
+### Recovering From a Panic
 
 **Wrong**
 
@@ -2391,7 +2391,7 @@ func main() {
 }
 ~~~
 
-### Updating and Referencing Item Values in Slice, Array, and Map "range" Clauses
+### Updating and Referencing Item Values in Slice, Array, and Map "range" Clauses
 
 **Wrong**
 
@@ -2445,7 +2445,7 @@ func main() {
 }
 ~~~
 
-### "Hidden" Data in Slices
+### "Hidden" Data in Slices
 
 **Wrong**
 
@@ -2487,7 +2487,7 @@ func main() {
 }
 ~~~
 
-### Slice Data "Corruption"
+### Slice Data "Corruption"
 
 **Wrong**
 
@@ -2545,7 +2545,7 @@ func main() {
 }
 ~~~
 
-### "Stale" Slices
+### "Stale" Slices
 
 Multiple slices can reference the same data. This can happen when you create a new slice from an existing slice, for example. If your application relies on this behavior to function properly then you'll need to worry about "stale" slices.
 
@@ -2579,7 +2579,7 @@ func main() {
 }
 ~~~
 
-### Type Declarations and Methods
+### Type Declarations and Methods
 
 **Wrong**
 
@@ -2615,7 +2615,7 @@ func main() {
 }
 ~~~
 
-### Interface type declarations also retain their method sets
+### Interface type declarations also retain their method sets
 
 ~~~go
 package main
@@ -2631,7 +2631,7 @@ func main() {
 }
 ~~~
 
-### Breaking Out of "for switch" and "for select" Code Blocks
+### Breaking Out of "for switch" and "for select" Code Blocks
 
 ~~~go
 package main
@@ -2652,7 +2652,7 @@ func main() {
 }
 ~~~
 
-### Iteration Variables and Closures in "for" Statements
+### Iteration Variables and Closures in "for" Statements
 
 **Wrong**
 
@@ -2727,7 +2727,7 @@ func main() {
 }
 ~~~
 
-### Deferred Function Call Argument Evaluation
+### Deferred Function Call Argument Evaluation
 
 ~~~go
 package main
@@ -2743,7 +2743,7 @@ func main() {
 }
 ~~~
 
-### Deferred Function Call Execution
+### Deferred Function Call Execution
 
 **Wrong**
 
@@ -2841,7 +2841,7 @@ func main() {
 }
 ~~~
 
-### Failed Type Assertions
+### Failed Type Assertions
 
 **Wrong**
 
@@ -2883,7 +2883,7 @@ func main() {
 
 ## Advanced Level
 
-### Using Pointer Receiver Methods On Value Instances
+### Using Pointer Receiver Methods On Value Instances
 
 **Wrong**
 
@@ -2917,7 +2917,7 @@ func main() {
 }
 ~~~
 
-### Updating Map Value Fields
+### Updating Map Value Fields
 
 **Wrong**
 
@@ -2972,7 +2972,7 @@ func main() {
 }
 ~~~
 
-### "nil" Interfaces and "nil" Interfaces Values
+### "nil" Interfaces and "nil" Interfaces Values
 
 **Some Example Code**
 
@@ -3047,7 +3047,7 @@ func main() {
 }
 ~~~
 
-### Read and Write Operation Reordering
+### Read and Write Operation Reordering
 
 Go may reorder some operations, but it ensures that the overall behavior in the goroutine where it happens doesn't change. However, it doesn't guarantee the order of execution across multiple goroutines.
 
@@ -3109,7 +3109,7 @@ The most interesting combination for a and b is "02". It shows that b was update
 
 If you need to preserve the order of read and write operations across multiple goroutines you'll need to use channels or the appropriate constructs from the "sync" package.
 
-### Preemptive Scheduling
+### Preemptive Scheduling
 
 It's possible to have a rogue goroutine that prevents other goroutines from running. It can happen if you have a for loop that doesn't allow the scheduler to run.
 
