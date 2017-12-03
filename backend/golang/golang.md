@@ -267,46 +267,46 @@ var _ json.Marshaler = (*RawMessage)(nil)
 
 ### Arithmetic
 
-Operator   | Description   |
-:--------: | :-----------: |
-+          | addition      |
--          | substraction  |
-*          | multiplication|
-/          | quotient      |
-%          | remainder     |
-&          | bitwise AND   |
-\|         | bitwise OR    |      
-^          | bitwise XOR   |
-&^         | biclear (AND NOT) |
-<<         | left shift    |
->>         | right shift (logical) |
+| Operator   | Description |
+| --------   | ----------- |
+| +          | addition    |
+| -          | substraction  |
+| *          | multiplication|
+| /          | quotient      |
+| %          | remainder     |
+| &          | bitwise AND   |
+| \|         | bitwise OR    |      
+| ^          | bitwise XOR   |
+| &^         | biclear (AND NOT) |
+| <<         | left shift    |
+| >>         | right shift (logical) |
 
 ### Comparision
 
-Operator   | Description   |
-:--------: | :-----------: |
-==         | equal         |
-!=         | not equal     |
-<          | less than     |
-<=         | less than or equal |
->          | greater than  |
->=         | greater than or equal |
+|Operator   | Description  |
+| --------  | -----------  |
+| ==         | equal         |
+| !=         | not equal     |
+| <          | less than     |
+| <=         | less than or equal |
+| >          | greater than  |
+| >=         | greater than or equal |
 
 ### Logical
 
-Operator   | Description   |
-:--------: | :-----------: |
-&&         | logical AND   |
-\|\|       | logical OR    |      
-!          | NOT           |
+| Operator | Description   |
+| -------- | -----------   |
+| &&         | logical AND   |
+| \|\|       | logical OR    |      
+| !          | NOT           |
 
 ### Other  
 
-Operator   | Description   |
-:--------: | :-----------: |
-&          | address of / create pointer |
-*          | deference pointer |
-<-         | send / receive operator (Channels) |
+| Operator   | Description   |
+| --------   | -----------   |
+| &          | address of / create pointer |
+| *          | deference pointer |
+| <-         | send / receive operator (Channels) |
 
 ## Control Structures
 
