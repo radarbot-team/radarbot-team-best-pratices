@@ -89,10 +89,10 @@ Updates for Android Studio are available from different channels (Canary, Dev, B
 
 ## Project Configuration
 
-###Configure build variants in gradle
+### Configure build variants in gradle
 
 
-####Establish applicationId in build.gradle  
+#### Establish applicationId in build.gradle  
 The `applicationId`, `versionCode` and `versionName` should be configured in the `build.gradle` of the main module.
 
 ```groovy
@@ -117,7 +117,7 @@ buildTypes {
     // ...
 }
 ```
-####Configuration for the release version 
+#### Configuration for the release version 
 Proguard is activated by default so you will only need to configure it if necessary. Proguard acts only upon code and not resources such as images. To remove these resources that are not used you need to set the option [shrinkResources](https://developer.android.com/studio/build/shrink-code.html?hl=es-419#shrink-resources) to _true_:
 ```groovy
 buildTypes {
@@ -130,7 +130,7 @@ buildTypes {
     // ...
 }
 ```
-####Configuration of the keystore file  
+#### Configuration of the keystore file  
 We can add the configuration needed to sign the apk that is going to be publish to the `build.gradle` file:
 ```groovy
 signingConfigs {
@@ -161,7 +161,7 @@ signingConfigs {
 ```
 This way we can store other sensible data that we do not want to commit to the repository.
 
-####Dependencies  
+#### Dependencies  
 In general, it is important to obtain the dependencies of our project from a repository and not from a local .jar file since it will be easier to update our dependency to its ultimate version, specially in projects where there is more than one developer, which is the normal case.
 It is recommended to have a separate file with the version of each dependency so that if a different module needs to use one of these dependencies, the version used will be the same as the one used in the main module for the same dependency.
 
@@ -185,12 +185,12 @@ An exact version must be indicated, i.e. "25.1.0", and not a range, i.e. "25.+",
 *<ins>Google Play Services and Firebase</ins>*  
 We must not import all the dependencies from Google Play Services and Firebase. These libraries contain all the native packages for Android, so, if we import them, we could pass the 65K methods limit and we would be importing code that we won’t probably need or use. To avoid this, we must import only the libraries that we are really going to use. You can check the libraries in Google Play Services [here](https://developers.google.com/android/guides/setup#add_google_play_services_to_your_project) and the ones in Firebase [here](https://firebase.google.com/docs/android/setup?hl=en#available_libraries).
 
-###Structure of folders and packages
+### Structure of folders and packages
 
-####Code
+#### Code
 The structure of packages we use will be related to the [architecture](#application-architecture) we implement.
 
-####Resources
+#### Resources
 Images, layouts, strings, colors and dimensions are some of the resources we have in Android. These resources have their own rules in terms of names and where they should be stored. With images for example, we must have an image for each density and these should be store in their corresponding density folder. For more information about resources see [User Interface and Visuals](#user-interface-and-visuals) section
 
 ## Application Architecture
@@ -213,7 +213,7 @@ Quality must be mantained in every component of the application, in every class 
 
 Here we will show you the best ways and benefits of structuring a layout file following simple guidelines.
 
-### Activity and fragment uses.
+### Activity and fragment uses
 
 There is currently no pattern indicating when it is best to use a fragment or an activity.
 
@@ -296,7 +296,7 @@ Unlike other files you can repeat values for more than one key.
 
 Note that none of these values must be capitalized. Only the first letter should be capitalized, since we can take advantage of `android:textAllCaps` in case we would like to capitalize everything.
 
-### Use styles to avoid duplicate attributes in layout XMLs.
+### Use styles to avoid duplicate attributes in layout XMLs.
 Properties that are common for different elements or can be repeated frequently in a view, should be externalized in the styles file.
 
 ```xml
