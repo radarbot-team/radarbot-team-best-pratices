@@ -328,9 +328,6 @@ This technique is valid for the different resource files.
 [More info] (http://developer.android.com/intl/es/training/best-ui.html).
 
 ## Accessibility
-Now that we know how to define in a correct way the properties and components of our interface. We need to make it accessible.
-
-### What is accessibility in Android?
 This is one of the important parts in our application, if we want it to be used **by everyone**. And we don't mean people from other countries, but **disabled people**.
 
 It's very important that our interface's components contain descriptive labels with the action they perform. In this way, screen readers such as _Talkback_ or _VoiceAssistant_ for Samsung can explain a specific functionality or the content of a screen.
@@ -354,7 +351,6 @@ val resId = if (isPasswordVisible) R.string.hide_password else R.string.show_pas
 imageButton.contentDescription = resources.getString(resId)
 ```
 
-
 Sometimes we want to put an image and we don't want it to be accessible because it's a decorative component in our interface.
 
 _This solves our problem._
@@ -371,26 +367,17 @@ In the case that we want the screen reader to read all the views of our custom v
 _Making the root view focusable._
 
 ```xml
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:focusable="true"
+    ...
     >
 
     <TextView
         android:id="@+id/titleTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintHorizontal_weight="1"
-        ...
-        />
-
-    <CheckBox
-        android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="14dp"
-        android:clickable="false"
         ...
         />
 
@@ -398,15 +385,12 @@ _Making the root view focusable._
         android:id="@+id/descriptionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
         ...
         />
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
 ```
 
-With this code we can create a custom view with two `TextView` and a `CheckBox`, which will not be clickable to not to interfere with the screen reader.
-
-The `ConstraintLayout` will be the view that contains the focus and the screen reader will be able to read the texts of the two `TextView` that it contains. Therefore for the user, this component will be treated as a single component, and the screen reader **won't navigate** through the three views that exist in this layout.
+The `LinearLayout` will be the view that contains the focus and the screen reader will be able to read the texts of the two `TextView` that it contains. Therefore for the user, this component will be treated as a single component, and the screen reader **won't navigate** through the three views that exist in this layout.
 
 ## Coding Style
 
