@@ -804,7 +804,7 @@ function sleep(time){
     });
 }
 
-function async asyncFn() {
+async function asyncFn() {
     console.log('a');
     await sleep(2000);
     console.log('b');
@@ -815,7 +815,7 @@ asyncFn().then(console.log);
 
 //Log result:
 // a
-// sleep solved
+// sleep solved (2 seconds later)
 // b
 // end
 ```
