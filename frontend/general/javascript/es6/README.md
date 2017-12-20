@@ -32,6 +32,7 @@ The Sixth Edition, known as ECMAScript 2015, adds significant new syntax for wri
 * [Number](#number)
 * [Object](#object)
 * [Unicode](#unicode)
+* [Async - Await](#async)
 
 ## <a name='promises'>Promises</a>
 
@@ -789,6 +790,35 @@ var str = "foo"
 var chars = [ ...str ] // [ "f", "o", "o" ]
 ```
 
+## <a name='async'>Async - Await</a>
+
+Facilitates code readability by developing asynchronous applications with synchronous appearance
+
+```javascript
+function sleep(time){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('sleep solved');
+            resolve();
+        }, time);
+    });
+}
+
+function async asyncFn() {
+    console.log('a');
+    await sleep(2000);
+    console.log('b');
+    return 'end';
+}
+
+asyncFn().then(console.log);
+
+//Log result:
+// a
+// sleep solved
+// b
+// end
+```
 ___
 
 [BEEVA](https://www.beeva.com) | Technology and innovative solutions for companies
