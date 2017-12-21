@@ -35,6 +35,7 @@ If you think any information is wrong or missing please write us an email or dir
 ### Cloud Computing
 * [Amazon Web Services](cloud/aws/README.md)
 * [Microsoft Azure](cloud/azure/README.md)
+* [Google Cloud Platform](cloud/gcp/README.md)
 
 ### DevOps
 * [Configuration Management](devops/configuration_management/README.md)
