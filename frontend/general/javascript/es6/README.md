@@ -29,9 +29,7 @@ The Sixth Edition, known as ECMAScript 2015, adds significant new syntax for wri
 * [Spread operator](#spread_operator)
 * [Default parameters](#default_parameters)
 * [Modules](#modules)
-* [Number](#number)
-* [Object](#object)
-* [Unicode](#unicode)
+* [Async - Await](#async)
 
 ## <a name='promises'>Promises</a>
 
@@ -789,6 +787,77 @@ var str = "foo"
 var chars = [ ...str ] // [ "f", "o", "o" ]
 ```
 
+## <a name='default_parameters'>Default Parameters</a>
+
+Default parameters in functions and methods.
+
+```javascript
+function test(name, surname = 'Fernández'){
+    console.log(`${ name } ${ surname }`);
+}
+
+test('Francisco');
+
+//Log result:
+// Francisco Fernández
+```
+
+## <a name='modules'>Modules</a>
+
+Export/Import modules with the new ES6 syntax
+
+```javascript
+//------ lib.js ------
+export const sqrt = Math.sqrt;
+export function square(x) {
+    return x * x;
+}
+export function diag(x, y) {
+    return sqrt(square(x) + square(y));
+}
+
+//------ main.js ------
+import { square, diag } from 'lib';
+console.log(square(11)); // 121
+console.log(diag(4, 3)); // 5
+
+//------ MyClass.js ------
+export default class { ... };
+
+//------ main2.js ------
+import MyClass from 'MyClass';
+let inst = new MyClass();
+
+```
+## <a name='async'>Async - Await</a>
+
+Facilitates code readability by developing asynchronous applications with synchronous appearance
+
+```javascript
+function sleep(time){
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('sleep solved');
+            resolve();
+        }, time);
+    });
+}
+
+async function asyncFn() {
+    console.log('a');
+    await sleep(2000);
+    console.log('b');
+    return 'end';
+}
+
+asyncFn().then(console.log);
+
+//Log result:
+// a
+// sleep solved (2 seconds later)
+// b
+// end
+```
 ___
 
 [BEEVA](https://www.beeva.com) | Technology and innovative solutions for companies
