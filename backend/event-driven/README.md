@@ -6,7 +6,7 @@ In this section we will describe how we work at BEEVA with event-driven architec
 
 ## Index
 
-1. [Introduction to Event-Driven Architectures](#1-introduction-to-event-driven-architectures)
+1. [Introduction to Event-Driven](#1-introduction-to-event-driven)
 
 2. [Event-driven architectures](#2-event-driven-architectures)
 
@@ -18,10 +18,10 @@ In this section we will describe how we work at BEEVA with event-driven architec
 
 4. [References](#4-references)
 
-## 1. Introduction to Event-Driven Architectures
+## 1. Introduction to Event-Driven
 ---
 
-Event-driven architecture is a software architecture pattern that promotes the production, detection, consumption of, and reaction to events.
+Event-driven is a software architecture pattern that promotes the production, detection, consumption of, and reaction to events.
 
 This kind of architectures has follow features:
 - Enables high performance, highly scalable systems
@@ -36,6 +36,8 @@ This kind of architectures has follow features:
 ### 2.1. Overview
 
 Once you have designed a microservice architecture with each service with its own database and the system has a bus as a connector between the services for decoupling, some bussines transactions, however, span multiple services, so you need a mechanism to ensure consistency of the data between the services. With this scenario, event-driven patterns can help you.
+
+Of course, it is possible to have an event-driven monolith, in fact it is a good practice.
 
 
 ### 2.2. Patterns
@@ -58,11 +60,9 @@ Event Sourcing ensures that all changes to application state are stored as a seq
 
 ![ES](static/event-sourcing.png "Event Sourcing")
 
-##### Features
-
 The key to Event Sourcing is that we guarantee that all changes to the domain objects are initiated by the event objects.
 
-###### Benefits
+##### Benefits
 
 - It solves one of the key problems in implementing an event-driven architecture and makes it possible to reliably publish events whenever state changes
 - Because it persists events rather than domain objects, it mostly avoids the object‑relational impedance mismatch problem
@@ -72,13 +72,13 @@ The key to Event Sourcing is that we guarantee that all changes to the domain ob
 - It makes it possible to implement temporal queries that determine the state of an entity at any point in time
 - Event sourcing-based business logic consists of loosely coupled business entities that exchange events. This makes it a lot easier to migrate from a monolithic application to a microservice architecture
 
-###### Drawbacks
+##### Drawbacks
 
 - It is a different and unfamiliar style of programming and so there is a learning curve
 - The event store is difficult to query since it requires typical queries to reconstruct the state of the business entities
 - External interactions are complex to manage
 
-##### Local States
+##### Local State
 
 To mitigate the complexity of querying the state of an event log, we can generate a local state in memory or persistent, in the same file system where the service is deployed, in order to quickly know the current state.
 Using a stream processor we can listen events that are added to the event log and update its current state in real time.
@@ -96,15 +96,31 @@ To solve this problem we can store responses through a gateway, so when replayin
 
 #### 2.2.2 CQRS (Command Query Responsibility Segregation)
 
+This pattern is necessary when applying event sourcing. Because saving and processing an event is an asynchronous process, and reading the current state of the entities needs processing in real time. This causes us to be obliged to separate the data input from the output. In a natural way, this pattern appears, which also gives us other benefits such as the denormalization of the views.
+
+![CQRS](static/cqrs.png "CQRS")
+
+These are the most important characteristics:
+
 - Necessary in an event sourced architecture
 - Improved separation of concerns
 - Supports multiple denormalized views that are scalable and performant
 
-![CQRS](static/cqrs.png "CQRS")
-
 ## 3. Tools
 ---
 
+| Component | Technology |
+| --------- | ---------- |
+| Message Broker | Kafka + Zookeeper, Rabbit MQ |
+| Event Store | Kafka + Zookeeper, MongoDB, MySQL |
+| Sink/Source | Kafka Connect |
+| Local State DB | In Memory, RocksDB |
+| ETL | Kafka Streams, Samza, Spark Streaming |
+| Consumer/Producer | Depends of Message Broker (ej. Kafka Client) |
+
+This is an example of architecture
+
+![Tools](static/event-driven-tools.png "Tools")
 
 
 ## 4. References
