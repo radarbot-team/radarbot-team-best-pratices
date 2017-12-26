@@ -477,7 +477,7 @@ Read more at Proguard [usage](https://www.guardsquare.com/en/proguard/manual/usa
 
 Versioning is a critical component of your app upgrade and maintenance strategy. Versioning is important because:
 
-   - It gives users information about the app version that is installed on ther devices and the versions available.
+   - It gives users information about the app version that is installed on their devices and the versions available.
    - Determines compatibility and identifies dependencies between different apps.
    - Services may need to check the app version to determine compatibility and establish upgrade/downgrade relationships.  
 
