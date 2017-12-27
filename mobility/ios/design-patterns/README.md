@@ -1,6 +1,29 @@
 # Design Patterns
 
-## Object Initialization
+Common patterns on iOS, how to implement them and recommendations when using them.
+
+1. [Object Initialization](#object-initialization)
+
+2. [Delegation](#delegation)
+
+3. [Target-Action](#target-action)
+
+4. Observation
+
+	+ [Key-Value Observing](#kvo) 
+	+ [NSNotificationCenter](#nsnotificationcenter)
+
+5. [Factory (Class clusters)](#factory)
+
+6. [Prototype (copy, copyWithZone)](#prototype)
+
+7. [Command (NSInvocation)](#command)
+
+8. [Extensions (Objective-C categories, Swift extensions)](#extensions)
+
+9. [Dependency injection](#dependency-injection)
+
+## <a name="object-initialization"></a>Object Initialization
 
 Objects need initializer to set useful values to its instace variables, and prepare other global resorces. Every object should implement an initializing method, unless it has no variables and does not need additional initializers, but its ancestor's. Cocoa allows declare multiple initializers which are instance methods begining with **init** and return an object of the dynamic type `id` in Objective-C, and a specific class object in Swift.
 
@@ -67,7 +90,7 @@ In Swift, the initializer chain looks like the figure below:
 ![Swift Initialization chain](statics/Swift.InitializationChain.png)
 
 
-## Delegation
+## <a name="delegation"></a>Delegation
 
 **Delegation** is a pattern in which one object in a program acts on behalf of, or in coordination with, another object. The delegating object keeps a reference to the other object `the delegate` and at the appropiate time sends a message to it. The message informs the delegate of an event that the delegating object is about to handle or has just handled. The delegate may respond to the message by updating the appearance or state of itself or other objects in the application, and in some cases it can return a value that affects how an impending event is handled. Delegation makes it possible for one object to after the behaviour of another object without the need to inherit from it. The delegate is almost always one of your custom objects, an by definition it incorporates application-specific logic that the generic and delegating object cannot possibly know itself.
 
@@ -120,7 +143,7 @@ Delegation methods with no returning type, are purely informational, and the met
 - (void)applicationWillBecomeActive:(NSNotification *)notification;
 ```
 
-## Target-Action
+## <a name="target-action"></a>Target-Action
 
 An application's user interface is made of several graphical objects, and the most common of these objects are controls. A control is a graphical analog of a real-world that you use to convey your intent to some system on which it is a part of.
 
@@ -177,7 +200,7 @@ The sender parameter usually identifies the control sending the action message. 
 
 ## Observation 
 
-### Key-Value Observing (KVO)
+### <a name="kvo"></a>Key-Value Observing (KVO)
 
 Key-value Observing, `<NSKeyValueObserving>, or KVO`, is an informal protocol that defines a common mechanism that allows objects to be notified of changes to specified properties of other objects. As an informal protocol, classes do not conform to it, it's just implicitly assumed for all subclasses of `NSObject`.
 
@@ -312,7 +335,7 @@ extension PersonObservable {
 }
 ```
 
-### NSNotificationCenter
+### <a name="nsnotificationcenter"></a>NSNotificationCenter
 
 An `NSNotificationCenter`object provides a mechanism for bradcasting information within a program. An NSNotificationCenter object is essentially a notification dispatch table.
 
@@ -374,7 +397,7 @@ Since notification dispatch happens on the posting thread, it may be necessary t
 **Key-Value Observing** adds observers for keypaths, while **NSNotificationCenter** adds observers for notifications.
 
 
-## Factory (Class clusters)
+## <a name="factory"></a>Factory (Class clusters)
 
 **Class clusters** are a design pattern that the Foundation framework makes extensive use of. Class clusters group a number of private concrete subclasses under a public abstract superclass. The grouping of classes in this way simplifies the publicly visible architecture of an object-oriented framework without reducing its functional richness. Class clusters are based on the [Abstract Factory](https://sourcemaking.com/design_patterns/abstract_factory) design pattern.
 
@@ -439,7 +462,7 @@ A new class that you create within a class cluster must:
 
 If it is rarely necessary to create a subclass the the cluster architecture is clearly beneficial. You might also be able to avoid subclassing by using composition; by embedding a private cluster object in an object of your own design, you create a composite object. This composite object can rely on the cluster object for its basic functionallity, only intercepting messages that it wants to handle in some particular way. Using this approach reduces the amount of code you must write and lets you take advantage of the tested code provided by the Foundation Framework.
 
-## Prototype
+## <a name="prototype"></a>Prototype
 
 This pattern used to create a new object by duplicating existing objects called *prototypes* which have a cloning capability. The most common uses of this patter is to create an instance without knowing its class hierarchy, create class instances that are dynamically loaded, and have simple object system and not include parallel hierarchy of a factory class.
 
@@ -479,7 +502,7 @@ class Person: NSObject, NSCopying {
 }
 ```
 
-## Command
+## <a name="command"></a>Command
 
 The concept behind this pattern is to transform a request into an object in order to facilitate some actions, such as undo/redo, inserto into a queue, or tracking of the request.
 
@@ -522,7 +545,7 @@ In order with the *Command pattner* workflow, the `client` will create a **NSInv
 
 > More information about NSInvocation in this [article](http://cocoamental.com/2011/06/28/nsinvocation-para-torpes/).
 
-## Extensions
+## <a name="extensions"></a>Extensions
 
 Sometimes it is useful to extend an existing system class by adding behaviour instead of using inheritance. Objective-C makes it possible with **categories and class extensions**, and Swift provides **extensions**.
 
@@ -656,7 +679,7 @@ private extension TypeName {
 
 For more information of Swift Extensions, visit [Apple Documentation](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html).
 
-## Dependency injection
+## <a name="dependency-injection"></a>Dependency injection
 
 A powerful mechanism for separating construction from use is **Dependency Injection**, *DI*, the application of *Inversion of Control (IoC)* to dependecy management. Inversion of Control moves secondary responsibilities from an object to another objects that are dedicated to the purpose, thereby supporting the [*Single Responsibility Principle*](http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod). In the context of dependecy management, an object should not take responsibility for instantiating dependencies itself. Instead, it should pass this responsibility to another authoritative mechanism, thereby inverting the control. Because setup is a global concern, this authoritative mechanism will usually be either the main routine or a special-purpose container.
 

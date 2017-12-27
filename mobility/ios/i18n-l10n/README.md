@@ -1,4 +1,8 @@
-# Localization
+# i18n & l10n
+
+Process of internationalization and localization of an iOS app. 
+
+## Localization
 
 **Enabling Base Internationalization**
 
@@ -138,7 +142,7 @@ Your app need looks like:
 ![Objective-C Initialization chain](statics/languages.png)
 
 
-## Existing tools
+### Existing tools
 
 **Twine**
 
@@ -224,7 +228,7 @@ let ban = tr(.BananasOwner(2, "John"))
 
 
 
-# Internationalization
+## Internationalization
 
 **NSLocale**
 
@@ -416,7 +420,6 @@ or
     return formatter;
 }
 ```
-
 
 
 
