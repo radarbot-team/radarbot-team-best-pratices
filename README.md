@@ -326,7 +326,7 @@ For example: `styles.xml`, `styles_button.xml`, `styles_label.xml`, `styles_soci
 
 This technique is valid for the different resource files.
 
-[More info] (http://developer.android.com/intl/es/training/best-ui.html).
+[More info](http://developer.android.com/intl/es/training/best-ui.html).
 
 ## Accessibility
 This is one of the important parts in our application, if we want it to be used **by everyone**. And we don't mean people from other countries, but **disabled people**.
@@ -398,14 +398,14 @@ The `LinearLayout` will be the view that contains the focus and the screen reade
 It is recommended to follow a common style to write code into a team, to publish a public repository, to contribute to one of them, or even for a personal project. This styles are a good rule to maintain the code legibility. Below you can find the code styles of the main programming languages.
 
  - **Java**
-    <br/> [Code conventions] (http://www.oracle.com/technetwork/java/codeconventions-150003.pdf)
+    <br/> [Code conventions](http://www.oracle.com/technetwork/java/codeconventions-150003.pdf)
     <br/> [Java best practices](https://github.com/beeva/beeva-best-practices/tree/master/backend/java)
  - **Kotlin**
-    <br/> [Code conventions] (https://kotlinlang.org/docs/reference/coding-conventions.html)
-    <br/> [Kotlin best practices] (kotlin/README.md)
+    <br/> [Code conventions](https://kotlinlang.org/docs/reference/coding-conventions.html)
+    <br/> [Kotlin best practices](kotlin/README.md)
  - **Scala**
-    <br/> [Scala style guide] (http://docs.scala-lang.org/style/)
-    <br/> [Scala best practices] (https://github.com/beeva/beeva-best-practices/tree/master/backend/scala)
+    <br/> [Scala style guide](http://docs.scala-lang.org/style/)
+    <br/> [Scala best practices](https://github.com/beeva/beeva-best-practices/tree/master/backend/scala)
 
 ## Libraries
 
@@ -424,22 +424,22 @@ Tests are one of the most important parts of the development. By creating and ru
 
  - Use the Parcelable class instead of Serializable when passing data in Intents/Bundles.
  - Perform file operations off the UI thread.
-<br/> [More info] (http://developer.android.com/intl/es/training/best-performance.html).
+<br/> [More info](http://developer.android.com/intl/es/training/best-performance.html).
 
 ## Security & Privacy
 
 How to keep your app's data secure
-<br/> [More info] (http://developer.android.com/intl/es/training/best-security.html).
+<br/> [More info](http://developer.android.com/intl/es/training/best-security.html).
 
 ## Background jobs 
 
 How to run jobs in the background to boost your application's performance and minimize its drain on the battery.
-<br/> [More info] (http://developer.android.com/intl/es/training/best-background.html).
+<br/> [More info](http://developer.android.com/intl/es/training/best-background.html).
 
 ## Interaction and Engagement
 
 The best interaction patterns for Android.
-<br/> [More info] (http://developer.android.com/intl/es/training/best-ux.html).
+<br/> [More info](http://developer.android.com/intl/es/training/best-ux.html).
 
 ## Persistence & Storage
 
