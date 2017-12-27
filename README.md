@@ -9,6 +9,7 @@
 - [Project Configuration](#project-configuration)
 - [Application Architecture](#application-architecture)
 - [User Interface and Visuals](#user-interface-and-visuals)
+- [Accessibility](#accessibility)
 - [Coding Style](#coding-style)
 - [Libraries](#libraries)
 - [Testing](#testing)
