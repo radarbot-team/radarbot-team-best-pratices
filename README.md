@@ -327,6 +327,71 @@ This technique is valid for the different resource files.
 
 [More info] (http://developer.android.com/intl/es/training/best-ui.html).
 
+## Accessibility
+This is one of the important parts in our application, if we want it to be used **by everyone**. And we don't mean people from other countries, but **disabled people**.
+
+It's very important that our interface's components contain descriptive labels with the action they perform. In this way, screen readers such as _Talkback_ or _VoiceAssistant_ for Samsung can explain a specific functionality or the content of a screen.
+
+We can define the labels in layout's components in two ways.
+
+_The common way is labelling in the XML file._
+```xml
+<ImageView
+    android:id="@+id/cardImageView"
+    android:layout_width="54dp"
+    android:layout_height="30dp"
+    android:contentDescription="@string/description_default_card"
+    android:src="@drawable/default_card"
+    />
+```
+
+_The dynamic way is setting this attribute in your code._
+```kotlin
+val resId = if (isPasswordVisible) R.string.hide_password else R.string.show_password
+imageButton.contentDescription = resources.getString(resId)
+```
+
+Sometimes we want to put an image and we don't want it to be accessible because it's a decorative component in our interface.
+
+_This solves our problem._
+```xml
+android:importantForAccessibility="no" <!-- For API 16 or higher -->
+android:contentDescription="@null" <!-- For API lower than 16 -->
+```
+
+### Custom components behaviour
+Sometimes we need to make our own custom views. It's very important to keep in mind how we want the screen reader to navigate through our interface.
+
+In the case that we want the screen reader to read all the views of our custom views, we should do it in the following ways.
+
+_Making the root view focusable._
+
+```xml
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    ...
+    >
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ...
+        />
+
+    <TextView
+        android:id="@+id/descriptionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ...
+        />
+</LinearLayout>
+```
+
+The `LinearLayout` will be the view that contains the focus and the screen reader will be able to read the texts of the two `TextView` that it contains. Therefore for the user, this component will be treated as a single component, and the screen reader **won't navigate** through the three views that exist in this layout.
+
 ## Coding Style
 
 It is recommended to follow a common style to write code into a team, to publish a public repository, to contribute to one of them, or even for a personal project. This styles are a good rule to maintain the code legibility. Below you can find the code styles of the main programming languages.
