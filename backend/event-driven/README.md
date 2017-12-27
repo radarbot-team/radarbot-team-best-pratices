@@ -26,19 +26,24 @@ Event-driven is a software architecture pattern that promotes the production, de
 This kind of architectures has follow features:
 - Enables high performance, highly scalable systems
 - No point-to-point integrations
+- No blocking actions
+- Reactive system
+- It enables having the full history
 - It enables an application to maintain data consistency across multiple services
 
 ## 2. Event-Driven Architectures
 ---
 
-
-
 ### 2.1. Overview
 
-Once you have designed a microservice architecture with each service with its own database and the system has a bus as a connector between the services for decoupling, some bussines transactions, however, span multiple services, so you need a mechanism to ensure consistency of the data between the services. With this scenario, event-driven patterns can help you.
+EDA (Event-Driven Architecture) and SOA (Service-Oriented Architecture) are types of architectures that complement each other perfectly and together they are very powerful.
+Of course, it is possible to have from monolith, in fact it is a good practice.
 
-Of course, it is possible to have an event-driven monolith, in fact it is a good practice.
+The first thing we should do is drive the programming to events, so domain logic will be triggered by events.
+An event is something that has happened in the past, so it is absolutely imperative that events always be verbs in the past tense.
+The event makes the concept explicit where as previously the changes that would occur within an aggregate or between multiple aggregates were left as an implicit concept that needed to be explored and defined.
 
+This type of design is usually complex and can be very helpful to use DDD (Domain-Driven Design). DDD is an approach to software development for complex needs by connecting the implementation to an evolving model.
 
 ### 2.2. Patterns
 
