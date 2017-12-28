@@ -133,7 +133,7 @@ This is an example of architecture with Confluent's stack.
 
 ![Tools](static/event-driven-tools.png "Tools")
 
-All these technologies, libraries, etc., are under Apache license
+All these Confluent.io technologies, libraries, etc., are under Apache license
 
 ## 4. References
 ---
