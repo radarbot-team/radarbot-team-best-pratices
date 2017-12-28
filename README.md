@@ -41,6 +41,7 @@ If you think any information is wrong or missing please write us an email or dir
 * [Docker](devops/docker/README.md)
 * [Infrastructure Management](devops/infrastructure/README.md)
 * [Git](devops/git/README.md)
+* [Continuous Integration](devops/ci/jenkins/README.md)
 
 ### Frontend
 * [Angular.js](frontend/angular/README.md)
