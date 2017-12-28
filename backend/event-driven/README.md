@@ -118,6 +118,8 @@ These are the most important characteristics:
 ## 3. Tools
 ---
 
+Depending on the combination of technologies we use, we will have different types of configurations
+
 | Component | Technology |
 | --------- | ---------- |
 | Message Broker | Kafka + Zookeeper, Rabbit MQ |
@@ -127,10 +129,11 @@ These are the most important characteristics:
 | ETL | Kafka Streams, Samza, Spark Streaming |
 | Consumer/Producer | Depends of Message Broker (ej. Kafka Client) |
 
-This is an example of architecture
+This is an example of architecture with Confluent's stack.
 
 ![Tools](static/event-driven-tools.png "Tools")
 
+All these technologies, libraries, etc., are under Apache license
 
 ## 4. References
 ---
