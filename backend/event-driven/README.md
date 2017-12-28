@@ -139,6 +139,8 @@ This is an example of architecture
 * [Pattern: Command Query Responsibility Segregation (CQRS)](http://microservices.io/patterns/data/cqrs.html)
 * [Further Enterprise Application Architecture development](https://martinfowler.com/eaaDev/EventSourcing.html)
 * [Wikipedia](https://en.wikipedia.org/wiki/Event-driven_architecture) 
+* [Eventstore](https://eventstore.org/docs/introduction/4.0.0/event-sourcing-basics)
+* [Confluent.io Blog](https://www.confluent.io/blog/event-sourcing-cqrs-stream-processing-apache-kafka-whats-connection)
 ___
 
 [BEEVA](https://www.beeva.com) | Technology and innovative solutions for companies
