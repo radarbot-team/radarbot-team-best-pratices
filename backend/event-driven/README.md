@@ -90,6 +90,8 @@ Using a stream processor we can listen events that are added to the event log an
 
 If the application turn off and then on, the generated state would be lost and would have to be rebuilt it. If we have many events, this can be a very arduous task. To mitigate the impact, we can make snapshots from time to time. If the application needs to reconstruct the current state you will not need to read all the events, just the ones after the snapshot take.
 
+![Local State](static/local-state.png "Local State")
+
 ##### External Interactions
 
 One of the problems that we can find when applying this pattern is when interacting with external systems. When we replay an event log, the external system does not know if it is a reprocessing or real time. 
@@ -98,6 +100,8 @@ When we have to update an external system we can do it through a gateway, so if 
 
 When we need to make external queries, like a money price or rates, and later we replay an event log, we need the past value not the later one. 
 To solve this problem we can store responses through a gateway, so when replaying event log gateway can return those responses at the time they occurred.   
+
+![External Interactions](static/external-interactions.png "External Interactions")
 
 #### 2.2.2 CQRS (Command Query Responsibility Segregation)
 
