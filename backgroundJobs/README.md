@@ -1,21 +1,21 @@
 # Best Practices for Background Jobs
 
-An Android application has at least one main thread and in Android, you shouldn’t do anything that blocks the main thread. For work with several thread the Android framework offers different options like [Threads](https://developer.android.com/reference/java/lang/Thread.html), [HandlerThread] (https://developer.android.com/reference/android/os/HandlerThread.html), [Executor](https://developer.android.com/reference/java/util/concurrent/Executor.html), [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask.html) or [Services](https://developer.android.com/reference/android/app/Service.html).
+An Android application has at least one main thread and in Android, you shouldn’t do anything that blocks the main thread. For work with several thread the Android framework offers different options like [Threads](https://developer.android.com/reference/java/lang/Thread.html), [HandlerThread](https://developer.android.com/reference/android/os/HandlerThread.html), [Executor](https://developer.android.com/reference/java/util/concurrent/Executor.html), [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask.html) or [Services](https://developer.android.com/reference/android/app/Service.html).
 
-##Thread
+### Thread
 The [threads](https://developer.android.com/reference/java/lang/Thread.html) are the solution for work with background operations that don't need to be notified to the main thread. When we using threads, need avoid the synchronization inside loops because acquiring and releasing a lock is an expensive operation. 
 
-##HandlerThread
+### HandlerThread
 
 Android provides a thread subclass, [HandlerThread] (https://developer.android.com/reference/android/os/HandlerThread.html), which encapsulates the Looper object (so that we do not care the Looper open and release details) and the MessageQueue. 
 
 Once we started HandlerThread we can post tasks to it at any time, the HandlerThread remains active until you call `quit`, remember make this call for free resources when you don't need the HandlerThread anymore.
 
-##Executor
+### Executor
 The [Executor](https://developer.android.com/reference/java/util/concurrent/Executor.html) class is powerful and allow automatically manage a pool of threads with a task queue. The Executor allows you to get all the scheduled tasks and cancel them if you'd like.
 
 
-##AsyncTask
+### AsyncTask
 [AsyncTask](https://developer.android.com/reference/android/os/AsyncTask.html) allows you to perform background operations and return results on the main thread without having to manipulate threads or handlers. 
 
 The most important thing you should know is that only one method of this class that is running on another thread `doInBackground`. The other methods are running on main thread.
@@ -27,7 +27,7 @@ Implementing AsyncTask in a separate file is also a good idea, but same rules ap
 The only difference between static inner async task and async task in a separate file is code readability. If there is a lot of logic inside AsyncTask, go ahead with a separate file.
 
 
-##Services
+### Services
 The Android framework offers several classes that help you with the operations can cause problems and interfere with the responsiveness of your user interface, the most useful of these is [Service](https://developer.android.com/reference/android/app/Service.html). 
 
 For doing long-term background tasks you should use services. The service has no user interface, it is not bound to the lifecycle of an activity. A service can essentially take two shapes: 
@@ -42,7 +42,7 @@ For doing long-term background tasks you should use services. The service has no
 	A Bound  Service is helpful if you need a direct communication between a component and the service. This services holds a reference to the clients and, when no more clients are referenced, the service is automatically terminated. This behavior is helpful when we need to share a background operation between multiple activities without the need to close the service because it is terminated automatically
 
 
-###IntentService
+#### IntentService
 You can also extend the `IntentService` class for your service implementation. It is a particular implementation of a service provided by the patform. The [IntentService](https://developer.android.com/reference/android/app/IntentService.html) is used to perform a certain task in the background, a good example would be to upload or download large files, the upload and download may continue even if the user exits the app and you don't want to block the user from being able to use the app while these tasks are going on. Once done, the instance of IntentService terminates itself automatically. 
 
 If you want to run a task repeatedly on different sets of data, but you only need one execution running at a time, an IntentService suits your needs.
