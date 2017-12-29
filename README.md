@@ -20,6 +20,7 @@
 - [Persistence & Storage](#persistence--storage)
 - [Analytics & Crash Logs](#analytics--crash-logs)
 - [Continuous Integration](#continuous-integration)
+	- [ProGuard configuration](#proguard-configuration)
 - [Deployment & Publishing](#deployment--publishing)
 - [Version Control](#version-control)
 
@@ -92,18 +93,15 @@ Updates for Android Studio are available from different channels (Canary, Dev, B
 
 ### Configure build variants in gradle
 
-
 #### Establish applicationId in build.gradle  
 The `applicationId`, `versionCode` and `versionName` should be configured in the `build.gradle` of the main module.
 
 ```groovy
 android {
-   // ...
    defaultConfig {
        applicationId "com.beeva.myapplication"
        versionCode 1
        versionName "1.0"
-  // ...
    }
 ```
 
@@ -115,22 +113,22 @@ buildTypes {
       applicationIdSuffix ".debug"
       versionNameSuffix '-DEBUG'
     }
-    // ...
 }
 ```
+
 #### Configuration for the release version 
-Proguard is activated by default so you will only need to configure it if necessary. Proguard acts only upon code and not resources such as images. To remove these resources that are not used you need to set the option [shrinkResources](https://developer.android.com/studio/build/shrink-code.html?hl=es-419#shrink-resources) to _true_:
+ProGuard must be used in release mode ([ProGuard configuration](#proguard-configuration)), this tools is used to remove unused code, but it acts only upon code and not resources such as images. To remove these unused resources you need to set the option [shrinkResources](https://developer.android.com/studio/build/shrink-code.html?hl=es-419#shrink-resources) to _true_:
+
 ```groovy
 buildTypes {
     release {
       shrinkResources true
       minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-      // ...
     }
-    // ...
 }
 ```
+
 #### Configuration of the keystore file  
 We can add the configuration needed to sign the apk that is going to be publish to the `build.gradle` file:
 ```groovy
@@ -171,12 +169,10 @@ It is recommended to have a separate file with the version of each dependency so
 ext {
   supportLibraryVersion = ‘25.1.0’
   butterknifeVersion = ‘8.4.0’
-  // ...
 }
 
 // build.gradle file
 dependencies {
-  // ...
   compile "com.android.support:cardview-v7:$supportLibraryVersion"
   // ...
 }
@@ -537,11 +533,44 @@ Here we introduce some best practices for continuous integration that could be e
 
 - **Everyone can see the latest build**. It should be easy to find out whether the build breaks and, if so, who made the relevant change, so the whole team should be able to easily see these results especially when the build fails. Developers should be notified as soon as possible and why it failed, so that they can fix it as quickly as possible. Every build should be posted in Bamboo or Jenkins and also commits since last build, changes, tests results, etc. 
 
-
 ## Deployment & Publishing
  
- - Use ProGuard or DexGuard.
- - Google developer console.
+### Proguard configuration
+
+ProGuard must be used to remove unused classes, fields, methods and attributes, optimize the bytecode and obfuscate the remaining classes, fields and methods using short meaningless names. These steps make the code base smaller, more efficient, and harder to reverse-engineer.
+
+![ProGuard steps](https://www.guardsquare.com/files/media/guardsquare2016/Website/ProGuard/ProGuard_build_transparant.png)
+
+To configure Gradle to use ProGuard when building a **release apk**:
+
+```groovy
+buildTypes {
+    release {
+        minifyEnabled true
+        proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+}
+```
+
+The ProGuard rules must be defined to determine wich code must be preserved. The default configuration can be found in `SDK_HOME/tools/proguard/proguard-android.txt`, and the proyect specific rules can be defined in `project/app/proguard-rules.pro`.
+
+The following table summarizes the `keep` options that you can apply in order to prevent ProGuard from shrinking and obfuscating needed classes or class members:
+
+| Keep | From being removed or renamed | From being renamed |
+|---|---|---|
+| Classes and class members | -keep | -keepnames |
+| Class members only | -keepclassmembers | 	-keepclassmembernames |
+| Classes and class members, if class members present | -keepclasseswithmembers | -keepclasseswithmembernames |
+
+Read more at Proguard [usage](https://www.guardsquare.com/en/proguard/manual/usage) and see its [examples](https://www.guardsquare.com/en/proguard/manual/examples).
+
+#### ProGuard tips
+- Publish the `mapping.txt` file generated for every release into Google console and save it locally, this way you ensure that you can debug a problem from an obfuscated stack trace.
+- Common problems like `ClassNotFoundException` or `NoSuchFieldException` crashes can happen because a class, method, field, enum, or annotation **has been removed** or a class, field or enum name **has been obfuscated** (this will cause a Java reflection errors).
+	- Check `app/build/outputs/proguard/release/usage.txt` to see if the object in question has been removed.
+	- Check `app/build/outputs/proguard/release/mapping.txt` to see if the object in question has been obfuscated.
+
+### Google developer console
 
 ## Version Control
 
@@ -549,7 +578,7 @@ Here we introduce some best practices for continuous integration that could be e
 
 Versioning is a critical component of your app upgrade and maintenance strategy. Versioning is important because:
 
-   - It gives users information about the app version that is installed on ther devices and the versions available.
+   - It gives users information about the app version that is installed on their devices and the versions available.
    - Determines compatibility and identifies dependencies between different apps.
    - Services may need to check the app version to determine compatibility and establish upgrade/downgrade relationships.  
 
