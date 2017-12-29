@@ -457,14 +457,6 @@ The following table summarizes the `keep` options that you can apply in order to
 | Class members only | -keepclassmembers | 	-keepclassmembernames |
 | Classes and class members, if class members present | -keepclasseswithmembers | -keepclasseswithmembernames |
 
-Class names may be specified as regular expressions containing the following wildcards:
-
-| Matcher | Description |
-|---|---|
-| ?	 | matches any single character in a name. |
-| * | matches any part of a name not containing the package separator or directory separator. |
-| ** | matches any part of a name, possibly containing any number of package separators or directory separators. |
-
 Read more at Proguard [usage](https://www.guardsquare.com/en/proguard/manual/usage) and see its [examples](https://www.guardsquare.com/en/proguard/manual/examples).
 
 #### ProGuard tips
