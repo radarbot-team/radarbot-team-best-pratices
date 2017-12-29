@@ -118,8 +118,10 @@ buildTypes {
     // ...
 }
 ```
+
 #### Configuration for the release version 
-Proguard is activated by default so you will only need to configure it if necessary. Proguard acts only upon code and not resources such as images. To remove these resources that are not used you need to set the option [shrinkResources](https://developer.android.com/studio/build/shrink-code.html?hl=es-419#shrink-resources) to _true_:
+ProGuard must be used in release mode ([ProGuard configuration](#proguard-configuration)), this tools is used to remove unused code, but it acts only upon code and not resources such as images. To remove these unused resources you need to set the option [shrinkResources](https://developer.android.com/studio/build/shrink-code.html?hl=es-419#shrink-resources) to _true_:
+
 ```groovy
 buildTypes {
     release {
@@ -131,6 +133,7 @@ buildTypes {
     // ...
 }
 ```
+
 #### Configuration of the keystore file  
 We can add the configuration needed to sign the apk that is going to be publish to the `build.gradle` file:
 ```groovy
