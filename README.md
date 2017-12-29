@@ -92,18 +92,15 @@ Updates for Android Studio are available from different channels (Canary, Dev, B
 
 ### Configure build variants in gradle
 
-
 #### Establish applicationId in build.gradle  
 The `applicationId`, `versionCode` and `versionName` should be configured in the `build.gradle` of the main module.
 
 ```groovy
 android {
-   // ...
    defaultConfig {
        applicationId "com.beeva.myapplication"
        versionCode 1
        versionName "1.0"
-  // ...
    }
 ```
 
@@ -115,7 +112,6 @@ buildTypes {
       applicationIdSuffix ".debug"
       versionNameSuffix '-DEBUG'
     }
-    // ...
 }
 ```
 
@@ -128,9 +124,7 @@ buildTypes {
       shrinkResources true
       minifyEnabled true
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-      // ...
     }
-    // ...
 }
 ```
 
@@ -174,12 +168,10 @@ It is recommended to have a separate file with the version of each dependency so
 ext {
   supportLibraryVersion = ‘25.1.0’
   butterknifeVersion = ‘8.4.0’
-  // ...
 }
 
 // build.gradle file
 dependencies {
-  // ...
   compile "com.android.support:cardview-v7:$supportLibraryVersion"
   // ...
 }
@@ -465,7 +457,7 @@ Read more at Proguard [usage](https://www.guardsquare.com/en/proguard/manual/usa
 	- Check `app/build/outputs/proguard/release/usage.txt` to see if the object in question has been removed.
 	- Check `app/build/outputs/proguard/release/mapping.txt` to see if the object in question has been obfuscated.
 
-### Google developer console.
+### Google developer console
 
 ## Version Control
 
