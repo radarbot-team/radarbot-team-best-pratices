@@ -19,6 +19,7 @@
 - [Persistence & Storage](#persistence--storage)
 - [Analytics & Crash Logs](#analytics--crash-logs)
 - [Continuous Integration](#continuous-integration)
+	- [ProGuard configuration](#proguard-configuration)
 - [Deployment & Publishing](#deployment--publishing)
 - [Version Control](#version-control)
 
