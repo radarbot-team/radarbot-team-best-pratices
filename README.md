@@ -52,13 +52,14 @@ If you think any information is wrong or missing please write us an email or dir
 * [Frontend Tool Ecosystem](frontend/general/tools/README.md)
 * [Polymer](frontend/polymer/README.md)
 * [Emberjs](frontend/emberjs/README.md)
+* [React Native](frontend/react-native/README.md)
 
 ### IT Security & Hardening
 * [Server Security](it_security/server_security/README.md)
 * [Secure Development](it_security/secure-development/README.md)
 
 ### NoSQL
-* [MongoDB](nosql/mongodb/README.md) 
+* [MongoDB](nosql/mongodb/README.md)
 
 ### Quality Assurance
 * [ATDD Acceptance Test-driven Development](qa_testing/testing/ATDD/README.md)
