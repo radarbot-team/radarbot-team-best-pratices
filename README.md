@@ -450,8 +450,6 @@ If we want to store primitive data, key-value data pairs is the easiest way to d
 Remember, Shared Preferences are thread-safe, but not process-safe.
 
 ### Files
-Android uses a file system not much different than Linux does.
-
 Currently we can have two storage types on Android devices: Internal and external.
 
 #### Internal Storage
@@ -460,7 +458,7 @@ When the application is uninstalled, this data **will be lost** with the applica
 Beware of this if your need is to keep data on the device after uninstalling.
 
 #### External Storage
-The first thing we have to remember is that external storage **can be unmounted or removed** from the device. So access may be no longer available. Always check whether external storage is mounted before trying.
+This storage **can be unmounted or removed** from the device, so access may be no longer available. Always check whether external storage is mounted before trying.
 When the user uninstall the application, all the files will be kept in the device unless they have been saved in the path that the method `getExternalFilesDir()` returns.
 
 **Important: All applications can read or delete all files that you created in this storage.**
@@ -468,7 +466,7 @@ When the user uninstall the application, all the files will be kept in the devic
 ### SQLite Database
 _-Structured data? Well, you've come to the right place._
 
-The slowest option. There is not much to say about this method. You just have to keep in mind that the operations **should** be done outside the main thread.
+The slowest option. Also you have to keep in mind that the operations **should** be done outside the main thread.
 
 Currently we can use [Room](https://developer.android.com/topic/libraries/architecture/room.html). A persistence library made by Google to give us a level of abstraction of all the boilerplate code we that need to generate SQLite queries.
 
