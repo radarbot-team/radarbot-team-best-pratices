@@ -1,5 +1,4 @@
 # Android best practices
-<!-- MarkdownTOC depth=0 autolink=true bracket=round --> 
 
  This is how we work with Android at BEEVA.
 
@@ -23,8 +22,6 @@
 	- [ProGuard configuration](#proguard-configuration)
 - [Deployment & Publishing](#deployment--publishing)
 - [Version Control](#version-control)
-
-<!-- /MarkdownTOC -->
 
 ## Basis
 
