@@ -450,7 +450,9 @@ If we want to store primitive data, key-value data pairs is the easiest way to d
 Remember, Shared Preferences are thread-safe, but not process-safe.
 
 ### Files
-Currently we can have two storage types on Android devices: Internal and external.
+Android uses a file system not much different than Linux does.
+
+Currently we can have two storage types: Internal and external.
 
 #### Internal Storage
 Each application has its own private warehouse in an exact location of our storage. No application can access it, unless you give these privileges explicitly.
