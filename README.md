@@ -25,33 +25,22 @@
 
 ## Basis
 
-### Getting Started: official documentation and guides
+### Getting Started: Official documentation and guides.
 
-The documentation needed to work with Android can be found in the following url:
+The needed documentation to work with Android can be found on the [Android developers website](https://developer.android.com/index.html).
 
-[https://developer.android.com/index.html](https://developer.android.com/index.html)
+On this website you can find the following sections:
 
-In this web page can find three different sections:
+   - **Design**: Information about animations, styling, design patterns and usability.  
+[More Info](https://developer.android.com/design/index.html).
 
-   - **Design**: You can find information on Material Design, design patterns, animations, UI design,...
+   - **Develop**: Information about the resources that we have to develop on Android. You can find samples, API guides, the package index references and also, training code.  
+[More Info](https://developer.android.com/develop/index.html).
 
-	[https://developer.android.com/design/index.html](https://developer.android.com/design/index.html)
+   - **Distribute**: Information related to the publication of an application in the Google Play Store. Tips to increase downloads and how to make your application more relevant.  
+[More Info](https://developer.android.com/distribute/index.html).
 
-   - **Develop**: You can find information on how to develop on Android. Using Android Studio, information from different APIs, examples,...
-
-	[https://developer.android.com/develop/index.html](https://developer.android.com/develop/index.html)
-
-	There is a section with practical examples that are guided and taught step by step:
-
-	[https://developer.android.com/develop/index.html](https://developer.android.com/develop/index.html)
-
-   - **Distribute**: You can find information to publish your app in the Google Play Store and tips to increase downloads and make your application more visible.
-
-	[https://developer.android.com/distribute/index.html](https://developer.android.com/distribute/index.html)
-
-You can also find free courses taught by Google on the Udacity web page:
-
-[https://www.udacity.com/courses/android](https://www.udacity.com/courses/android)
+You can also find free courses taught by Google on the [Udacity website](https://www.udacity.com/courses/android).
 
 ### How to install and update Android Studio, JDK, SDK
 
