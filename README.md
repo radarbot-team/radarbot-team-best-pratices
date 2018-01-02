@@ -486,12 +486,39 @@ The best interaction patterns for Android.
 
 ## Persistence & Storage
 
-Common solutions to store and persist data. Pros and cons of each one.
+In Android we have several options to store data persistently in our application. So we have to keep in mind what kind of data we have to store, and how accessible they have to be, in order to choose the most appropriate solution.
 
- - Shared Preferences.
- - Internal Storage.
- - External Storage.
- - SQLite Databases.
+### Shared Preferences
+If we want to store primitive data, key-value data pairs is the easiest way to do it. On the other hand to store complex data we must do it serializing it to JSON, but is **discouraged** due that **impacts on performance**.
+
+Remember, Shared Preferences are thread-safe, but not process-safe.
+
+### Files
+Android uses a file system not much different than Linux does.
+
+Currently we can have two storage types: Internal and external.
+
+#### Internal Storage
+Each application has its own private warehouse in an exact location of our storage. No application can access it, unless you give these privileges explicitly.
+When the application is uninstalled, this data **will be lost** with the application. 
+Beware of this if your need is to keep data on the device after uninstalling.
+
+#### External Storage
+This storage **can be unmounted or removed** from the device, so access may be no longer available. Always check whether external storage is mounted before trying.
+When the user uninstall the application, all the files will be kept in the device unless they have been saved in the path that the method `getExternalFilesDir()` returns.
+
+**Important: All applications can read or delete all files that you created in this storage.**
+
+### SQLite Database
+_-Structured data? Well, you've come to the right place._
+
+The slowest option. Also you have to keep in mind that the operations **should** be done outside the main thread.
+
+Currently we can use [Room](https://developer.android.com/topic/libraries/architecture/room.html). A persistence library made by Google to give us a level of abstraction of all the boilerplate code we that need to generate SQLite queries.
+
+### Cloud Storage
+Cloud storage is a simple and scalable way to store, access and share data over the internet.
+There are different platforms that allow us to use cloud storage. But we will only make reference to two of the most important: [Firebase](https://firebase.google.com/docs/guides/?hl=es-419) and [DynamoDB](https://docs.aws.amazon.com/es_es/amazondynamodb/latest/developerguide/Introduction.html).
 
 ## Analytics & Crash Logs
 
