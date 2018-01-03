@@ -1,7 +1,5 @@
 # Android best practices
 
- This is how we work with Android at BEEVA.
-
 ![logo](statics/beeva_android.png)
 
 - [Basis](#basis)
