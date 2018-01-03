@@ -1,4 +1,4 @@
-# Android best practices
+# Android Best Practices
 
 ![logo](statics/beeva_android.png)
 
