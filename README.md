@@ -2,6 +2,7 @@
 
 ![logo](statics/beeva_android.png)
 
+## Index
 - [Getting Started](#getting-started)
 - [Project Configuration](#project-configuration)
 - [Application Architecture](#application-architecture)
