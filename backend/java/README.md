@@ -1421,6 +1421,14 @@ Another often neglected aspect is to keep in-memory collections that are not goi
 * ```Collection.clear()``` if it is supported.
 * ```Vector.setSize (0)``` for collections of *Vector* instances.
 
+Is preferable to return empty collections instead of null ones, to prevent checking for null collections afterwards:
+
+```java
+public class getEmployee {
+    return (employee==null ? new ArrayList(): employee);
+}
+```
+
 ##### Date management
 
 A common practice in managing dates is to use the *SimpleDateFormat* class. The creation of a *SimpleDateFormat* is more expensive both in memory consumption and CPU, than the formatting of a date with the parse method of the same class. If you frequently use SimpleDateFormat it is recommended to have a pool of objects and reusing them.
@@ -1746,6 +1754,10 @@ There are situations in which a poor synchronization may penalize performance si
 Be careful when working with collections and iterators in a concurrent scenario, specially when using *put()* or *remove()*. Eventually, a *ConcurrentModificationException* can be raised, even in synchronized collections. 
 
 To control this situation the *ConcurrentModificationException* exception can be captured and properly treat the situation properly.
+
+#### Equals method and the '==' operator
+
+The '==' operator compares object references, it checks if two objects point to the same object in memory and if one object is the same as another or it is a clone of another one. The equals method tests if all the elements inside an object, are the same than all the elements inside another object.
 
 #### Accessing external resources
 
@@ -2073,6 +2085,48 @@ It reflects a poor design, and probably not all their functionality can be reuse
 ###### Avoid the use of methods with very long argument lists
 
 They make the code less readable and less maintainable.
+
+###### Avoid the use of objects and methods that may not be used when logging
+
+When a flag is used to turn an operation on (when debugging during runtime), many objects will be created and methods will be executed, that will not be used when the flag is off. This operations to format output or access a database consume memory and CPU usage that could be avoided.
+
+###### Lazy initialization to defer creating an object until it is needed
+
+This can be done if the object is only needed if a condition is met, like the following:
+
+```java
+public class ExampleClass
+{
+    private ExampleObject exampleObj;
+
+    ...
+
+    public ExampleObject getExampleObject()
+    {
+        if (exampleObj == null)
+        {
+            exampleObj = new ExampleObject();
+        }
+
+         return exampleObj;
+    }
+
+    ...
+}
+```
+
+### Memory allocation for the JVM
+
+When an application is expensive on CPU and memory usage, the default preferences for the JVM make these applications run slower than expected. In order to improve the performance of these programs we can allocate more memory for the JVM to execute. For example, if we have 8 GB of RAM assigend to a Tomcat webserver where we are running a Java web application, we can allocate more memory with this command:
+
+```shell
+export JAVA_OPTS="$JAVA_OPTS -Xms3000m -Xmx4000m -XX:PermSize=1024m -XX:MaxPermSize=2048m"
+```
+
+* Xms = Minimum memory allocation pool
+* Xmx = Maximum memory allocation pool
+* XX:PermSize = Initial size that will be allocated during startup of the JVM
+* XX:MaxPermSize = Maximum size that can be allocated during startup of the JVM
 
 ### Recommendations for JEE applications
 
