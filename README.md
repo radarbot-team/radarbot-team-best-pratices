@@ -1,8 +1,9 @@
 # Android Best Practices
 
+This is how we work with Android at BEEVA.
+
 ![logo](statics/beeva_android.png)
 
-## Index
 - [Basis](#basis)
 - [Project Configuration](#project-configuration)
 - [Application Architecture](#application-architecture)
@@ -418,7 +419,7 @@ The [threads](https://developer.android.com/reference/java/lang/Thread.html) are
 
 ### HandlerThread
 
-Android provides a thread subclass, [HandlerThread] (https://developer.android.com/reference/android/os/HandlerThread.html), which encapsulates the Looper object (so that we do not care the Looper open and release details) and the MessageQueue. 
+Android provides a thread subclass, [HandlerThread](https://developer.android.com/reference/android/os/HandlerThread.html), which encapsulates the Looper object (so that we do not care the Looper open and release details) and the MessageQueue. 
 
 Once we started HandlerThread we can post tasks to it at any time, the HandlerThread remains active until you call `quit`, remember make this call for free resources when you don't need the HandlerThread anymore.
 
@@ -458,7 +459,7 @@ You can also extend the `IntentService` class for your service implementation. I
 
 If you want to run a task repeatedly on different sets of data, but you only need one execution running at a time, an IntentService suits your needs.
 
-<br/> [More info](http://developer.android.com/intl/es/training/best-background.html).
+[More info](http://developer.android.com/intl/es/training/best-background.html).
 
 
 ## Interaction and Engagement
