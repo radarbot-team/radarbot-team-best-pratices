@@ -41,13 +41,10 @@ On this website you can find the following sections:
 
 You can also find free courses taught by Google on the [Udacity website](https://www.udacity.com/courses/android).
 
-### How to install and update Android Studio, JDK, SDK
+### How to install Android Studio, JDK and SDK
 
-#### Installation
-To install Android Studio it is necessary to download java JDK and Android Studio. Both things are available in the links below:
-
-   - [Java SE Development Kit 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
-   - [Android Studio](http://developer.android.com/sdk/index.html)
+#### Requirements
+To start developing on Android you have to download [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and [Android Studio](https://developer.android.com/studio/index.html).
 
 #### SDK Manager
 Android SDK Manager separates SDK Tools, platforms and other components into packages of easy access and management.
