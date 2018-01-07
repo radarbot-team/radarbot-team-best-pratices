@@ -3,7 +3,7 @@
 ![logo](statics/beeva_android.png)
 
 ## Index
-- [Getting Started](#getting-started)
+- [Basis](#basis)
 - [Project Configuration](#project-configuration)
 - [Application Architecture](#application-architecture)
 - [User Interface and Visuals](#user-interface-and-visuals)
@@ -22,9 +22,9 @@
 	- [ProGuard configuration](#proguard-configuration)
 - [Version Control](#version-control)
 
-## Getting Started
+## Basis
 
-### Official documentation and guides
+### Getting Started: Official documentation and guides
 
 The needed documentation to work with Android can be found on the [Android developers website](https://developer.android.com/index.html).
 
