@@ -47,16 +47,16 @@ You can also find free courses taught by Google on the [Udacity website](https:/
 To start developing on Android you have to download [Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) and [Android Studio](https://developer.android.com/studio/index.html).
 
 #### SDK Manager
-Android SDK Manager separates SDK Tools, platforms and other components into packages of easy access and management.
-Once you have Android Studio installed, it is easy to keep the Android Studio IDE and the Android SDK Tools updated with automatic updates and the SDK Manager.  
+Android SDK Manager separates the SDK Tools, SDK Platforms and other components into packages. 
 
-The following list of packages are necessary for the development of an android project.  
+Once you have Android Studio installed, it is easy to keep Android Studio and Android SDK Tools updated with the automatic updates and the SDK Manager.
 
-*<ins>Mandatory packages</ins>*  
+*<ins>Mandatory packages<ins>*
    - **Android SDK Build Tools**: Includes tools to build Android apps.  
-   - **Android SDK Platform-tools**: Includes various tools required by the Android platform, including the adb too.
+   - **Android SDK Platform-tools**: Includes various tools required by the Android platform, including [_adb_](https://developer.android.com/studio/command-line/adb.html) command-line tool.
    - **Android SDK Tools**: Includes essential tools such as the Android Emulator and ProGuard.
-   - **Android SDK Platform**: At least one platform is required in your environment so you are able to compile your application. In order to provide the best user experience on the latest devices, use the latest platform version as your build target.  
+   - **Android SDK Platform**: At least one platform is required in your environment to compile the application.
+   - In order to provide the best user experience on the latest devices, use the latest platform version as your build target.  
 
 *<ins>Recommended packages</ins>*  
    - **Android Support Repository**: Includes local Maven repository for Support libraries, which provide an extended set of APIs that are compatible with most versions of Android.
