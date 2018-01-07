@@ -52,7 +52,7 @@ Android SDK Manager separates the SDK Tools, SDK Platforms and other components 
 
 Once you have Android Studio installed, it is easy to keep Android Studio and Android SDK Tools updated with the automatic updates and the SDK Manager.
 
-*<ins>Mandatory packages<ins>*
+*<ins>Mandatory packages</ins>*
    - **Android SDK Build Tools**: Includes tools to build Android apps.  
    - **Android SDK Platform-tools**: Includes various tools required by the Android platform, including [_adb_](https://developer.android.com/studio/command-line/adb.html) command-line tool.
    - **Android SDK Tools**: Includes essential tools such as the Android Emulator and ProGuard.
