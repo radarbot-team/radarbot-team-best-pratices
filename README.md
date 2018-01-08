@@ -1,4 +1,4 @@
-# Android Best Practices
+# Android best practices
 
 This is how we work with Android at BEEVA.
 
