@@ -6,6 +6,8 @@ Here is the list of best practices, guidelines, codestyles and recommendations t
 
 If you think any information is wrong or missing please write us an email or directly create an issue inside this repo.
 
+## Areas covered
+
 ### Analytics
 * [Python](analytics/python/README.md)
 * [R](analytics/R/README.md)
@@ -75,13 +77,9 @@ If you think any information is wrong or missing please write us an email or dir
 ## Contrib Guidelines
 Please see [CONTRIBUTE](CONTRIBUTE)
 
----
-
-# Licence
-
+## Licence
 Please see [LICENSE](LICENSE).
 
 ___
 
 [BEEVA](https://www.beeva.com) | Technology and innovative solutions for companies
-
