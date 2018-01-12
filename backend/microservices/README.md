@@ -32,6 +32,8 @@ In this section we will describe how we work at BEEVA with microservices.
 
     3.7. [Sidecar](#37-sidecar)
 
+    3.8. [Spring Cloud Stream](#38-spring-cloud-stream)
+
 4. [Using docker to deploy microservices](#4-using-docker-to-deploy-microservices)
 
 5. [A reference architecture for microservices in AWS](#5-a-reference-architecture-for-microservices-in-aws)
@@ -261,7 +263,7 @@ In a distributed system where several components (microservices) need to communi
 
 Maybe the bigger difference between microservice-based and SOA architectures is the impact of side effects.
  
-Microservice-based architectures build small pieces of functionality relying on repeatable results, input/output standard mechanisms and an exit code that informs about if the operations resulted in success or failure. This behaviour is similar to classical Unix pipes, where every member of the pipeline is responsible of deciding if its input is acceptable or not, but there are not any control statements.  
+Microservice-based architectures follows the “smart endpoints and dumb pipes” principle. They build small pieces of functionality relying on repeatable results, input/output standard mechanisms and an exit code that informs about if the operations resulted in success or failure. This behaviour is similar to classical Unix pipes, where every member of the pipeline is responsible of deciding if its input is acceptable or not, but there are not any control statements. 
 
 Any change in a microservice could lead to a cascade of dependent changes that need to be done at once and deployed synchronously, potentially requiring approval of different teams. 
 
@@ -286,7 +288,7 @@ Instead of start building microservice-based architectures from the scratch, it 
 
 It is important to use a mature framework, like the one released by Netflix as part of Netflix OSS stack. This stack was wrapped by Spring in a project, called Spring Cloud.
 
-Spring Cloud and Spring Boot together offer a really easy way of deploying core and orchestration components, including:
+Spring Cloud is builds on the concepts of Spring Boot and both together offer a really easy way of deploying core and orchestration components, including:
 
  - A centralized configuration server
  - A service discovery component (Eureka)
@@ -305,7 +307,7 @@ The picture below illustrates a general overview of this architecture:
 
 ### 3.2 Config Server
 
-One of the most important orchestration modules is the Config Server. Its main purpose is to centralize the configuration for all microservices using the architecture.
+One of the most important orchestration modules is the Config Server. Its main purpose is to centralize the configuration for all microservices using the architecture. Based on the twelve-factor app methodology, configurations for distributed applications should be stored in the environment and not in the project.
 
 We recommend to use GIT as source for the properties and to have an optimal file organization. Additionally, we should follow some recommendations:
 
@@ -631,9 +633,9 @@ Spring Cloud Bus enables communication between nodes in a distributed system thr
 
 In that way, when a microservice wants to send a message to another microservice, it can send it throughout the bus straight to the microservice (all nodes of one microservice as defined in Eureka), or it can broadcast that message to all of the microservices listening in the bus. Each microservice can process the message or ignore it.
 
-Currently there is only one implementation for Spring Bus and is based in an AMQP broker as the transport. By default it uses RabbitMQ as a `ConnectionFactory`, so we must ensure that RabbitMQ is installed and ready.
+Spring Bus uses AMQP broker as the transport, but Apache Kafka or Redis can be utilized instead of RabbitMQ. Other transports are currently not supported yet.
 
-To enable Spring Bus we have to add the dependency `spring-cloud-starter-bus-amqp` and Spring Boot will automatically load the configuration. We can, additionally, configure some parameters as shown:
+To enable Spring Bus we have to add the dependency `spring-cloud-starter-bus-amqp` (or `spring-cloud-starter-bus-kafka`) and Spring Boot will automatically load the configuration. We can, additionally, configure some parameters as shown:
 
 ```YAML
 spring:
@@ -790,6 +792,28 @@ Assuming that Zuul is started at port 8989 and with name _zuul_, an invocation t
 and from the node.js microservice, retrieval of information about zuul would be possible through:
 
 > http://localhost:10001/hosts/zuul
+
+### 3.8 Spring Cloud Stream
+
+Spring Cloud Stream is a framework built on Spring Boot and Spring Integration that ensures creating event-driven or message-driven microservices.
+
+Messages are delivered by the Publish-Subscribe messaging pattern. Publishers categorize messages into topics identified by a resource name. Subscribers Subscribers may register for one or more topics. The middleware filters the messages, delivering those of the interesting topics to the subscribers.
+
+This pattern provides a great network scalability.
+
+#### Concepts
+
+- Bindings: interfaces that identify the INPUT and OUTPUT channels
+- Binder: messaging-middleware implementation (Kafka or RabbitMQ)
+- Channel: communication pipe between the broker and the application
+- StreamListeners: message-handling methods in beans that will be automatically invoked on a message from the channel
+
+#### Implementation
+
+To enable Spring Stream we just need to add the dependency `spring-cloud-stream` and a messaging-middleware `spring-cloud-starter-stream-kafka` or `spring-cloud-starter-stream-rabbit`. Spring Boot will automatically load the configuration.
+
+By adding @EnableBinding to your main application, you get immediate connectivity to the message broker.
+By adding @StreamListener to a method, you will receive events for stream processing.
 
 ## 4. Using docker to deploy microservices
 ---
