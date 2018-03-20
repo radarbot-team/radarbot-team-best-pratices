@@ -31,7 +31,7 @@ This document describes the way we use Node.js in BEEVA. We use it to develop li
 
 As Python and other languages, Node.js can be used to develop either desktop/console tools or highly scalable network applications.
 **This guide will focus on Node.js usage to develop network applications**.
-Since developments make use of Javacript Node.js, we recommend reading the language specific section in this [guide](../../frontend/javascript/README.md).
+Since developments make use of Javacript Node.js, we recommend reading the language specific section in this [guide](../../frontend/general/javascript/README.md).
 
 ### Purpose
 
