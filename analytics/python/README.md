@@ -11,7 +11,7 @@
   * [Visualization](#visualization)
   * Machine Learning
     * [scikit-learn](#scikit-learn)
-  * [Titanic Example](#titanic-example)
+  * [Titanic Example](Ejercicio_practico_Titanic.ipynb)
 
 
 ### <a name="load_data"></a>Load data
