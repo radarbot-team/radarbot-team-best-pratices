@@ -1,4 +1,4 @@
-#Best Practices to follow - RadarBot team
+# Best Practices to follow - RadarBot team
 
 Please read this repository carefully before contribute.
 
